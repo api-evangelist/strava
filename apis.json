@@ -1,0 +1,84 @@
+{
+    "name": "Strava",
+    "description": "Strava is software as a service used to track cycling, running, and swimming activity via GPS.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28739-strava.jpg",
+    "tags": [
+        "athletes",
+        "have api",
+        "new",
+        "relative data",
+        "service api",
+        "webhook implementations"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/strava\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Strava API v3",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28739-strava.jpg",
+            "humanURL": "https:\/\/developers.strava.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/strava-api-v3-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/strava-api-v3.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Code",
+            "url": "https:\/\/developers.strava.com\/docs\/#client-code"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/strava"
+        },
+        {
+            "type": "Documentation",
+            "url": "https:\/\/developers.strava.com\/docs\/reference\/"
+        },
+        {
+            "type": "Email",
+            "url": "developers@strava.com"
+        },
+        {
+            "type": "Email",
+            "url": "dpo@strava.com"
+        },
+        {
+            "type": "Email",
+            "url": "ip@strava.com"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/strava"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/Strava"
+        },
+        {
+            "type": "Webhooks",
+            "url": "https:\/\/developers.strava.com\/docs\/webhooks\/"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/developers.strava.com"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/developers.strava.com"
+        }
+    ]
+}
