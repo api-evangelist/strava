@@ -1,0 +1,1270 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "3.0.0",
+        "title": "Strava API v3",
+        "description": "The [Swagger Playground](https:\/\/developers.strava.com\/playground) is the easiest way to familiarize yourself with the Strava API by submitting HTTP requests and observing the responses before you write any client code. It will show what a response will look like with different endpoints depending on the authorization scope you receive from your athletes. To use the Playground, go to https:\/\/www.strava.com\/settings\/api and change your \u201cAuthorization Callback Domain\u201d to developers.strava.com. Please note, we only support Swagger 2.0. There is a known issue where you can only select one scope at a time. For more information, please check the section \u201cclient code\u201d at https:\/\/developers.strava.com\/docs.",
+        "termsOfService": "http:\/\/exmple.com\/license\/"
+    },
+    "servers": [
+        "httpswww.strava.com\/api\/v3"
+    ],
+    "paths": {
+        "\/athletes\/{id}\/stats": {
+            "get": {
+                "summary": "Get Athlete Stats",
+                "description": "Returns the activity stats of an athlete.",
+                "operationId": "GetStats",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/athlete": {
+            "get": {
+                "summary": "Get Authenticated Athlete",
+                "description": "Returns the currently authenticated athlete. Tokens with profile:read_all scope will receive a detailed athlete representation; all others will receive a summary representation.",
+                "operationId": "GetLoggedInAthlete",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Athlete",
+                "description": "Update the currently authenticated athlete. Requires profile:write scope.",
+                "operationId": "UpdateLoggedInAthlete",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "weight",
+                        "in": "path",
+                        "description": "The weight of the athlete in kilograms."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/athlete\/zones": {
+            "get": {
+                "summary": "Get Zones",
+                "description": "Returns the the authenticated athlete's heart rate and power zones. Requires profile:read_all.",
+                "operationId": "GetLoggedInAthleteZones",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segments\/{id}": {
+            "get": {
+                "summary": "Get Segment",
+                "description": "Returns the specified segment. read_all scope required in order to retrieve athlete-specific segment information, or to retrieve private segments.",
+                "operationId": "GetSegmentById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segments\/starred": {
+            "get": {
+                "summary": "List Starred Segments",
+                "description": "List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by a token with read_all scope.",
+                "operationId": "GetLoggedInAthleteStarredSegments",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segments\/{id}\/starred": {
+            "put": {
+                "summary": "Star Segment",
+                "description": "Stars\/Unstars the given segment for the authenticated athlete. Requires profile:write scope.",
+                "operationId": "StarSegment",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "starred",
+                        "in": "formData",
+                        "description": "If true, star the segment; if false, unstar the segment."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segments\/{id}\/leaderboard": {
+            "get": {
+                "summary": "Get Segment Leaderboard",
+                "description": "Returns the specified segment leaderboard.",
+                "operationId": "GetLeaderboardBySegmentId",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "gender",
+                        "in": "query",
+                        "description": "Filter by gender."
+                    },
+                    {
+                        "name": "age_group",
+                        "in": "query",
+                        "description": "Summit Feature. Filter by age group."
+                    },
+                    {
+                        "name": "weight_class",
+                        "in": "query",
+                        "description": "Summit Feature. Filter by weight class."
+                    },
+                    {
+                        "name": "following",
+                        "in": "query",
+                        "description": "Filter by friends of the authenticated athlete."
+                    },
+                    {
+                        "name": "club_id",
+                        "in": "query",
+                        "description": "Filter by club."
+                    },
+                    {
+                        "name": "date_range",
+                        "in": "query",
+                        "description": "Filter by date range."
+                    },
+                    {
+                        "name": "context_entries",
+                        "in": "query",
+                        "description": ""
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segments\/{id}\/all_efforts": {
+            "get": {
+                "summary": "List Segment Efforts",
+                "description": "Returns a set of the authenticated athlete's segment efforts for a given segment.",
+                "operationId": "GetEffortsBySegmentId",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segments\/explore": {
+            "get": {
+                "summary": "Explore segments",
+                "description": "Returns the top 10 segments matching a specified query.",
+                "operationId": "ExploreSegments",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "bounds",
+                        "in": "query",
+                        "description": "The latitude and longitude for two points describing a rectangular boundary for the search: [southwest corner latitutde, southwest corner longitude, northeast corner latitude, northeast corner longitude]"
+                    },
+                    {
+                        "name": "activity_type",
+                        "in": "query",
+                        "description": "Desired activity type."
+                    },
+                    {
+                        "name": "min_cat",
+                        "in": "query",
+                        "description": "The minimum climbing category."
+                    },
+                    {
+                        "name": "max_cat",
+                        "in": "query",
+                        "description": "The maximum climbing category."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segment_efforts\/{id}": {
+            "get": {
+                "summary": "Get Segment Effort",
+                "description": "Returns a segment effort from an activity that is owned by the authenticated athlete.",
+                "operationId": "GetSegmentEffortById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/running_races\/{id}": {
+            "get": {
+                "summary": "Get Running Race",
+                "description": "Returns a running race for a given identifier.",
+                "operationId": "GetRunningRaceById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/running_races": {
+            "get": {
+                "summary": "List Running Races",
+                "description": "Returns a list running races based on a set of search criteria.",
+                "operationId": "GetRunningRaces",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "year",
+                        "in": "query",
+                        "description": "Filters the list by a given year."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/activities": {
+            "post": {
+                "summary": "Create an Activity",
+                "description": "Creates a manual activity for an athlete, requires activity:write scope.",
+                "operationId": "CreateActivity",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "The name of the activity."
+                    },
+                    {
+                        "name": "type",
+                        "in": "formData",
+                        "description": "Type of activity. For example - Run, Ride etc."
+                    },
+                    {
+                        "name": "start_date_local",
+                        "in": "formData",
+                        "description": "ISO 8601 formatted date time."
+                    },
+                    {
+                        "name": "elapsed_time",
+                        "in": "formData",
+                        "description": "In seconds."
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of the activity."
+                    },
+                    {
+                        "name": "distance",
+                        "in": "formData",
+                        "description": "In meters."
+                    },
+                    {
+                        "name": "trainer",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as a trainer activity."
+                    },
+                    {
+                        "name": "photo_ids",
+                        "in": "formData",
+                        "description": "List of native photo ids to attach to the activity."
+                    },
+                    {
+                        "name": "commute",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as commute."
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The activity's detailed representation.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity.json#\/DetailedActivity"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/activities\/{id}": {
+            "get": {
+                "summary": "Get Activity",
+                "description": "Returns the given activity that is owned by the authenticated athlete. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "GetActivityById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "include_all_efforts",
+                        "in": "query",
+                        "description": "To include all segments efforts."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Activity",
+                "description": "Updates the given activity that is owned by the authenticated athlete. Requires activity:write. Also requires activity:read_all in order to update Only Me activities",
+                "operationId": "UpdateActivityById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/athlete\/activities": {
+            "get": {
+                "summary": "List Athlete Activities",
+                "description": "Returns the activities of an athlete for a specific identifier. Requires activity:read. Only Me activities will be filtered out unless requested by a token with activity:read_all.",
+                "operationId": "GetLoggedInAthleteActivities",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "before",
+                        "in": "query",
+                        "description": "An epoch timestamp to use for filtering activities that have taken place before a certain time."
+                    },
+                    {
+                        "name": "after",
+                        "in": "query",
+                        "description": "An epoch timestamp to use for filtering activities that have taken place after a certain time."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/activities\/{id}\/laps": {
+            "get": {
+                "summary": "List Activity Laps",
+                "description": "Returns the laps of an activity identified by an identifier. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "GetLapsByActivityId",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/activities\/{id}\/zones": {
+            "get": {
+                "summary": "Get Activity Zones",
+                "description": "Summit Feature. Returns the zones of a given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "GetZonesByActivityId",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/activities\/{id}\/comments": {
+            "get": {
+                "summary": "List Activity Comments",
+                "description": "Returns the comments on the given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "GetCommentsByActivityId",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/activities\/{id}\/kudos": {
+            "get": {
+                "summary": "List Activity Kudoers",
+                "description": "Returns the athletes who kudoed an activity identified by an identifier. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+                "operationId": "GetKudoersByActivityId",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/clubs\/{id}": {
+            "get": {
+                "summary": "Get Club",
+                "description": "Returns a given club using its identifier.",
+                "operationId": "GetClubById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/clubs\/{id}\/members": {
+            "get": {
+                "summary": "List Club Members",
+                "description": "Returns a list of the athletes who are members of a given club.",
+                "operationId": "GetClubMembersById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/clubs\/{id}\/admins": {
+            "get": {
+                "summary": "List Club Administrators.",
+                "description": "Returns a list of the administrators of a given club.",
+                "operationId": "GetClubAdminsById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/clubs\/{id}\/activities": {
+            "get": {
+                "summary": "List Club Activities",
+                "description": "Retrieve recent activities from members of a specific club. The authenticated athlete must belong to the requested club in order to hit this endpoint. Pagination is supported. Athlete profile visibility is respected for all activities.",
+                "operationId": "GetClubActivitiesById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/athlete\/clubs": {
+            "get": {
+                "summary": "List Athlete Clubs",
+                "description": "Returns a list of the clubs whose membership includes the authenticated athlete.",
+                "operationId": "GetLoggedInAthleteClubs",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/gear\/{id}": {
+            "get": {
+                "summary": "Get Equipment",
+                "description": "Returns an equipment using its identifier.",
+                "operationId": "GetGearById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/routes\/{id}": {
+            "get": {
+                "summary": "Get Route",
+                "description": "Returns a route using its identifier. Requires read_all scope for private routes.",
+                "operationId": "GetRouteById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/athletes\/{id}\/routes": {
+            "get": {
+                "summary": "List Athlete Routes",
+                "description": "Returns a list of the routes created by the authenticated athlete using their athlete ID. Private routes are filtered out unless requested by a token with read_all scope.",
+                "operationId": "GetRoutesByAthleteId",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "No Name",
+                        "in": "query",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/routes\/{id}\/export_gpx": {
+            "get": {
+                "summary": "Export Route GPX",
+                "description": "Returns a GPX file of the route. Requires read_all scope for private routes.",
+                "operationId": "GetRouteAsGPX",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/routes\/{id}\/export_tcx": {
+            "get": {
+                "summary": "Export Route TCX",
+                "description": "Returns a TCX file of the route. Requires read_all scope for private routes.",
+                "operationId": "GetRouteAsTCX",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/uploads": {
+            "post": {
+                "summary": "Upload Activity",
+                "description": "Uploads a new data file to create an activity from. Requires activity:write scope.",
+                "operationId": "CreateUpload",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "The uploaded file."
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "The name of the activity."
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of the activity."
+                    },
+                    {
+                        "name": "trainer",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as a trainer activity."
+                    },
+                    {
+                        "name": "commute",
+                        "in": "formData",
+                        "description": "Set to 1 to mark as commute."
+                    },
+                    {
+                        "name": "data_type",
+                        "in": "formData",
+                        "description": "The format of the uploaded file."
+                    },
+                    {
+                        "name": "external_id",
+                        "in": "formData",
+                        "description": "The desired external identifier of the resulting activity."
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "The activity's detailed representation.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity.json#\/DetailedActivity"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/uploads\/{uploadId}": {
+            "get": {
+                "summary": "Get Upload",
+                "description": "Returns an upload for a given identifier. Requires activity:write scope.",
+                "operationId": "GetUploadById",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "uploadId",
+                        "in": "path",
+                        "description": "The identifier of the upload."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/activities\/{id}\/streams": {
+            "get": {
+                "summary": "Get Activity Streams",
+                "description": "Returns the given activity's streams. Requires activity:read scope. Requires activity:read_all scope for Only Me activities.",
+                "operationId": "GetActivityStreams",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "keys",
+                        "in": "query",
+                        "description": "Desired stream types."
+                    },
+                    {
+                        "name": "key_by_type",
+                        "in": "query",
+                        "description": "Must be true."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segment_efforts\/{id}\/streams": {
+            "get": {
+                "summary": "Get Segment Effort Streams",
+                "description": "Returns a set of streams for a segment effort completed by the authenticated athlete. Requires read_all scope.",
+                "operationId": "GetSegmentEffortStreams",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "keys",
+                        "in": "query",
+                        "description": "Desired stream types."
+                    },
+                    {
+                        "name": "key_by_type",
+                        "in": "query",
+                        "description": "Must be true."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/segments\/{id}\/streams": {
+            "get": {
+                "summary": "Get Segment Streams",
+                "description": "Returns the given segment's streams. Requires read_all scope for private segments.",
+                "operationId": "GetSegmentStreams",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    },
+                    {
+                        "name": "keys",
+                        "in": "query",
+                        "description": "Desired stream types."
+                    },
+                    {
+                        "name": "key_by_type",
+                        "in": "query",
+                        "description": "Must be true."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/routes\/{id}\/streams": {
+            "get": {
+                "summary": "Get Route Streams",
+                "description": "Returns the given route's streams. Requires read_all scope for private routes.",
+                "operationId": "GetRouteStreams",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The identifier of the athlete. Must match the authenticated athlete."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activity stats of the athlete.",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "https:\/\/developers.strava.com\/swagger\/activity_stats.json#\/ActivityStats": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/fault.json#\/Fault": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/athlete.json#\/DetailedAthlete": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/zones.json#\/Zones": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/segment.json#\/DetailedSegment": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/segment_leaderboard.json#\/SegmentLeaderboard": {
+                "type": "object"
+            },
+            "bounds": {
+                "type": "array"
+            },
+            "https:\/\/developers.strava.com\/swagger\/segment.json#\/ExplorerResponse": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/segment_effort.json#\/DetailedSegmentEffort": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/running_race.json#\/RunningRace": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/activity.json#\/DetailedActivity": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/activity.json#\/UpdatableActivity": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/club.json#\/DetailedClub": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/gear.json#\/DetailedGear": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/route.json#\/Route": {
+                "type": "object"
+            },
+            "https:\/\/developers.strava.com\/swagger\/upload.json#\/Upload": {
+                "type": "object"
+            },
+            "keys": {
+                "type": "array"
+            },
+            "https:\/\/developers.strava.com\/swagger\/stream.json#\/StreamSet": {
+                "type": "object"
+            }
+        }
+    }
+}
