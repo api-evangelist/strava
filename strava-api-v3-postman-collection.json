@@ -1,0 +1,1445 @@
+{
+    "id": "0c439f442e7358dbe6eed95789fcea26",
+    "name": "Strava API v3",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "884000206c347c7b4a100e7c1ed9bdee",
+            "name": "Get Athlete Stats",
+            "url": "httpswww.strava.com\/api\/v3\/athletes\/{id}\/stats",
+            "description": "Returns the activity stats of an athlete.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "8b4e25928a1a34664a2421bf89822197",
+            "name": "Get Authenticated Athlete",
+            "url": "httpswww.strava.com\/api\/v3\/athlete",
+            "description": "Returns the currently authenticated athlete. Tokens with profile:read_all scope will receive a detailed athlete representation; all others will receive a summary representation.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "e1fa2a9b3f78803899b66157e33cdfd1",
+            "name": "Update Athlete",
+            "url": "httpswww.strava.com\/api\/v3\/athlete",
+            "description": "Update the currently authenticated athlete. Requires profile:write scope.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "weight",
+                    "description": "The weight of the athlete in kilograms.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "962ee89a62b4020cd714d8e07be02b97",
+            "name": "Get Zones",
+            "url": "httpswww.strava.com\/api\/v3\/athlete\/zones",
+            "description": "Returns the the authenticated athlete's heart rate and power zones. Requires profile:read_all.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "07d9b6f91d5bc8859ce3342fe91643f0",
+            "name": "Get Segment",
+            "url": "httpswww.strava.com\/api\/v3\/segments\/{id}",
+            "description": "Returns the specified segment. read_all scope required in order to retrieve athlete-specific segment information, or to retrieve private segments.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "e7886472aa36bedef601a7db0e80a2e4",
+            "name": "List Starred Segments",
+            "url": "httpswww.strava.com\/api\/v3\/segments\/starred",
+            "description": "List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by a token with read_all scope.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "c5fff56f5c9708e38e76a3821a2fbb4f",
+            "name": "Star Segment",
+            "url": "httpswww.strava.com\/api\/v3\/segments\/{id}\/starred",
+            "description": "Stars\/Unstars the given segment for the authenticated athlete. Requires profile:write scope.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "starred",
+                    "description": "If true, star the segment; if false, unstar the segment.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "a1cfe193a3b05fa3da83cd8e691ca82f",
+            "name": "Get Segment Leaderboard",
+            "url": "httpswww.strava.com\/api\/v3\/segments\/{id}\/leaderboard",
+            "description": "Returns the specified segment leaderboard.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "gender",
+                    "description": "Filter by gender.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "age_group",
+                    "description": "Summit Feature. Filter by age group.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "weight_class",
+                    "description": "Summit Feature. Filter by weight class.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "following",
+                    "description": "Filter by friends of the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "club_id",
+                    "description": "Filter by club.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "date_range",
+                    "description": "Filter by date range.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "context_entries",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "77cf8c62d7256239a9575918ca5bdd36",
+            "name": "List Segment Efforts",
+            "url": "httpswww.strava.com\/api\/v3\/segments\/{id}\/all_efforts",
+            "description": "Returns a set of the authenticated athlete's segment efforts for a given segment.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "3cdc1d78dda1f3e3610315cc5f606899",
+            "name": "Explore segments",
+            "url": "httpswww.strava.com\/api\/v3\/segments\/explore",
+            "description": "Returns the top 10 segments matching a specified query.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "bounds",
+                    "description": "The latitude and longitude for two points describing a rectangular boundary for the search: [southwest corner latitutde, southwest corner longitude, northeast corner latitude, northeast corner longitude]",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "activity_type",
+                    "description": "Desired activity type.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "min_cat",
+                    "description": "The minimum climbing category.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "max_cat",
+                    "description": "The maximum climbing category.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "bb4a6501d56c60be8dd1f5d55ae331f8",
+            "name": "Get Segment Effort",
+            "url": "httpswww.strava.com\/api\/v3\/segment_efforts\/{id}",
+            "description": "Returns a segment effort from an activity that is owned by the authenticated athlete.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "a356fdf311f17b40104d729e89e31a62",
+            "name": "Get Running Race",
+            "url": "httpswww.strava.com\/api\/v3\/running_races\/{id}",
+            "description": "Returns a running race for a given identifier.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "ee8a911f26ffe868c5e5e66a41917fd2",
+            "name": "List Running Races",
+            "url": "httpswww.strava.com\/api\/v3\/running_races",
+            "description": "Returns a list running races based on a set of search criteria.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "year",
+                    "description": "Filters the list by a given year.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "0c2d7d863fb229144c194042b2016e76",
+            "name": "Create an Activity",
+            "url": "httpswww.strava.com\/api\/v3\/activities",
+            "description": "Creates a manual activity for an athlete, requires activity:write scope.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "name",
+                    "description": "The name of the activity.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "type",
+                    "description": "Type of activity. For example - Run, Ride etc.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "start_date_local",
+                    "description": "ISO 8601 formatted date time.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "elapsed_time",
+                    "description": "In seconds.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "description",
+                    "description": "Description of the activity.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "distance",
+                    "description": "In meters.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "trainer",
+                    "description": "Set to 1 to mark as a trainer activity.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "photo_ids",
+                    "description": "List of native photo ids to attach to the activity.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "commute",
+                    "description": "Set to 1 to mark as commute.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "1175fa25d92b7d9df27764aeb9d7ad82",
+            "name": "Get Activity",
+            "url": "httpswww.strava.com\/api\/v3\/activities\/{id}",
+            "description": "Returns the given activity that is owned by the authenticated athlete. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "include_all_efforts",
+                    "description": "To include all segments efforts.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "5d224d865a2d077b7aeb109721956316",
+            "name": "Update Activity",
+            "url": "httpswww.strava.com\/api\/v3\/activities\/{id}",
+            "description": "Updates the given activity that is owned by the authenticated athlete. Requires activity:write. Also requires activity:read_all in order to update Only Me activities",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "64649cebfae381d378c79d336907ae7f",
+            "name": "List Athlete Activities",
+            "url": "httpswww.strava.com\/api\/v3\/athlete\/activities",
+            "description": "Returns the activities of an athlete for a specific identifier. Requires activity:read. Only Me activities will be filtered out unless requested by a token with activity:read_all.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "before",
+                    "description": "An epoch timestamp to use for filtering activities that have taken place before a certain time.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "after",
+                    "description": "An epoch timestamp to use for filtering activities that have taken place after a certain time.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "f4e0f906f0f46d405d41fa531f76ffb5",
+            "name": "List Activity Laps",
+            "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/laps",
+            "description": "Returns the laps of an activity identified by an identifier. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "a1fdc8e7467ca235cc5528b38927a279",
+            "name": "Get Activity Zones",
+            "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/zones",
+            "description": "Summit Feature. Returns the zones of a given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "14691d2577a37f58ac4a437ab8fda687",
+            "name": "List Activity Comments",
+            "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/comments",
+            "description": "Returns the comments on the given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "545c138cfb568f377479c74f0035c82c",
+            "name": "List Activity Kudoers",
+            "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/kudos",
+            "description": "Returns the athletes who kudoed an activity identified by an identifier. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "96619cfb2feeb27fa3c7a54674f65e24",
+            "name": "Get Club",
+            "url": "httpswww.strava.com\/api\/v3\/clubs\/{id}",
+            "description": "Returns a given club using its identifier.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "b0d2bdd2e9620fb1aba3b62548147dde",
+            "name": "List Club Members",
+            "url": "httpswww.strava.com\/api\/v3\/clubs\/{id}\/members",
+            "description": "Returns a list of the athletes who are members of a given club.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "6d32fd87af782f1758733f717dd1c8f0",
+            "name": "List Club Administrators.",
+            "url": "httpswww.strava.com\/api\/v3\/clubs\/{id}\/admins",
+            "description": "Returns a list of the administrators of a given club.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "56706644fe7fa1fb35a3515cc0104a4d",
+            "name": "List Club Activities",
+            "url": "httpswww.strava.com\/api\/v3\/clubs\/{id}\/activities",
+            "description": "Retrieve recent activities from members of a specific club. The authenticated athlete must belong to the requested club in order to hit this endpoint. Pagination is supported. Athlete profile visibility is respected for all activities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "3bb9002e323a53a732847559056879e3",
+            "name": "List Athlete Clubs",
+            "url": "httpswww.strava.com\/api\/v3\/athlete\/clubs",
+            "description": "Returns a list of the clubs whose membership includes the authenticated athlete.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "4d084a94afe1ce5be57c19cabf96a4e8",
+            "name": "Get Equipment",
+            "url": "httpswww.strava.com\/api\/v3\/gear\/{id}",
+            "description": "Returns an equipment using its identifier.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "ebe8fb3e0eaf2d62915b6cf875c6b858",
+            "name": "Get Route",
+            "url": "httpswww.strava.com\/api\/v3\/routes\/{id}",
+            "description": "Returns a route using its identifier. Requires read_all scope for private routes.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "0c00eb0504b916e25083311d3052146a",
+            "name": "List Athlete Routes",
+            "url": "httpswww.strava.com\/api\/v3\/athletes\/{id}\/routes",
+            "description": "Returns a list of the routes created by the authenticated athlete using their athlete ID. Private routes are filtered out unless requested by a token with read_all scope.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "No Name",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "9d80f940bafebce4d216e47cb50176b7",
+            "name": "Export Route GPX",
+            "url": "httpswww.strava.com\/api\/v3\/routes\/{id}\/export_gpx",
+            "description": "Returns a GPX file of the route. Requires read_all scope for private routes.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "93ac5b339edfba6d8ae5dcaf635b4ee8",
+            "name": "Export Route TCX",
+            "url": "httpswww.strava.com\/api\/v3\/routes\/{id}\/export_tcx",
+            "description": "Returns a TCX file of the route. Requires read_all scope for private routes.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "35470b294551782ad23946eb0ee76634",
+            "name": "Upload Activity",
+            "url": "httpswww.strava.com\/api\/v3\/uploads",
+            "description": "Uploads a new data file to create an activity from. Requires activity:write scope.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "file",
+                    "description": "The uploaded file.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "name",
+                    "description": "The name of the activity.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "description",
+                    "description": "Description of the activity.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "trainer",
+                    "description": "Set to 1 to mark as a trainer activity.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "commute",
+                    "description": "Set to 1 to mark as commute.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "data_type",
+                    "description": "The format of the uploaded file.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "external_id",
+                    "description": "The desired external identifier of the resulting activity.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "9d8a0a32bdf95730a7d4b7a628664de6",
+            "name": "Get Upload",
+            "url": "httpswww.strava.com\/api\/v3\/uploads\/{uploadId}",
+            "description": "Returns an upload for a given identifier. Requires activity:write scope.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "uploadId",
+                    "description": "The identifier of the upload.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "15ad81b9618a3dc3d5ceaceca984c250",
+            "name": "Get Activity Streams",
+            "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/streams",
+            "description": "Returns the given activity's streams. Requires activity:read scope. Requires activity:read_all scope for Only Me activities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "keys",
+                    "description": "Desired stream types.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "key_by_type",
+                    "description": "Must be true.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "6673e2d96be87776800e2a27b2f5d128",
+            "name": "Get Segment Effort Streams",
+            "url": "httpswww.strava.com\/api\/v3\/segment_efforts\/{id}\/streams",
+            "description": "Returns a set of streams for a segment effort completed by the authenticated athlete. Requires read_all scope.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "keys",
+                    "description": "Desired stream types.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "key_by_type",
+                    "description": "Must be true.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "b2ea486635b825d4817bea7b368abfba",
+            "name": "Get Segment Streams",
+            "url": "httpswww.strava.com\/api\/v3\/segments\/{id}\/streams",
+            "description": "Returns the given segment's streams. Requires read_all scope for private segments.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "keys",
+                    "description": "Desired stream types.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "key_by_type",
+                    "description": "Must be true.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        },
+        {
+            "id": "89a2dff114dbf9159d7b80c19bdefe0c",
+            "name": "Get Route Streams",
+            "url": "httpswww.strava.com\/api\/v3\/routes\/{id}\/streams",
+            "description": "Returns the given route's streams. Requires read_all scope for private routes.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "id",
+                    "description": "The identifier of the athlete. Must match the authenticated athlete.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "rawModeData": ""
+        }
+    ]
+}
