@@ -1,5 +1,5 @@
 {
-    "id": "0c439f442e7358dbe6eed95789fcea26",
+    "id": "9b4bbf9015015eecc693eeca913ec927",
     "name": "Strava API v3",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "884000206c347c7b4a100e7c1ed9bdee",
+            "id": "f2932943bbe8b0d9dc56038899f87ab6",
             "name": "Get Athlete Stats",
             "url": "httpswww.strava.com\/api\/v3\/athletes\/{id}\/stats",
             "description": "Returns the activity stats of an athlete.",
@@ -44,11 +44,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "8b4e25928a1a34664a2421bf89822197",
+            "id": "dee85f8867713712a2985165e7a92cc5",
             "name": "Get Authenticated Athlete",
             "url": "httpswww.strava.com\/api\/v3\/athlete",
             "description": "Returns the currently authenticated athlete. Tokens with profile:read_all scope will receive a detailed athlete representation; all others will receive a summary representation.",
@@ -67,11 +67,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "e1fa2a9b3f78803899b66157e33cdfd1",
+            "id": "cb104e2a7874f171de67a479aad9fa4a",
             "name": "Update Athlete",
             "url": "httpswww.strava.com\/api\/v3\/athlete",
             "description": "Update the currently authenticated athlete. Requires profile:write scope.",
@@ -98,11 +98,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "962ee89a62b4020cd714d8e07be02b97",
+            "id": "cff21ea4c196620b21e524ea416a0428",
             "name": "Get Zones",
             "url": "httpswww.strava.com\/api\/v3\/athlete\/zones",
             "description": "Returns the the authenticated athlete's heart rate and power zones. Requires profile:read_all.",
@@ -121,11 +121,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "07d9b6f91d5bc8859ce3342fe91643f0",
+            "id": "8c0a6edd4ef104ad5724352a32617281",
             "name": "Get Segment",
             "url": "httpswww.strava.com\/api\/v3\/segments\/{id}",
             "description": "Returns the specified segment. read_all scope required in order to retrieve athlete-specific segment information, or to retrieve private segments.",
@@ -152,11 +152,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "e7886472aa36bedef601a7db0e80a2e4",
+            "id": "72a5c320bd4daba47497f82068caa7be",
             "name": "List Starred Segments",
             "url": "httpswww.strava.com\/api\/v3\/segments\/starred",
             "description": "List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by a token with read_all scope.",
@@ -183,11 +183,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "c5fff56f5c9708e38e76a3821a2fbb4f",
+            "id": "51b6c36e79c61d8e5a76bc6fd0313c30",
             "name": "Star Segment",
             "url": "httpswww.strava.com\/api\/v3\/segments\/{id}\/starred",
             "description": "Stars\/Unstars the given segment for the authenticated athlete. Requires profile:write scope.",
@@ -221,11 +221,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "a1cfe193a3b05fa3da83cd8e691ca82f",
+            "id": "c14ed802573c08c748188f6dd97d3f2a",
             "name": "Get Segment Leaderboard",
             "url": "httpswww.strava.com\/api\/v3\/segments\/{id}\/leaderboard",
             "description": "Returns the specified segment leaderboard.",
@@ -308,11 +308,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "77cf8c62d7256239a9575918ca5bdd36",
+            "id": "21bbbc1e04ffb231abaf5bf5b9106e2a",
             "name": "List Segment Efforts",
             "url": "httpswww.strava.com\/api\/v3\/segments\/{id}\/all_efforts",
             "description": "Returns a set of the authenticated athlete's segment efforts for a given segment.",
@@ -346,11 +346,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "3cdc1d78dda1f3e3610315cc5f606899",
+            "id": "8add057d4ab15e065514d3d147205897",
             "name": "Explore segments",
             "url": "httpswww.strava.com\/api\/v3\/segments\/explore",
             "description": "Returns the top 10 segments matching a specified query.",
@@ -398,11 +398,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "bb4a6501d56c60be8dd1f5d55ae331f8",
+            "id": "785e50cd4abbe9035fb53d91afc3e001",
             "name": "Get Segment Effort",
             "url": "httpswww.strava.com\/api\/v3\/segment_efforts\/{id}",
             "description": "Returns a segment effort from an activity that is owned by the authenticated athlete.",
@@ -429,11 +429,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "a356fdf311f17b40104d729e89e31a62",
+            "id": "8bcb44a84f4081a329c82f40af06c7b0",
             "name": "Get Running Race",
             "url": "httpswww.strava.com\/api\/v3\/running_races\/{id}",
             "description": "Returns a running race for a given identifier.",
@@ -460,11 +460,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "ee8a911f26ffe868c5e5e66a41917fd2",
+            "id": "0147085debab8cfd3c601151e979c8a6",
             "name": "List Running Races",
             "url": "httpswww.strava.com\/api\/v3\/running_races",
             "description": "Returns a list running races based on a set of search criteria.",
@@ -491,11 +491,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "0c2d7d863fb229144c194042b2016e76",
+            "id": "5836613e261be000bafdad596230ca94",
             "name": "Create an Activity",
             "url": "httpswww.strava.com\/api\/v3\/activities",
             "description": "Creates a manual activity for an athlete, requires activity:write scope.",
@@ -578,11 +578,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "1175fa25d92b7d9df27764aeb9d7ad82",
+            "id": "3d9205d2da346c1b339a3cefa37295ae",
             "name": "Get Activity",
             "url": "httpswww.strava.com\/api\/v3\/activities\/{id}",
             "description": "Returns the given activity that is owned by the authenticated athlete. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
@@ -616,11 +616,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "5d224d865a2d077b7aeb109721956316",
+            "id": "b632dd2ab46384b5985d354db6e882e2",
             "name": "Update Activity",
             "url": "httpswww.strava.com\/api\/v3\/activities\/{id}",
             "description": "Updates the given activity that is owned by the authenticated athlete. Requires activity:write. Also requires activity:read_all in order to update Only Me activities",
@@ -647,11 +647,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "64649cebfae381d378c79d336907ae7f",
+            "id": "aa2063bec16cb8535f4b8c9b095d1b72",
             "name": "List Athlete Activities",
             "url": "httpswww.strava.com\/api\/v3\/athlete\/activities",
             "description": "Returns the activities of an athlete for a specific identifier. Requires activity:read. Only Me activities will be filtered out unless requested by a token with activity:read_all.",
@@ -692,11 +692,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "f4e0f906f0f46d405d41fa531f76ffb5",
+            "id": "81f70f243f1390086fa75858c49059a1",
             "name": "List Activity Laps",
             "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/laps",
             "description": "Returns the laps of an activity identified by an identifier. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
@@ -723,11 +723,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "a1fdc8e7467ca235cc5528b38927a279",
+            "id": "fd71e5cbbe8ead11b67853b31c2d68a5",
             "name": "Get Activity Zones",
             "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/zones",
             "description": "Summit Feature. Returns the zones of a given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
@@ -754,11 +754,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "14691d2577a37f58ac4a437ab8fda687",
+            "id": "d0ecdb9738d52116999362c70d8bfada",
             "name": "List Activity Comments",
             "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/comments",
             "description": "Returns the comments on the given activity. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
@@ -792,11 +792,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "545c138cfb568f377479c74f0035c82c",
+            "id": "0c4529c75ab22f72e159b41df80c29dc",
             "name": "List Activity Kudoers",
             "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/kudos",
             "description": "Returns the athletes who kudoed an activity identified by an identifier. Requires activity:read for Everyone and Followers activities. Requires activity:read_all for Only Me activities.",
@@ -830,11 +830,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "96619cfb2feeb27fa3c7a54674f65e24",
+            "id": "c349df2a49652b5dd592d9f8f7c12c3b",
             "name": "Get Club",
             "url": "httpswww.strava.com\/api\/v3\/clubs\/{id}",
             "description": "Returns a given club using its identifier.",
@@ -861,11 +861,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "b0d2bdd2e9620fb1aba3b62548147dde",
+            "id": "5f34261bb16f1de01b2d4e95dca821e0",
             "name": "List Club Members",
             "url": "httpswww.strava.com\/api\/v3\/clubs\/{id}\/members",
             "description": "Returns a list of the athletes who are members of a given club.",
@@ -899,11 +899,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "6d32fd87af782f1758733f717dd1c8f0",
+            "id": "c5ca175d2a14d2409960c96cc26c07fc",
             "name": "List Club Administrators.",
             "url": "httpswww.strava.com\/api\/v3\/clubs\/{id}\/admins",
             "description": "Returns a list of the administrators of a given club.",
@@ -937,11 +937,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "56706644fe7fa1fb35a3515cc0104a4d",
+            "id": "7b9e0ef39f9f61d6b1adfdb177918638",
             "name": "List Club Activities",
             "url": "httpswww.strava.com\/api\/v3\/clubs\/{id}\/activities",
             "description": "Retrieve recent activities from members of a specific club. The authenticated athlete must belong to the requested club in order to hit this endpoint. Pagination is supported. Athlete profile visibility is respected for all activities.",
@@ -975,11 +975,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "3bb9002e323a53a732847559056879e3",
+            "id": "63323083b03b7327bb3d9366c29d77ab",
             "name": "List Athlete Clubs",
             "url": "httpswww.strava.com\/api\/v3\/athlete\/clubs",
             "description": "Returns a list of the clubs whose membership includes the authenticated athlete.",
@@ -1006,11 +1006,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "4d084a94afe1ce5be57c19cabf96a4e8",
+            "id": "102fba8f916c465c28080b995cd9c8fc",
             "name": "Get Equipment",
             "url": "httpswww.strava.com\/api\/v3\/gear\/{id}",
             "description": "Returns an equipment using its identifier.",
@@ -1037,11 +1037,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "ebe8fb3e0eaf2d62915b6cf875c6b858",
+            "id": "e1dc3b64556f731d7de93fbc2bfe474a",
             "name": "Get Route",
             "url": "httpswww.strava.com\/api\/v3\/routes\/{id}",
             "description": "Returns a route using its identifier. Requires read_all scope for private routes.",
@@ -1068,11 +1068,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "0c00eb0504b916e25083311d3052146a",
+            "id": "b1a05d3a5b88fff322b82c9123a3cda5",
             "name": "List Athlete Routes",
             "url": "httpswww.strava.com\/api\/v3\/athletes\/{id}\/routes",
             "description": "Returns a list of the routes created by the authenticated athlete using their athlete ID. Private routes are filtered out unless requested by a token with read_all scope.",
@@ -1106,11 +1106,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "9d80f940bafebce4d216e47cb50176b7",
+            "id": "27eadbb0db554a5b991591a5f3cb2061",
             "name": "Export Route GPX",
             "url": "httpswww.strava.com\/api\/v3\/routes\/{id}\/export_gpx",
             "description": "Returns a GPX file of the route. Requires read_all scope for private routes.",
@@ -1137,11 +1137,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "93ac5b339edfba6d8ae5dcaf635b4ee8",
+            "id": "fb6217728af86b4710335edc7ead0d73",
             "name": "Export Route TCX",
             "url": "httpswww.strava.com\/api\/v3\/routes\/{id}\/export_tcx",
             "description": "Returns a TCX file of the route. Requires read_all scope for private routes.",
@@ -1168,11 +1168,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "35470b294551782ad23946eb0ee76634",
+            "id": "203a865f689aa23ec343837c07dd4008",
             "name": "Upload Activity",
             "url": "httpswww.strava.com\/api\/v3\/uploads",
             "description": "Uploads a new data file to create an activity from. Requires activity:write scope.",
@@ -1241,11 +1241,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "9d8a0a32bdf95730a7d4b7a628664de6",
+            "id": "ee8bd5c4d7c47399fbf41619ff188c72",
             "name": "Get Upload",
             "url": "httpswww.strava.com\/api\/v3\/uploads\/{uploadId}",
             "description": "Returns an upload for a given identifier. Requires activity:write scope.",
@@ -1272,11 +1272,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "15ad81b9618a3dc3d5ceaceca984c250",
+            "id": "6cc768088662b191b19284902b7657e0",
             "name": "Get Activity Streams",
             "url": "httpswww.strava.com\/api\/v3\/activities\/{id}\/streams",
             "description": "Returns the given activity's streams. Requires activity:read scope. Requires activity:read_all scope for Only Me activities.",
@@ -1317,11 +1317,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "6673e2d96be87776800e2a27b2f5d128",
+            "id": "36b76d30907c15c3938369b98aa9b5a1",
             "name": "Get Segment Effort Streams",
             "url": "httpswww.strava.com\/api\/v3\/segment_efforts\/{id}\/streams",
             "description": "Returns a set of streams for a segment effort completed by the authenticated athlete. Requires read_all scope.",
@@ -1362,11 +1362,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "b2ea486635b825d4817bea7b368abfba",
+            "id": "a402e1ede58a58178418ac62ee691228",
             "name": "Get Segment Streams",
             "url": "httpswww.strava.com\/api\/v3\/segments\/{id}\/streams",
             "description": "Returns the given segment's streams. Requires read_all scope for private segments.",
@@ -1407,11 +1407,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         },
         {
-            "id": "89a2dff114dbf9159d7b80c19bdefe0c",
+            "id": "545704ae02bd72fb2941c1901139c0bf",
             "name": "Get Route Streams",
             "url": "httpswww.strava.com\/api\/v3\/routes\/{id}\/streams",
             "description": "Returns the given route's streams. Requires read_all scope for private routes.",
@@ -1438,7 +1438,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0c439f442e7358dbe6eed95789fcea26",
+            "collectionId": "9b4bbf9015015eecc693eeca913ec927",
             "rawModeData": ""
         }
     ]
