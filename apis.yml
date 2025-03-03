@@ -3,7 +3,7 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/apis.yml
 apis:
   - aid: strava:strava
-    name: Strava
+    name: Strava API
     tags:
       - API
     humanURL: ' https://developers.strava.com/'
