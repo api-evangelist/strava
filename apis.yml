@@ -9,10 +9,16 @@ apis:
       - Running
       - Cycling
       - Fitness Tracking
-    humanURL: ' https://developers.strava.com/'
+    humanURL: https://developers.strava.com/
     properties:
-      - url: ' https://developers.strava.com/'
+      - url: https://developers.strava.com/docs/
         type: Documentation
+      - url: https://developers.strava.com/docs/getting-started/
+        type: Getting Started
+      - url: https://developers.strava.com/docs/authentication/
+        type: Authentication
+      - url: https://developers.strava.com/docs/reference/
+        type: Reference
     description: >-
       The Strava API is a tool that allows developers to access and interact
       with data from the popular fitness tracking app, Strava. This API enables
@@ -34,7 +40,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-03-01'
-modified: '2025-03-02'
+modified: '2026-03-16'
 position: Consumer
 description: >-
   Strava is a popular fitness tracking app and social network that allows users
@@ -47,5 +53,5 @@ description: >-
   enthusiasts looking to track and share their progress.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
