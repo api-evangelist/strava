@@ -5,10 +5,10 @@ apis:
   - aid: strava:strava
     name: Strava API
     tags:
-      - Fitness
-      - Running
       - Cycling
+      - Fitness
       - Fitness Tracking
+      - Running
     humanURL: https://developers.strava.com/
     properties:
       - url: https://developers.strava.com/docs/
@@ -28,10 +28,10 @@ apis:
       visualization.
 name: Strava
 tags:
-  - Fitness
-  - Running
   - Cycling
+  - Fitness
   - Fitness Tracking
+  - Running
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
