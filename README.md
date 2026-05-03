@@ -1,42 +1,100 @@
-# Strava (strava)
-Strava is a popular fitness tracking app and social network that allows users to track and analyze their workouts, including running, cycling, and other activities. Users can record their routes, distance, pace, and other metrics, and then share their workouts with friends and followers. Strava also provides features like leaderboards, challenges, and training plans to help users stay motivated and reach their fitness goals. With a strong community of athletes and a user-friendly interface, Strava has become a go-to app for fitness enthusiasts looking to track and share their progress.
+# Strava
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/apis.yml)
+Strava is a popular fitness tracking app and social network for runners, cyclists, swimmers, and athletes across 200+ sport types. The Strava API enables developers to access athlete profiles, activities, segments, routes, clubs, gear, and time-series data streams. OAuth 2.0 provides granular scope-based access control. Rate limits: 100 requests/15 minutes, 1000/day.
 
-## Scope
+**Human URL:** [https://developers.strava.com/](https://developers.strava.com/)  
+**Base URL:** `https://www.strava.com/api/v3`
 
-- **Type:** Index 
-- **Position:** Consumer 
-- **Access:** 3rd-Party 
+## Links
 
-## Tags:
-
- - Fitness, Running, Cycling, Fitness Tracking
-
-## Timestamps
-
-- **Created:** 2025-03-01 
-- **Modified:** 2025-03-02 
+- [Developer Portal](https://developers.strava.com/)
+- [API Documentation](https://developers.strava.com/docs/reference/)
+- [Authentication](https://developers.strava.com/docs/authentication/)
+- [Getting Started](https://developers.strava.com/docs/getting-started/)
+- [Rate Limits](https://developers.strava.com/docs/rate-limits/)
+- [Webhooks](https://developers.strava.com/docs/webhooks/)
+- [Community Forum](https://communityhub.strava.com/developers)
+- [App Registration](https://www.strava.com/settings/api)
+- [Terms of Service](https://www.strava.com/legal/api)
 
 ## APIs
 
 ### Strava API
-The Strava API is a tool that allows developers to access and interact with data from the popular fitness tracking app, Strava. This API enables third-party applications to retrieve information such as user activity, routes, segments, and leaderboard rankings. Developers can use this data to create features that enhance the user experience, improve training insights, and streamline data visualization. By integrating with the Strava API, developers can build innovative solutions that leverage the rich repository of fitness data collected by Strava users. Ultimately, the Strava API promotes collaboration, creativity, and customization within the fitness and wellness ecosystem.
 
-**Human URL:** [ https://developers.strava.com/]( https://developers.strava.com/)
+The Strava API v3 provides access to athlete profiles, activities, segments, routes, clubs, gear, and time-series data streams. Uses OAuth 2.0 authorization code flow with fine-grained scopes.
 
+- [OpenAPI Spec](openapi/strava-openapi.yml)
+- [Documentation](https://developers.strava.com/docs/reference/)
 
-#### Tags:
+## Artifacts
 
- - Fitness, Running, Cycling, Fitness Tracking
+### OpenAPI Specifications
 
-#### Properties
+| File | Description |
+|---|---|
+| [strava-openapi.yml](openapi/strava-openapi.yml) | Strava API v3 — athletes, activities, segments, routes, clubs, gear, streams |
 
-- [Documentation]( https://developers.strava.com/)
+### JSON Schema
+
+| File | Description |
+|---|---|
+| [strava-activity-schema.json](json-schema/strava-activity-schema.json) | JSON Schema for Strava activity objects |
+
+### JSON Structure
+
+| File | Description |
+|---|---|
+| [strava-activity-structure.json](json-structure/strava-activity-structure.json) | Field structure documentation for Strava activities |
+
+### JSON-LD Context
+
+| File | Description |
+|---|---|
+| [strava-context.jsonld](json-ld/strava-context.jsonld) | JSON-LD context mapping Strava vocabulary to schema.org ontology |
+
+### Examples
+
+| File | Description |
+|---|---|
+| [strava-list-activities-example.json](examples/strava-list-activities-example.json) | List athlete activities with pagination |
+| [strava-get-athlete-example.json](examples/strava-get-athlete-example.json) | Get authenticated athlete profile |
+| [strava-get-segment-leaderboard-example.json](examples/strava-get-segment-leaderboard-example.json) | Get segment leaderboard |
+
+### Spectral Rules
+
+| File | Description |
+|---|---|
+| [strava-rules.yml](rules/strava-rules.yml) | Spectral ruleset enforcing Strava API conventions |
+
+### Naftiko Capabilities
+
+#### Shared Definitions
+
+| File | Description |
+|---|---|
+| [capabilities/shared/strava-api.yaml](capabilities/shared/strava-api.yaml) | Strava API — athletes, activities, segments, routes, gear, streams |
+
+#### Workflow Capabilities
+
+| File | Description |
+|---|---|
+| [capabilities/fitness-tracking.yaml](capabilities/fitness-tracking.yaml) | Fitness tracking and performance analysis workflow (13 tools) |
+
+### Vocabulary
+
+| File | Description |
+|---|---|
+| [vocabulary/strava-vocabulary.yml](vocabulary/strava-vocabulary.yml) | Strava domain vocabulary and fitness terminology |
+
+## Tags
+
+- Cycling
+- Fitness
+- Fitness Tracking
+- Running
+- Sports
 
 ## Maintainers
 
-**FN:** Kin Lane
-
-**Email:** info@apievangelist.com
-
+**FN:** Kin Lane  
+**Email:** kin@apievangelist.com

@@ -1,0 +1,339 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Strava Fitness Tracking"
+  description: >-
+    Unified capability for fitness tracking and athletic performance analysis
+    using the Strava API. Designed for fitness app developers, coaches, and
+    training platforms to access athlete data, workout history, performance
+    metrics, segment leaderboards, and time-series physiological data.
+    Combines athlete profile, activity, segment, and streaming APIs into
+    a single workout intelligence workflow.
+  tags:
+    - Cycling
+    - Fitness
+    - Fitness Tracking
+    - Running
+    - Sports
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      STRAVA_ACCESS_TOKEN: STRAVA_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: strava
+      location: ./shared/strava-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: strava-fitness-tracking-api
+      description: "Unified REST API for Strava fitness tracking and performance analysis."
+      resources:
+        - path: /v1/athlete
+          name: athlete-profile
+          description: "Authenticated athlete profile and statistics"
+          operations:
+            - method: GET
+              name: get-athlete
+              description: "Get the authenticated athlete's profile"
+              call: "strava.get-logged-in-athlete"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/athlete/stats
+          name: athlete-stats
+          description: "Athlete activity statistics"
+          operations:
+            - method: GET
+              name: get-stats
+              description: "Get year-to-date and all-time activity totals"
+              call: "strava.get-athlete-stats"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/athlete/zones
+          name: athlete-zones
+          description: "Heart rate and power training zones"
+          operations:
+            - method: GET
+              name: get-zones
+              description: "Get the athlete's training zones"
+              call: "strava.get-logged-in-athlete-zones"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/activities
+          name: activities
+          description: "Workout activity list and creation"
+          operations:
+            - method: GET
+              name: list-activities
+              description: "List athlete's recent activities with date filtering"
+              call: "strava.get-logged-in-athlete-activities"
+              with:
+                before: "rest.before"
+                after: "rest.after"
+                page: "rest.page"
+                per_page: "rest.per_page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/activities/{id}
+          name: activity-detail
+          description: "Individual activity detail"
+          operations:
+            - method: GET
+              name: get-activity
+              description: "Get detailed activity data"
+              call: "strava.get-activity-by-id"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/activities/{id}/streams
+          name: activity-streams
+          description: "Activity data streams"
+          operations:
+            - method: GET
+              name: get-activity-streams
+              description: "Get time-series data streams for performance analysis"
+              call: "strava.get-activity-streams"
+              with:
+                id: "rest.id"
+                keys: "rest.keys"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/activities/{id}/laps
+          name: activity-laps
+          description: "Activity lap splits"
+          operations:
+            - method: GET
+              name: get-laps
+              description: "Get lap split data for an activity"
+              call: "strava.get-laps-by-activity-id"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/segments/{id}
+          name: segment
+          description: "Strava segment details"
+          operations:
+            - method: GET
+              name: get-segment
+              description: "Get details about a specific segment"
+              call: "strava.get-segment-by-id"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/segments/{id}/leaderboard
+          name: segment-leaderboard
+          description: "Segment competitive leaderboard"
+          operations:
+            - method: GET
+              name: get-leaderboard
+              description: "Get leaderboard for a segment"
+              call: "strava.get-leaderboard-by-segment-id"
+              with:
+                id: "rest.id"
+                gender: "rest.gender"
+                following: "rest.following"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/segments/starred
+          name: starred-segments
+          description: "Athlete's starred segments"
+          operations:
+            - method: GET
+              name: list-starred-segments
+              description: "List segments starred by the athlete"
+              call: "strava.get-logged-in-athlete-starred-segments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/routes
+          name: routes
+          description: "Athlete routes"
+          operations:
+            - method: GET
+              name: list-routes
+              description: "List routes created by the athlete"
+              call: "strava.get-routes-by-athlete-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/clubs
+          name: clubs
+          description: "Athlete club memberships"
+          operations:
+            - method: GET
+              name: list-clubs
+              description: "List athlete's club memberships"
+              call: "strava.get-logged-in-athlete-clubs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/gear/{id}
+          name: gear
+          description: "Athlete gear details"
+          operations:
+            - method: GET
+              name: get-gear
+              description: "Get details about a bike or shoe"
+              call: "strava.get-gear-by-id"
+              with:
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: strava-fitness-tracking-mcp
+      transport: http
+      description: "MCP server for AI-assisted fitness coaching and training analysis."
+      tools:
+        - name: get-athlete-profile
+          description: "Get the authenticated athlete's profile including name, location, and gear"
+          hints:
+            readOnly: true
+          call: "strava.get-logged-in-athlete"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-athlete-stats
+          description: "Get year-to-date and all-time totals for rides, runs, and swims"
+          hints:
+            readOnly: true
+          call: "strava.get-athlete-stats"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-athlete-zones
+          description: "Get the athlete's heart rate and power training zones"
+          hints:
+            readOnly: true
+          call: "strava.get-logged-in-athlete-zones"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-activities
+          description: "List athlete's workout activities, optionally filtered by date range"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "strava.get-logged-in-athlete-activities"
+          with:
+            before: "tools.before"
+            after: "tools.after"
+            page: "tools.page"
+            per_page: "tools.per_page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-activity-detail
+          description: "Get full details of a specific workout including performance metrics"
+          hints:
+            readOnly: true
+          call: "strava.get-activity-by-id"
+          with:
+            id: "tools.id"
+            include_all_efforts: "tools.include_all_efforts"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-activity-streams
+          description: "Get time-series data (GPS track, heart rate, power, cadence, speed) for deep performance analysis"
+          hints:
+            readOnly: true
+          call: "strava.get-activity-streams"
+          with:
+            id: "tools.id"
+            keys: "tools.keys"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-activity-laps
+          description: "Get lap split data to analyze pacing and consistency"
+          hints:
+            readOnly: true
+          call: "strava.get-laps-by-activity-id"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-segment-details
+          description: "Get details about a specific Strava segment including grade and climb category"
+          hints:
+            readOnly: true
+          call: "strava.get-segment-by-id"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-segment-leaderboard
+          description: "Get the competitive leaderboard for a segment, optionally filtered by gender or following"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "strava.get-leaderboard-by-segment-id"
+          with:
+            id: "tools.id"
+            gender: "tools.gender"
+            following: "tools.following"
+            date_range: "tools.date_range"
+            per_page: "tools.per_page"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-starred-segments
+          description: "List the athlete's starred segments for quick access"
+          hints:
+            readOnly: true
+          call: "strava.get-logged-in-athlete-starred-segments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-routes
+          description: "List planned routes created by the athlete"
+          hints:
+            readOnly: true
+          call: "strava.get-routes-by-athlete-id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-clubs
+          description: "List the athlete's club memberships for social training context"
+          hints:
+            readOnly: true
+          call: "strava.get-logged-in-athlete-clubs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-gear-details
+          description: "Get usage and details for a specific bike or pair of shoes"
+          hints:
+            readOnly: true
+          call: "strava.get-gear-by-id"
+          with:
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."

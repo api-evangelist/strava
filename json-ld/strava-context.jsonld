@@ -1,0 +1,172 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "strava": "https://www.strava.com/vocab/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "sport": "https://www.wikidata.org/entity/",
+
+    "Activity": {
+      "@id": "strava:Activity",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "distance": {
+          "@id": "strava:distance",
+          "@type": "xsd:decimal"
+        },
+        "moving_time": {
+          "@id": "schema:duration",
+          "@type": "xsd:integer"
+        },
+        "elapsed_time": {
+          "@id": "strava:elapsedTime",
+          "@type": "xsd:integer"
+        },
+        "total_elevation_gain": {
+          "@id": "strava:elevationGain",
+          "@type": "xsd:decimal"
+        },
+        "type": {
+          "@id": "schema:exerciseType",
+          "@type": "xsd:string"
+        },
+        "sport_type": {
+          "@id": "strava:sportType",
+          "@type": "xsd:string"
+        },
+        "start_date": {
+          "@id": "schema:startTime",
+          "@type": "xsd:dateTime"
+        },
+        "start_date_local": {
+          "@id": "strava:startDateLocal",
+          "@type": "xsd:dateTime"
+        },
+        "timezone": {
+          "@id": "strava:timezone",
+          "@type": "xsd:string"
+        },
+        "start_latlng": "schema:startLocation",
+        "end_latlng": "schema:endLocation",
+        "kudos_count": {
+          "@id": "strava:kudosCount",
+          "@type": "xsd:integer"
+        },
+        "comment_count": {
+          "@id": "strava:commentCount",
+          "@type": "xsd:integer"
+        },
+        "trainer": {
+          "@id": "strava:trainer",
+          "@type": "xsd:boolean"
+        },
+        "commute": {
+          "@id": "strava:commute",
+          "@type": "xsd:boolean"
+        },
+        "manual": {
+          "@id": "strava:manual",
+          "@type": "xsd:boolean"
+        },
+        "private": {
+          "@id": "strava:private",
+          "@type": "xsd:boolean"
+        },
+        "average_speed": {
+          "@id": "strava:averageSpeed",
+          "@type": "xsd:decimal"
+        },
+        "average_heartrate": {
+          "@id": "strava:averageHeartRate",
+          "@type": "xsd:decimal"
+        },
+        "average_watts": {
+          "@id": "strava:averagePower",
+          "@type": "xsd:decimal"
+        },
+        "suffer_score": {
+          "@id": "strava:relativeEffort",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "Athlete": {
+      "@id": "strava:Athlete",
+      "@context": {
+        "id": "@id",
+        "firstname": "schema:givenName",
+        "lastname": "schema:familyName",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "country": "schema:addressCountry",
+        "sex": "schema:gender",
+        "follower_count": "strava:followerCount",
+        "friend_count": "strava:friendCount",
+        "weight": {
+          "@id": "schema:weight",
+          "@type": "xsd:decimal"
+        },
+        "profile": {
+          "@id": "schema:image",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Segment": {
+      "@id": "strava:Segment",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "distance": "strava:distance",
+        "average_grade": "strava:averageGrade",
+        "elevation_high": "strava:elevationHigh",
+        "elevation_low": "strava:elevationLow",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "country": "schema:addressCountry",
+        "effort_count": "strava:effortCount",
+        "athlete_count": "strava:athleteCount",
+        "star_count": "strava:starCount"
+      }
+    },
+
+    "Route": {
+      "@id": "strava:Route",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "distance": "strava:distance",
+        "elevation_gain": "strava:elevationGain",
+        "type": "strava:routeType",
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Club": {
+      "@id": "strava:Club",
+      "@context": {
+        "id": "@id",
+        "name": "schema:name",
+        "description": "schema:description",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "country": "schema:addressCountry",
+        "member_count": "schema:memberOf",
+        "sport_type": "schema:sport"
+      }
+    }
+  }
+}

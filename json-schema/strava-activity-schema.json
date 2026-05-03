@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developers.strava.com/schemas/activity.json",
+  "title": "Strava Activity",
+  "description": "Represents a workout activity recorded on Strava. Activities capture workout data including GPS routes, performance metrics, and social interactions for running, cycling, and 200+ other sport types.",
+  "type": "object",
+  "required": ["id", "name", "type"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The unique identifier of the activity"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the activity"
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "The description of the activity"
+    },
+    "distance": {
+      "type": "number",
+      "description": "The distance of the activity in meters"
+    },
+    "moving_time": {
+      "type": "integer",
+      "description": "The activity's moving time in seconds"
+    },
+    "elapsed_time": {
+      "type": "integer",
+      "description": "The activity's elapsed time in seconds"
+    },
+    "total_elevation_gain": {
+      "type": "number",
+      "description": "The activity's total elevation gain in meters"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of activity (e.g., Run, Ride, Swim, Walk, Hike, VirtualRide)"
+    },
+    "sport_type": {
+      "type": "string",
+      "description": "The sport type of the activity (Strava v3.5+)"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time at which the activity was started (UTC ISO 8601)"
+    },
+    "start_date_local": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time at which the activity was started in local time"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "The timezone of the activity (e.g., America/New_York)"
+    },
+    "start_latlng": {
+      "type": "array",
+      "items": {"type": "number"},
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "The start latitude/longitude as [lat, lng]"
+    },
+    "end_latlng": {
+      "type": "array",
+      "items": {"type": "number"},
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "The end latitude/longitude as [lat, lng]"
+    },
+    "achievement_count": {
+      "type": "integer",
+      "description": "The number of achievements gained during the activity"
+    },
+    "kudos_count": {
+      "type": "integer",
+      "description": "The number of kudos given to the activity"
+    },
+    "comment_count": {
+      "type": "integer",
+      "description": "The number of comments for the activity"
+    },
+    "trainer": {
+      "type": "boolean",
+      "description": "Whether the activity was recorded on a stationary trainer"
+    },
+    "commute": {
+      "type": "boolean",
+      "description": "Whether the activity was a commute"
+    },
+    "manual": {
+      "type": "boolean",
+      "description": "Whether the activity was manually entered"
+    },
+    "private": {
+      "type": "boolean",
+      "description": "Whether the activity is private"
+    },
+    "average_speed": {
+      "type": "number",
+      "description": "The activity's average speed in meters per second"
+    },
+    "max_speed": {
+      "type": "number",
+      "description": "The activity's max speed in meters per second"
+    },
+    "average_cadence": {
+      "type": "number",
+      "description": "The activity's average cadence in RPM"
+    },
+    "average_watts": {
+      "type": "number",
+      "description": "The activity's average wattage (cycling)"
+    },
+    "weighted_average_watts": {
+      "type": "integer",
+      "description": "The activity's normalized power in watts (cycling)"
+    },
+    "kilojoules": {
+      "type": "number",
+      "description": "The total work done in kilojoules (cycling)"
+    },
+    "average_heartrate": {
+      "type": "number",
+      "description": "The average heart rate in BPM"
+    },
+    "max_heartrate": {
+      "type": "number",
+      "description": "The maximum heart rate in BPM"
+    },
+    "suffer_score": {
+      "type": ["integer", "null"],
+      "description": "Strava's Relative Effort / Suffer Score (0-100+)"
+    }
+  }
+}

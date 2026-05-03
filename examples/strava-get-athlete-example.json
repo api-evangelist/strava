@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.strava.com/api/v3/athlete",
+    "headers": {
+      "Authorization": "Bearer 4f5g6h7i8j9k0l..."
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": 9876543,
+      "username": "johndoe_runs",
+      "firstname": "John",
+      "lastname": "Doe",
+      "city": "New York",
+      "state": "New York",
+      "country": "United States",
+      "sex": "M",
+      "premium": true,
+      "summit": true,
+      "created_at": "2018-03-15T12:00:00Z",
+      "updated_at": "2026-05-01T08:00:00Z",
+      "follower_count": 245,
+      "friend_count": 180,
+      "measurement_preference": "feet",
+      "weight": 72.5,
+      "profile_medium": "https://xxxxxx.cloudfront.net/pictures/athletes/9876543/medium.jpg",
+      "profile": "https://xxxxxx.cloudfront.net/pictures/athletes/9876543/large.jpg",
+      "bikes": [
+        {
+          "id": "b1234567",
+          "primary": true,
+          "name": "Trek Emonda SL",
+          "distance": 8500000,
+          "resource_state": 2
+        }
+      ],
+      "shoes": [
+        {
+          "id": "g2345678",
+          "primary": true,
+          "name": "Nike Vaporfly 4%",
+          "distance": 320000,
+          "resource_state": 2
+        }
+      ]
+    }
+  }
+}

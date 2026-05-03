@@ -1,0 +1,124 @@
+extends:
+  - spectral:oas
+
+rules:
+  strava-operation-ids-camel-case:
+    description: >-
+      Strava API uses camelCase operationIds (e.g., getLoggedInAthlete,
+      getActivityById, getLeaderboardBySegmentId).
+    message: "OperationId '{{value}}' must use camelCase format"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  strava-tags-title-case:
+    description: >-
+      All OpenAPI tags must use Title Case (e.g., 'Athletes', 'Activities',
+      'Segment Efforts').
+    message: "Tag '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  strava-oauth2-security:
+    description: >-
+      All Strava API operations must use OAuth 2.0 Bearer token security.
+      The security scheme must be stravaBearerAuth.
+    message: "Strava API requires OAuth 2.0 via stravaBearerAuth"
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+      field: "stravaBearerAuth"
+
+  strava-pagination-per-page:
+    description: >-
+      Strava list endpoints use per_page (not pageSize) for pagination with
+      a maximum of 200 items per page. page parameter starts at 1.
+    message: "Strava list endpoints should use per_page pagination parameter"
+    severity: info
+    given: "$.paths[*][get].parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "^pageSize$|^limit$"
+
+  strava-resource-ids-integer:
+    description: >-
+      Strava resource IDs (athletes, activities, segments, clubs, routes)
+      use integer identifiers. Only gear IDs are strings (prefixed with
+      'b' for bikes or 'g' for shoes).
+    message: "Path parameter 'id' for non-gear resources should be integer type"
+    severity: info
+    given: "$.paths['/athletes/{id}/stats', '/activities/{id}', '/segments/{id}', '/clubs/{id}', '/routes/{id}', '/segment_efforts/{id}'][*].parameters[?(@.name == 'id')].schema"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - integer
+
+  strava-response-arrays-for-lists:
+    description: >-
+      Strava list endpoints return arrays directly at the top level (not
+      wrapped in a data object). Individual resources return objects directly.
+    message: "List endpoints should return an array response"
+    severity: info
+    given: "$.paths[?(@property.startsWith('/athlete/') && @property != '/athlete' && @property != '/athlete/zones')][get].responses['200'].content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              const: "array"
+
+  strava-activity-type-documented:
+    description: >-
+      Activity type fields should include documentation about supported sport
+      types (Run, Ride, Swim, Walk, Hike, VirtualRide, etc.).
+    message: "Activity type field should have a description"
+    severity: info
+    given: "$.components.schemas.DetailedActivity.properties.type"
+    then:
+      function: truthy
+      field: "description"
+
+  strava-rate-limit-documented:
+    description: >-
+      The Strava API has rate limits (100 requests/15 min, 1000/day).
+      API documentation should reference rate limit policies.
+    message: "API info should reference rate limit documentation"
+    severity: info
+    given: "$.info"
+    then:
+      function: truthy
+      field: "description"
+
+  strava-operation-summaries-present:
+    description: >-
+      All operations must have a summary. Strava uses action-noun
+      format (e.g., 'Get Activity', 'List Athlete Activities').
+    message: "Operation must have a summary"
+    severity: error
+    given: "$.paths[*][get,post,put,delete]"
+    then:
+      function: truthy
+      field: "summary"
+
+  strava-streams-keys-required:
+    description: >-
+      The Strava streams endpoints require the 'keys' parameter to specify
+      which stream types to return.
+    message: "Streams endpoint must have 'keys' as a required parameter"
+    severity: warn
+    given: "$.paths['/activities/{id}/streams'][get].parameters[?(@.name == 'keys')]"
+    then:
+      function: truthy
+      field: "required"

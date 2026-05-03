@@ -1,0 +1,169 @@
+vocabulary:
+  name: Strava Vocabulary
+  description: >-
+    Domain vocabulary for the Strava fitness tracking platform, covering
+    athletic activities, performance metrics, social features, and API concepts.
+  version: '3.0.0'
+  created: '2026-05-02'
+  modified: '2026-05-02'
+
+terms:
+  - term: Activity
+    definition: >-
+      A recorded workout session on Strava. Activities can be run, ride, swim,
+      walk, hike, or one of 200+ sport types. Each activity captures distance,
+      time, elevation, GPS route, and performance metrics depending on the
+      tracking device used.
+    synonyms:
+      - Workout
+      - Exercise
+
+  - term: Segment
+    definition: >-
+      A specific section of road or trail defined by a start and end GPS
+      point. Strava automatically detects when athletes ride or run through
+      a segment and records their effort time for leaderboard comparison.
+
+  - term: Segment Effort
+    definition: >-
+      An athlete's recorded time on a specific segment during an activity.
+      Each segment effort includes elapsed time, moving time, and rank
+      on the leaderboard at the time of the effort.
+
+  - term: KOM
+    definition: >-
+      King of the Mountain — the fastest time on a segment, awarded to the
+      athlete with the top effort on a segment. The female equivalent is QOM
+      (Queen of the Mountain).
+    synonyms:
+      - King of the Mountain
+      - QOM
+
+  - term: Kudos
+    definition: >-
+      Strava's social acknowledgment feature — equivalent to a 'like'. Athletes
+      can give kudos to activities by other athletes they follow. Kudos do not
+      have a count limit per activity.
+
+  - term: Streams
+    definition: >-
+      Time-series data arrays captured by GPS devices and sensors during an
+      activity. Available streams include: time, latlng, distance, altitude,
+      velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth.
+    synonyms:
+      - Data Streams
+
+  - term: Polyline
+    definition: >-
+      An encoded representation of a GPS route using Google's Polyline
+      Encoding Algorithm. Strava provides both full polylines and
+      summary polylines (lower resolution) for activities and segments.
+
+  - term: Suffer Score
+    definition: >-
+      Strava's proprietary metric (now called Relative Effort) measuring
+      the cardiovascular strain of an activity based on heart rate data.
+      Higher scores indicate more intense effort.
+    synonyms:
+      - Relative Effort
+
+  - term: FTP
+    definition: >-
+      Functional Threshold Power — the highest power output an athlete
+      can sustain for approximately one hour. Used to define cycling
+      power training zones. Set in the athlete's profile.
+    synonyms:
+      - Functional Threshold Power
+
+  - term: Normalized Power
+    definition: >-
+      Weighted Average Power (WAP) — an estimate of the power an athlete
+      could have maintained at a steady state for the same physiological
+      cost as the variable power during an activity.
+    synonyms:
+      - Weighted Average Watts
+      - WAP
+
+  - term: Training Load
+    definition: >-
+      The cumulative physiological stress from training, calculated from
+      heart rate or power data across multiple activities. Used to balance
+      fitness gains with recovery needs.
+
+  - term: Strava Premium
+    definition: >-
+      Previously the paid tier of Strava, now known as Strava Summit.
+      Provides advanced analytics, training plans, and exclusive features.
+    synonyms:
+      - Strava Summit
+
+  - term: OAuth Scope
+    definition: >-
+      Permission levels that athletes grant to third-party applications via
+      OAuth 2.0. Key scopes include read, read_all, profile:read_all,
+      profile:write, activity:read, activity:read_all, and activity:write.
+
+  - term: Rate Limit
+    definition: >-
+      API request limits applied by Strava: 100 requests per 15 minutes and
+      1000 requests per day for default applications. Higher limits available
+      through the Strava Partner Program.
+
+  - term: Climb Category
+    definition: >-
+      A classification system for cycling climbs: 4 (easiest) through 1
+      (hardest) and HC (Hors Catégorie — beyond categorization). Based on
+      the combination of length and gradient.
+
+  - term: Club
+    definition: >-
+      A group of athletes on Strava who can share activities, see a club
+      feed, and participate in club challenges. Clubs can be running clubs,
+      cycling teams, gyms, or any athletic group.
+
+  - term: Route
+    definition: >-
+      A planned course created by an athlete for a future ride or run.
+      Routes can be made public or private and include estimated distance
+      and elevation gain.
+
+  - term: Gear
+    definition: >-
+      Equipment used during activities, including bikes and running shoes.
+      Athletes track mileage on gear to monitor wear and plan maintenance.
+
+  - term: Lap
+    definition: >-
+      A sub-division of an activity created automatically by a GPS device
+      (e.g., every mile, every kilometer) or manually by the athlete.
+      Each lap has its own time, distance, and performance metrics.
+
+  - term: PR
+    definition: >-
+      Personal Record — the athlete's best time on a specific segment.
+      Abbreviated as PR (personal record) in North America or PB
+      (personal best) in other regions.
+    synonyms:
+      - Personal Best
+      - PB
+
+  - term: Virtual Activity
+    definition: >-
+      An activity recorded on an indoor training platform (e.g., Zwift,
+      Peloton) and synced to Strava. Virtual rides and virtual runs do
+      not include outdoor GPS data.
+    synonyms:
+      - VirtualRide
+      - VirtualRun
+
+  - term: Heart Rate Zone
+    definition: >-
+      A range of heart rate values (in BPM) corresponding to different
+      training intensities. Strava defines zones 1-5 based on the athlete's
+      maximum heart rate. Used to prescribe training intensity.
+
+  - term: Webhook
+    definition: >-
+      Strava's push notification system that delivers real-time updates
+      when activities are created, modified, or deleted. Requires
+      subscription via the Strava API push subscriptions endpoint.
