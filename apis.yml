@@ -87,6 +87,20 @@ common:
   - type: JSONLDContext
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/json-ld/strava-context.jsonld
+  - type: Integrations
+    url: https://www.strava.com/apps
+integrations:
+  - name: Charity
+  - name: Data Importers
+  - name: Indoor
+  - name: Mobile
+  - name: Other
+  - name: Performance Analysis
+  - name: Prints
+  - name: Social Motivation
+  - name: Training
+  - name: Visualizer
+  - name: Wellness
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
