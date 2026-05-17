@@ -47,7 +47,7 @@ apis:
         url: https://developers.strava.com/docs/reference/
       - type: Authentication
         url: https://developers.strava.com/docs/authentication/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developers.strava.com/docs/getting-started/
       - type: RateLimits
         url: https://developers.strava.com/docs/rate-limits/
@@ -62,17 +62,17 @@ common:
     url: https://developers.strava.com/docs/
   - type: Authentication
     url: https://developers.strava.com/docs/authentication/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.strava.com/legal/api
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.strava.com/legal/privacy
-  - type: Status
+  - type: StatusPage
     url: https://status.strava.com
   - type: Blog
     url: https://blog.strava.com
   - type: Forum
     url: https://communityhub.strava.com/developers
-  - type: Sign Up
+  - type: SignUp
     url: https://www.strava.com/register
   - type: Login
     url: https://www.strava.com/login
