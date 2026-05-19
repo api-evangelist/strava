@@ -1,0 +1,217 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Strava API — Segments
+  description: 'Strava API — Segments. 3 operations. Lead operation: List Starred Segments. Self-contained Naftiko capability
+    covering one Strava business surface.'
+  tags:
+  - Strava
+  - Segments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STRAVA_API_KEY: STRAVA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: strava-segments
+    baseUri: https://www.strava.com/api/v3
+    description: Strava API — Segments business capability. Self-contained, no shared references.
+    resources:
+    - name: segments-starred
+      path: /segments/starred
+      operations:
+      - name: getloggedinathletestarredsegments
+        method: GET
+        description: List Starred Segments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of items per page
+    - name: segments-id
+      path: /segments/{id}
+      operations:
+      - name: getsegmentbyid
+        method: GET
+        description: Get Segment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The identifier of the segment
+          required: true
+    - name: segments-id-leaderboard
+      path: /segments/{id}/leaderboard
+      operations:
+      - name: getleaderboardbysegmentid
+        method: GET
+        description: Get Segment Leaderboard
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The identifier of the segment
+          required: true
+        - name: gender
+          in: query
+          type: string
+          description: Filter by gender (M or F)
+        - name: age_group
+          in: query
+          type: string
+          description: Filter by age group (0_19, 20_24, 25_34, 35_44, 45_54, 55_64, 65_plus)
+        - name: weight_class
+          in: query
+          type: string
+          description: Filter by weight class
+        - name: following
+          in: query
+          type: boolean
+          description: Limit results to athletes the authenticated athlete is following
+        - name: club_id
+          in: query
+          type: integer
+          description: Limit results to athletes in the specified club
+        - name: date_range
+          in: query
+          type: string
+          description: Limit results to a specific time frame (this_year, this_month, this_week, today)
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of items per page
+    authentication:
+      type: bearer
+      token: '{{env.STRAVA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: strava-segments-rest
+    port: 8080
+    description: REST adapter for Strava API — Segments. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/segments/starred
+      name: segments-starred
+      description: REST surface for segments-starred.
+      operations:
+      - method: GET
+        name: getloggedinathletestarredsegments
+        description: List Starred Segments
+        call: strava-segments.getloggedinathletestarredsegments
+        with:
+          page: rest.page
+          per_page: rest.per_page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/segments/{id}
+      name: segments-id
+      description: REST surface for segments-id.
+      operations:
+      - method: GET
+        name: getsegmentbyid
+        description: Get Segment
+        call: strava-segments.getsegmentbyid
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/segments/{id}/leaderboard
+      name: segments-id-leaderboard
+      description: REST surface for segments-id-leaderboard.
+      operations:
+      - method: GET
+        name: getleaderboardbysegmentid
+        description: Get Segment Leaderboard
+        call: strava-segments.getleaderboardbysegmentid
+        with:
+          id: rest.id
+          gender: rest.gender
+          age_group: rest.age_group
+          weight_class: rest.weight_class
+          following: rest.following
+          club_id: rest.club_id
+          date_range: rest.date_range
+          page: rest.page
+          per_page: rest.per_page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: strava-segments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Strava API — Segments. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-starred-segments
+      description: List Starred Segments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: strava-segments.getloggedinathletestarredsegments
+      with:
+        page: tools.page
+        per_page: tools.per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-segment
+      description: Get Segment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: strava-segments.getsegmentbyid
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-segment-leaderboard
+      description: Get Segment Leaderboard
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: strava-segments.getleaderboardbysegmentid
+      with:
+        id: tools.id
+        gender: tools.gender
+        age_group: tools.age_group
+        weight_class: tools.weight_class
+        following: tools.following
+        club_id: tools.club_id
+        date_range: tools.date_range
+        page: tools.page
+        per_page: tools.per_page
+      outputParameters:
+      - type: object
+        mapping: $.

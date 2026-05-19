@@ -1,0 +1,181 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Strava API — Clubs
+  description: 'Strava API — Clubs. 3 operations. Lead operation: List Athlete Clubs. Self-contained Naftiko capability covering
+    one Strava business surface.'
+  tags:
+  - Strava
+  - Clubs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STRAVA_API_KEY: STRAVA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: strava-clubs
+    baseUri: https://www.strava.com/api/v3
+    description: Strava API — Clubs business capability. Self-contained, no shared references.
+    resources:
+    - name: athlete-clubs
+      path: /athlete/clubs
+      operations:
+      - name: getloggedinathleteclubs
+        method: GET
+        description: List Athlete Clubs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of items per page
+    - name: clubs-id
+      path: /clubs/{id}
+      operations:
+      - name: getclubbyid
+        method: GET
+        description: Get Club
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The identifier of the club
+          required: true
+    - name: clubs-id-activities
+      path: /clubs/{id}/activities
+      operations:
+      - name: getclubactivitiesbyid
+        method: GET
+        description: List Club Activities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          description: The identifier of the club
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Page number for pagination
+        - name: per_page
+          in: query
+          type: integer
+          description: Number of items per page
+    authentication:
+      type: bearer
+      token: '{{env.STRAVA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: strava-clubs-rest
+    port: 8080
+    description: REST adapter for Strava API — Clubs. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/athlete/clubs
+      name: athlete-clubs
+      description: REST surface for athlete-clubs.
+      operations:
+      - method: GET
+        name: getloggedinathleteclubs
+        description: List Athlete Clubs
+        call: strava-clubs.getloggedinathleteclubs
+        with:
+          page: rest.page
+          per_page: rest.per_page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/clubs/{id}
+      name: clubs-id
+      description: REST surface for clubs-id.
+      operations:
+      - method: GET
+        name: getclubbyid
+        description: Get Club
+        call: strava-clubs.getclubbyid
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/clubs/{id}/activities
+      name: clubs-id-activities
+      description: REST surface for clubs-id-activities.
+      operations:
+      - method: GET
+        name: getclubactivitiesbyid
+        description: List Club Activities
+        call: strava-clubs.getclubactivitiesbyid
+        with:
+          id: rest.id
+          page: rest.page
+          per_page: rest.per_page
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: strava-clubs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Strava API — Clubs. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-athlete-clubs
+      description: List Athlete Clubs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: strava-clubs.getloggedinathleteclubs
+      with:
+        page: tools.page
+        per_page: tools.per_page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-club
+      description: Get Club
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: strava-clubs.getclubbyid
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-club-activities
+      description: List Club Activities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: strava-clubs.getclubactivitiesbyid
+      with:
+        id: tools.id
+        page: tools.page
+        per_page: tools.per_page
+      outputParameters:
+      - type: object
+        mapping: $.
