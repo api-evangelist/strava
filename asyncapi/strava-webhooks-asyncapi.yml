@@ -1,0 +1,303 @@
+asyncapi: '2.6.0'
+info:
+  title: Strava Webhooks API
+  version: '1.0.0'
+  description: >-
+    AsyncAPI definition for Strava's Webhook Events API. Strava uses a push
+    subscription model: an application creates a single push subscription with
+    a callback URL and an application-defined verify_token. Strava validates
+    the callback by issuing a GET request containing a hub.challenge that the
+    callback must echo back as JSON within 2 seconds. Subsequent webhook
+    deliveries arrive as POST requests carrying an event envelope describing
+    activity and athlete create/update/delete events. Subscribers must
+    acknowledge with HTTP 200 within 2 seconds; Strava retries up to 3 times
+    on failure.
+
+
+    Subscription model:
+      - object_type: "activity" or "athlete"
+      - aspect_type: "create", "update", or "delete"
+      - updates: hash of changed fields (activity title/type/private;
+        athlete deauthorization carries authorized=false)
+  contact:
+    name: Strava Developer Support
+    url: https://developers.strava.com/support/
+  license:
+    name: Strava API Agreement
+    url: https://www.strava.com/legal/api
+  termsOfService: https://www.strava.com/legal/api
+
+externalDocs:
+  description: Strava Webhook Events API Documentation
+  url: https://developers.strava.com/docs/webhooks/
+
+defaultContentType: application/json
+
+servers:
+  subscriber-callback:
+    url: '{callback_host}'
+    protocol: https
+    description: >-
+      Application-hosted HTTPS callback endpoint registered with Strava during
+      push subscription creation. Strava sends the GET verification request
+      and POST event deliveries to this host. The callback_url registered
+      with Strava must be no longer than 255 characters.
+    variables:
+      callback_host:
+        default: https://example.com
+        description: The HTTPS host serving the application's webhook callback.
+
+channels:
+  webhook/callback:
+    description: >-
+      Single callback endpoint registered for the application's push
+      subscription. Receives both the one-time GET validation challenge and
+      ongoing POST event deliveries. Each application maintains one
+      subscription that receives events for all authorized athletes.
+    bindings:
+      http:
+        bindingVersion: '0.3.0'
+    subscribe:
+      operationId: receiveWebhookEvent
+      summary: Receive a Strava webhook event delivery
+      description: >-
+        Strava POSTs a JSON event envelope to the callback URL whenever a
+        subscribed event occurs (activity create/update/delete or athlete
+        deauthorization). The subscriber must respond with HTTP 200 within
+        2 seconds; Strava retries up to 3 times on failure.
+      bindings:
+        http:
+          type: request
+          method: POST
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/WebhookEvent'
+    publish:
+      operationId: respondToValidationChallenge
+      summary: Respond to the Strava subscription validation challenge
+      description: >-
+        When a push subscription is created via POST
+        https://www.strava.com/api/v3/push_subscriptions, Strava issues a
+        GET request to the callback URL containing hub.mode, hub.challenge,
+        and hub.verify_token query parameters. The subscriber must verify
+        that hub.verify_token matches the verify_token supplied at
+        subscription creation and respond within 2 seconds with HTTP 200
+        and a JSON body of the form {"hub.challenge": "<value>"}.
+      bindings:
+        http:
+          type: request
+          method: GET
+          query:
+            type: object
+            required:
+              - hub.mode
+              - hub.challenge
+              - hub.verify_token
+            properties:
+              hub.mode:
+                type: string
+                enum:
+                  - subscribe
+                description: Always the string "subscribe".
+              hub.challenge:
+                type: string
+                description: >-
+                  Random string supplied by Strava that the subscriber must
+                  echo back in the JSON response body.
+              hub.verify_token:
+                type: string
+                description: >-
+                  The application-defined verify_token originally supplied
+                  when creating the push subscription. Subscribers should
+                  reject the challenge if this value does not match.
+          bindingVersion: '0.3.0'
+      message:
+        $ref: '#/components/messages/ValidationChallengeResponse'
+
+components:
+  messages:
+    WebhookEvent:
+      name: WebhookEvent
+      title: Strava Webhook Event
+      summary: Event envelope POSTed by Strava to the subscriber callback URL.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/WebhookEventPayload'
+      examples:
+        - name: ActivityCreated
+          summary: A new activity was uploaded by an authorized athlete.
+          payload:
+            object_type: activity
+            object_id: 1360128428
+            aspect_type: create
+            updates: {}
+            owner_id: 134815
+            subscription_id: 120475
+            event_time: 1516126040
+        - name: ActivityUpdatedTitle
+          summary: An activity's title was changed.
+          payload:
+            object_type: activity
+            object_id: 1360128428
+            aspect_type: update
+            updates:
+              title: Messy
+            owner_id: 134815
+            subscription_id: 120475
+            event_time: 1516126040
+        - name: ActivityUpdatedType
+          summary: An activity's sport type was changed.
+          payload:
+            object_type: activity
+            object_id: 1360128428
+            aspect_type: update
+            updates:
+              type: Ride
+            owner_id: 134815
+            subscription_id: 120475
+            event_time: 1516126040
+        - name: ActivityUpdatedPrivacy
+          summary: An activity's privacy flag was toggled.
+          payload:
+            object_type: activity
+            object_id: 1360128428
+            aspect_type: update
+            updates:
+              private: true
+            owner_id: 134815
+            subscription_id: 120475
+            event_time: 1516126040
+        - name: ActivityDeleted
+          summary: An activity was deleted by the athlete.
+          payload:
+            object_type: activity
+            object_id: 1360128428
+            aspect_type: delete
+            updates: {}
+            owner_id: 134815
+            subscription_id: 120475
+            event_time: 1516126040
+        - name: AthleteDeauthorized
+          summary: An athlete revoked the application's access.
+          payload:
+            object_type: athlete
+            object_id: 134815
+            aspect_type: update
+            updates:
+              authorized: 'false'
+            owner_id: 134815
+            subscription_id: 120475
+            event_time: 1516126040
+
+    ValidationChallengeResponse:
+      name: ValidationChallengeResponse
+      title: Subscription Validation Challenge Response
+      summary: >-
+        JSON body returned by the subscriber in response to Strava's GET
+        validation request, echoing the supplied hub.challenge.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ValidationChallengeResponsePayload'
+      examples:
+        - name: ChallengeEcho
+          payload:
+            hub.challenge: 15f7d1a91c1f40f8a748fd134752feb3
+
+  schemas:
+    WebhookEventPayload:
+      type: object
+      description: >-
+        Event envelope describing a Strava webhook delivery. All fields are
+        included on every delivery; the updates field is an empty object for
+        create and delete events.
+      required:
+        - object_type
+        - object_id
+        - aspect_type
+        - updates
+        - owner_id
+        - subscription_id
+        - event_time
+      properties:
+        object_type:
+          type: string
+          enum:
+            - activity
+            - athlete
+          description: >-
+            The type of resource the event concerns. "activity" events fire
+            on activity create/update/delete; "athlete" events fire when an
+            athlete deauthorizes the application.
+        object_id:
+          type: integer
+          format: int64
+          description: >-
+            For activity events, the activity's ID. For athlete events, the
+            athlete's ID.
+        aspect_type:
+          type: string
+          enum:
+            - create
+            - update
+            - delete
+          description: The lifecycle aspect of the event.
+        updates:
+          $ref: '#/components/schemas/WebhookEventUpdates'
+        owner_id:
+          type: integer
+          format: int64
+          description: The athlete ID that owns the affected resource.
+        subscription_id:
+          type: integer
+          description: >-
+            The push subscription ID that produced this delivery. Matches the
+            id returned when the subscription was created.
+        event_time:
+          type: integer
+          format: int64
+          description: >-
+            The time the event occurred, as a Unix epoch timestamp in
+            seconds.
+
+    WebhookEventUpdates:
+      type: object
+      description: >-
+        Hash of fields that changed for an update event. Empty for create and
+        delete events. For activity:update events, the keys may include
+        title, type, and private. For athlete:update deauthorization events,
+        the only key is "authorized" with the string value "false".
+      additionalProperties: true
+      properties:
+        title:
+          type: string
+          description: New activity title. Present on activity:update title changes.
+        type:
+          type: string
+          description: >-
+            New activity sport type (e.g. "Ride", "Run"). Present on
+            activity:update type changes.
+        private:
+          type: boolean
+          description: >-
+            Activity privacy flag. Present on activity:update privacy
+            changes.
+        authorized:
+          type: string
+          enum:
+            - 'false'
+          description: >-
+            Set to the string "false" when an athlete revokes the
+            application's access. Sent on athlete:update events only.
+
+    ValidationChallengeResponsePayload:
+      type: object
+      description: >-
+        Response body the subscriber must return for the GET validation
+        request. The single property echoes the hub.challenge query
+        parameter Strava supplied.
+      required:
+        - hub.challenge
+      properties:
+        hub.challenge:
+          type: string
+          description: The verbatim value of the hub.challenge query parameter.
