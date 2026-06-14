@@ -1,0 +1,1048 @@
+# Strava GraphQL Schema
+# Conceptual schema derived from the Strava REST API
+# REST Base: https://www.strava.com/api/v3
+# Docs: https://developers.strava.com/docs/reference/
+
+# ─── Scalars ─────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar Date
+scalar Float
+scalar JSON
+
+# ─── Enums ───────────────────────────────────────────────────────────────────
+
+enum SportType {
+  ALPINE_SKI
+  BACKCOUNTRY_SKI
+  CANOEING
+  CROSSFIT
+  E_BIKE_RIDE
+  ELLIPTICAL
+  GOLF
+  HANDCYCLE
+  HIKE
+  ICE_SKATE
+  INLINE_SKATE
+  KAYAKING
+  KITESURF
+  NORDIC_SKI
+  RIDE
+  ROCK_CLIMBING
+  ROLLER_SKI
+  ROWING
+  RUN
+  SAIL
+  SKATEBOARD
+  SNOWBOARD
+  SNOWSHOE
+  SOCCER
+  STAIR_STEPPER
+  STAND_UP_PADDLING
+  SURFING
+  SWIM
+  TRAIL_RUN
+  VELOMOBILE
+  VIRTUAL_RIDE
+  VIRTUAL_RUN
+  WALK
+  WEIGHT_TRAINING
+  WHEELCHAIR
+  WINDSURF
+  WORKOUT
+  YOGA
+}
+
+enum ResourceState {
+  SUMMARY
+  DETAIL
+  META
+}
+
+enum FollowingStatus {
+  PENDING
+  ACCEPTED
+  BLOCKED
+}
+
+enum ClubType {
+  CASUAL_CLUB
+  RACING_TEAM
+  SHOP
+  COMPANY
+  OTHER
+}
+
+enum SportCategory {
+  CYCLING
+  RUNNING
+  TRIATHLON
+  OTHER
+}
+
+enum RouteType {
+  RIDE
+  RUN
+}
+
+enum UploadDataType {
+  FIT
+  FIT_GZ
+  TCX
+  TCX_GZ
+  GPX
+  GPX_GZ
+}
+
+enum WebhookAspect {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+enum WebhookObjectType {
+  ACTIVITY
+  ATHLETE
+}
+
+enum StreamType {
+  TIME
+  DISTANCE
+  LATLNG
+  ALTITUDE
+  VELOCITY_SMOOTH
+  HEARTRATE
+  CADENCE
+  WATTS
+  TEMP
+  MOVING
+  GRADE_SMOOTH
+}
+
+enum MeasurementPreference {
+  FEET
+  METERS
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  NON_BINARY
+}
+
+enum ActivityType {
+  RIDE
+  RUN
+  SWIM
+  WALK
+  HIKE
+  WORKOUT
+  OTHER
+}
+
+# ─── Location & Map Types ─────────────────────────────────────────────────────
+
+type LatLng {
+  lat: Float!
+  lng: Float!
+}
+
+type Location {
+  city: String
+  state: String
+  country: String
+  coordinates: LatLng
+}
+
+type Elevation {
+  value: Float!
+  unit: String!
+}
+
+type ElevationSummary {
+  totalElevationGain: Float
+  totalElevationLoss: Float
+  minElevation: Float
+  maxElevation: Float
+  unit: String
+}
+
+type PolyLine {
+  encoded: String!
+  decoded: [LatLng!]
+}
+
+type Map {
+  id: ID!
+  polyline: PolyLine
+  summaryPolyline: PolyLine
+  resourceState: ResourceState
+}
+
+# ─── Stream Types ─────────────────────────────────────────────────────────────
+
+type StreamData {
+  originalSize: Int!
+  resolution: String
+  seriesType: String
+  data: [JSON]!
+}
+
+type Stream {
+  type: StreamType!
+  data: StreamData!
+  seriesType: String
+  originalSize: Int
+  resolution: String
+}
+
+type StreamSet {
+  activityId: ID
+  streams: [Stream!]!
+  time: Stream
+  distance: Stream
+  latlng: Stream
+  altitude: Stream
+  velocitySmooth: Stream
+  heartrate: Stream
+  cadence: Stream
+  watts: Stream
+  temp: Stream
+  moving: Stream
+  gradeSmooth: Stream
+}
+
+# ─── Zone Types ──────────────────────────────────────────────────────────────
+
+type HeartRateZone {
+  min: Int!
+  max: Int!
+  name: String
+  order: Int
+}
+
+type PowerZone {
+  min: Int!
+  max: Int!
+  name: String
+  order: Int
+}
+
+type PaceZone {
+  min: Float!
+  max: Float!
+  name: String
+  order: Int
+}
+
+type ActivityZone {
+  score: Int
+  distributionBuckets: [ZoneBucket!]!
+  type: String!
+  sensorBased: Boolean
+  points: Int
+  customZones: Boolean
+}
+
+type ZoneBucket {
+  min: Int!
+  max: Int!
+  time: Int!
+}
+
+type AthleteZones {
+  heartRate: HeartRateZones!
+  power: PowerZones!
+}
+
+type HeartRateZones {
+  customZones: Boolean!
+  zones: [HeartRateZone!]!
+}
+
+type PowerZones {
+  zones: [PowerZone!]!
+}
+
+# ─── Gear Types ──────────────────────────────────────────────────────────────
+
+type Gear {
+  id: ID!
+  primary: Boolean!
+  name: String!
+  resourceState: ResourceState
+  distance: Float
+  brandName: String
+  modelName: String
+  frameType: Int
+  description: String
+  athlete: AthleteProfile
+}
+
+type Shoes {
+  id: ID!
+  primary: Boolean!
+  name: String!
+  nickname: String
+  distance: Float
+  convertedDistance: Float
+  brandName: String
+  modelName: String
+  description: String
+  resourceState: ResourceState
+}
+
+type Bike {
+  id: ID!
+  primary: Boolean!
+  name: String!
+  distance: Float
+  convertedDistance: Float
+  brandName: String
+  modelName: String
+  frameType: Int
+  description: String
+  resourceState: ResourceState
+}
+
+type Helmet {
+  id: ID!
+  name: String!
+  brandName: String
+  modelName: String
+  description: String
+}
+
+# ─── Athlete Types ────────────────────────────────────────────────────────────
+
+type AthleteProfile {
+  id: ID!
+  username: String
+  resourceState: ResourceState
+  firstname: String
+  lastname: String
+  city: String
+  state: String
+  country: String
+  sex: Gender
+  premium: Boolean
+  summit: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  badgeTypeId: Int
+  profileMedium: String
+  profile: String
+  friend: Boolean
+  follower: Boolean
+}
+
+type FollowerStats {
+  friendCount: Int!
+  followerCount: Int!
+  mutualFriendCount: Int!
+}
+
+type FollowerSummary {
+  id: ID!
+  athlete: AthleteProfile!
+  status: FollowingStatus!
+  createdAt: DateTime
+}
+
+type ActivityStats {
+  biggestRideDistance: Float
+  biggestClimbElevationGain: Float
+  recentRideTotals: ActivityTotal
+  recentRunTotals: ActivityTotal
+  recentSwimTotals: ActivityTotal
+  ytdRideTotals: ActivityTotal
+  ytdRunTotals: ActivityTotal
+  ytdSwimTotals: ActivityTotal
+  allRideTotals: ActivityTotal
+  allRunTotals: ActivityTotal
+  allSwimTotals: ActivityTotal
+}
+
+type ActivityTotal {
+  count: Int!
+  distance: Float!
+  movingTime: Int!
+  elapsedTime: Int!
+  elevationGain: Float!
+  achievementCount: Int
+}
+
+type Athlete {
+  id: ID!
+  username: String
+  resourceState: ResourceState
+  firstname: String!
+  lastname: String!
+  city: String
+  state: String
+  country: String
+  sex: Gender
+  premium: Boolean
+  summit: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  followerCount: Int
+  friendCount: Int
+  measurementPreference: MeasurementPreference
+  ftp: Int
+  weight: Float
+  clubs: [Club!]
+  bikes: [Bike!]
+  shoes: [Shoes!]
+  profile: String
+  profileMedium: String
+  email: String
+  datePreference: String
+  badgeTypeId: Int
+  mutualFriendCount: Int
+  athleteType: Int
+  postableActivitiesCount: Int
+  strava_super_user: Boolean
+  email_language: String
+}
+
+# ─── Achievement & Record Types ───────────────────────────────────────────────
+
+type Achievement {
+  typeId: Int!
+  type: String!
+  rank: Int!
+}
+
+type PersonalRecord {
+  id: ID!
+  activityId: ID!
+  elapsed: Int!
+  distance: Float!
+  startDate: DateTime!
+  startDateLocal: DateTime!
+}
+
+type AthletePR {
+  effortCount: Int!
+  prActivityId: ID!
+  prElapsedTime: Int!
+  prDate: Date!
+}
+
+type KOMRecord {
+  effortCount: Int!
+  komActivityId: ID
+  komElapsedTime: Int
+  komDate: Date
+  qomActivityId: ID
+  qomElapsedTime: Int
+  qomDate: Date
+}
+
+type SegmentPR {
+  id: ID!
+  segment: Segment!
+  athlete: AthleteProfile!
+  elapsedTime: Int!
+  movingTime: Int!
+  startDate: DateTime!
+  startDateLocal: DateTime!
+  distance: Float!
+  startIndex: Int
+  endIndex: Int
+  averageWatts: Float
+  averageHeartrate: Float
+  maxHeartrate: Float
+  kom: Boolean
+  prRank: Int
+}
+
+# ─── Segment Types ────────────────────────────────────────────────────────────
+
+type Segment {
+  id: ID!
+  name: String!
+  activityType: ActivityType!
+  distance: Float!
+  averageGrade: Float!
+  maximumGrade: Float!
+  elevationHigh: Float!
+  elevationLow: Float!
+  startLatlng: LatLng!
+  endLatlng: LatLng!
+  climbCategory: Int!
+  city: String
+  state: String
+  country: String
+  private: Boolean!
+  hazardous: Boolean
+  starred: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  totalElevationGain: Float
+  map: Map
+  effortCount: Int
+  athleteCount: Int
+  starCount: Int
+  athleteSegmentStats: AthletePR
+  komRecord: KOMRecord
+  resourceState: ResourceState
+}
+
+type SegmentLeaderboardEntry {
+  athleteName: String!
+  athleteId: ID!
+  athleteGender: Gender
+  averageHr: Float
+  averageWatts: Float
+  distance: Float!
+  elapsedTime: Int!
+  movingTime: Int!
+  startDate: DateTime!
+  startDateLocal: DateTime!
+  activityId: ID!
+  effortId: ID!
+  rank: Int!
+  friendRank: Int
+  athleteProfile: String
+}
+
+type SegmentLeaderboard {
+  entryCount: Int!
+  entries: [SegmentLeaderboardEntry!]!
+  effortCount: Int!
+  komType: String
+  athleteEntries: [SegmentLeaderboardEntry!]
+}
+
+type StarredSegment {
+  id: ID!
+  segment: Segment!
+  starredDate: DateTime!
+  athleteCount: Int
+  effortCount: Int
+}
+
+type AnalyticsSegment {
+  id: ID!
+  segment: Segment!
+  totalAthletes: Int
+  recentAttempts: Int
+  avgElapsedTime: Float
+  trendingUp: Boolean
+}
+
+# ─── Route Types ─────────────────────────────────────────────────────────────
+
+type RouteSegment {
+  id: ID!
+  segment: Segment!
+  distance: Float!
+  elevationDifference: Float!
+}
+
+type Route {
+  id: ID!
+  name: String!
+  description: String
+  athlete: AthleteProfile!
+  distance: Float!
+  elevationGain: Float!
+  type: RouteType!
+  subType: Int
+  private: Boolean!
+  starred: Boolean
+  timestamp: DateTime
+  segments: [RouteSegment!]
+  map: Map
+  mapUrls: RouteMapUrls
+  estimatedMovingTime: Int
+  waypoints: [Waypoint]
+  createdAt: DateTime
+  updatedAt: DateTime
+  resourceState: ResourceState
+}
+
+type RouteMapUrls {
+  url: String
+  retinaUrl: String
+}
+
+type Waypoint {
+  latlng: LatLng!
+  targetLatlng: LatLng
+  categories: [String]
+  title: String
+  description: String
+  distanceIntoRoute: Float
+}
+
+# ─── Club Types ───────────────────────────────────────────────────────────────
+
+type Club {
+  id: ID!
+  resourceState: ResourceState
+  name: String!
+  profileMedium: String
+  coverPhoto: String
+  coverPhotoSmall: String
+  sportType: SportCategory
+  activityTypes: [SportType]
+  city: String
+  state: String
+  country: String
+  private: Boolean!
+  memberCount: Int
+  featured: Boolean
+  verified: Boolean
+  url: String
+  membership: String
+  admin: Boolean
+  owner: Boolean
+  followingCount: Int
+  clubType: ClubType
+  description: String
+  postCount: Int
+}
+
+type ClubMember {
+  id: ID!
+  athlete: AthleteProfile!
+  admin: Boolean!
+  owner: Boolean!
+  membership: String
+}
+
+type ClubAnnouncement {
+  id: ID!
+  resourceState: ResourceState
+  athleteId: ID!
+  createdAt: DateTime!
+  message: String!
+}
+
+type ClubActivities {
+  activities: [Activity!]!
+  page: Int!
+  perPage: Int!
+}
+
+# ─── Activity Types ───────────────────────────────────────────────────────────
+
+type ActivityLap {
+  id: ID!
+  resourceState: ResourceState
+  name: String!
+  activity: ActivityRef!
+  athlete: AthleteProfile!
+  elapsedTime: Int!
+  movingTime: Int!
+  startDate: DateTime!
+  startDateLocal: DateTime!
+  distance: Float!
+  startIndex: Int!
+  endIndex: Int!
+  lapIndex: Int!
+  totalElevationGain: Float
+  averageSpeed: Float
+  maxSpeed: Float
+  averageCadence: Float
+  averageWatts: Float
+  deviceWatts: Boolean
+  averageHeartrate: Float
+  maxHeartrate: Float
+  paceZone: Int
+  split: Int
+}
+
+type ActivityRef {
+  id: ID!
+  resourceState: ResourceState
+}
+
+type ActivitySegmentEffort {
+  id: ID!
+  resourceState: ResourceState
+  name: String!
+  activity: ActivityRef!
+  athlete: AthleteProfile!
+  elapsedTime: Int!
+  movingTime: Int!
+  startDate: DateTime!
+  startDateLocal: DateTime!
+  distance: Float!
+  startIndex: Int!
+  endIndex: Int!
+  averageCadence: Float
+  averageWatts: Float
+  deviceWatts: Boolean
+  averageHeartrate: Float
+  maxHeartrate: Float
+  segment: Segment!
+  komRank: Int
+  prRank: Int
+  achievements: [Achievement!]
+  hidden: Boolean
+}
+
+type HeartRate {
+  average: Float
+  max: Float
+  zones: [HeartRateZone]
+}
+
+type Power {
+  average: Float
+  max: Float
+  normalizedPower: Float
+  weightedAveragePower: Float
+  zones: [PowerZone]
+}
+
+type Cadence {
+  average: Float
+  max: Float
+}
+
+type Activity {
+  id: ID!
+  externalId: String
+  uploadId: ID
+  athlete: AthleteProfile!
+  name: String!
+  description: String
+  distance: Float!
+  movingTime: Int!
+  elapsedTime: Int!
+  totalElevationGain: Float!
+  elevationHigh: Float
+  elevationLow: Float
+  type: SportType!
+  sportType: SportType!
+  workoutType: Int
+  startDate: DateTime!
+  startDateLocal: DateTime!
+  timezone: String!
+  utcOffset: Float!
+  startLatlng: LatLng
+  endLatlng: LatLng
+  locationCity: String
+  locationState: String
+  locationCountry: String
+  achievementCount: Int!
+  kudosCount: Int!
+  commentCount: Int!
+  athleteCount: Int!
+  photoCount: Int!
+  totalPhotoCount: Int!
+  map: Map
+  trainer: Boolean!
+  commute: Boolean!
+  manual: Boolean!
+  private: Boolean!
+  flagged: Boolean!
+  gearId: ID
+  gear: Gear
+  fromAcceptedTag: Boolean
+  averageSpeed: Float!
+  maxSpeed: Float!
+  averageCadence: Float
+  averageTemp: Float
+  averageWatts: Float
+  weightedAverageWatts: Float
+  kilojoules: Float
+  deviceWatts: Boolean
+  hasHeartrate: Boolean!
+  averageHeartrate: Float
+  maxHeartrate: Float
+  maxWatts: Int
+  sufferScore: Float
+  hasKudoed: Boolean!
+  segmentEfforts: [ActivitySegmentEffort!]
+  laps: [ActivityLap!]
+  bestEfforts: [ActivitySegmentEffort!]
+  photos: PhotoSummary
+  calories: Float
+  pr_count: Int
+  embedToken: String
+  deviceName: String
+  heartRate: HeartRate
+  power: Power
+  cadence: Cadence
+  resourceState: ResourceState
+}
+
+# ─── Social Types ─────────────────────────────────────────────────────────────
+
+type Kudos {
+  id: ID!
+  athlete: AthleteProfile!
+  createdAt: DateTime!
+}
+
+type Comment {
+  id: ID!
+  activityId: ID!
+  text: String!
+  athlete: AthleteProfile!
+  createdAt: DateTime!
+  resourceState: ResourceState
+}
+
+type Photo {
+  id: ID!
+  uniqueId: String
+  activityId: ID!
+  athleteId: ID!
+  ref: String
+  uid: String
+  source: Int
+  createdAt: DateTime!
+  createdAtLocal: DateTime!
+  uploadedAt: DateTime
+  caption: String
+  type: Int
+  urls: PhotoUrls
+  location: LatLng
+  sizes: JSON
+  defaultPhoto: Boolean
+}
+
+type PhotoUrls {
+  url100: String
+  url600: String
+}
+
+type PhotoSummary {
+  count: Int!
+  primary: Photo
+}
+
+# ─── Upload Types ─────────────────────────────────────────────────────────────
+
+type Upload {
+  id: ID!
+  externalId: String
+  error: String
+  status: String!
+  activityId: ID
+}
+
+type UploadStatus {
+  id: ID!
+  idStr: String
+  externalId: String
+  error: String
+  status: String!
+  activityId: ID
+  processing: Boolean
+}
+
+# ─── Webhook Types ────────────────────────────────────────────────────────────
+
+type Webhook {
+  id: ID!
+  resourceState: ResourceState
+  applicationId: ID!
+  callbackUrl: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type WebhookEvent {
+  objectType: WebhookObjectType!
+  objectId: ID!
+  aspectType: WebhookAspect!
+  ownerId: ID!
+  subscriptionId: ID!
+  eventTime: DateTime!
+  updates: JSON
+}
+
+type SubscriptionEvent {
+  subscriptionId: ID!
+  ownerId: ID!
+  objectId: ID!
+  objectType: WebhookObjectType!
+  aspectType: WebhookAspect!
+  eventTime: DateTime!
+}
+
+# ─── Input Types ──────────────────────────────────────────────────────────────
+
+input CreateActivityInput {
+  name: String!
+  type: SportType!
+  sportType: SportType
+  startDateLocal: DateTime!
+  elapsedTime: Int!
+  description: String
+  distance: Float
+  trainer: Boolean
+  commute: Boolean
+}
+
+input UpdateActivityInput {
+  commute: Boolean
+  trainer: Boolean
+  hideFromHome: Boolean
+  description: String
+  name: String
+  type: SportType
+  sportType: SportType
+  gearId: String
+}
+
+input UpdateAthleteInput {
+  weight: Float
+  city: String
+  state: String
+  country: String
+  sex: Gender
+}
+
+input CreateGearInput {
+  name: String!
+  primary: Boolean
+  brandName: String
+  modelName: String
+  description: String
+}
+
+input UpdateGearInput {
+  name: String
+  primary: Boolean
+  brandName: String
+  modelName: String
+  description: String
+}
+
+input UploadActivityInput {
+  file: String!
+  name: String
+  description: String
+  trainer: Boolean
+  commute: Boolean
+  dataType: UploadDataType!
+  externalId: String
+}
+
+input CreateWebhookInput {
+  callbackUrl: String!
+  verifyToken: String!
+}
+
+# ─── Root Types ───────────────────────────────────────────────────────────────
+
+type Query {
+  # Athlete
+  athlete: Athlete
+  athleteById(id: ID!): AthleteProfile
+  athleteStats(athleteId: ID!): ActivityStats!
+  athleteZones: AthleteZones!
+  athleteFollowers(athleteId: ID!, page: Int, perPage: Int): [FollowerSummary!]!
+  athleteFriends(athleteId: ID!, page: Int, perPage: Int): [FollowerSummary!]!
+  followerStats: FollowerStats!
+
+  # Activities
+  activity(id: ID!): Activity
+  athleteActivities(before: Int, after: Int, page: Int, perPage: Int): [Activity!]!
+  activityLaps(activityId: ID!): [ActivityLap!]!
+  activityZones(activityId: ID!): [ActivityZone!]!
+  activityComments(activityId: ID!, page: Int, perPage: Int): [Comment!]!
+  activityKudoers(activityId: ID!, page: Int, perPage: Int): [AthleteProfile!]!
+  activityPhotos(activityId: ID!, size: Int, photosOnly: Boolean): [Photo!]!
+  relatedActivities(activityId: ID!): [Activity!]!
+
+  # Segments
+  segment(id: ID!): Segment
+  starredSegments(page: Int, perPage: Int): [StarredSegment!]!
+  segmentLeaderboard(
+    segmentId: ID!
+    gender: Gender
+    ageGroup: String
+    weightClass: String
+    following: Boolean
+    clubId: ID
+    dateRange: String
+    contextEntries: Int
+    page: Int
+    perPage: Int
+  ): SegmentLeaderboard!
+  segmentEfforts(
+    segmentId: ID!
+    athleteId: ID
+    startDateLocal: DateTime
+    endDateLocal: DateTime
+    perPage: Int
+  ): [ActivitySegmentEffort!]!
+  exploreSegments(
+    bounds: [Float!]!
+    activityType: ActivityType
+    minCat: Int
+    maxCat: Int
+  ): [Segment!]!
+  segmentPR(segmentId: ID!, athleteId: ID!): SegmentPR
+
+  # Routes
+  route(id: ID!): Route
+  athleteRoutes(athleteId: ID!, page: Int, perPage: Int): [Route!]!
+
+  # Clubs
+  club(id: ID!): Club
+  athleteClubs: [Club!]!
+  clubMembers(clubId: ID!, page: Int, perPage: Int): [ClubMember!]!
+  clubActivities(clubId: ID!, page: Int, perPage: Int): ClubActivities!
+  clubAdmins(clubId: ID!, page: Int, perPage: Int): [AthleteProfile!]!
+  clubAnnouncements(clubId: ID!): [ClubAnnouncement!]!
+
+  # Gear
+  gear(id: ID!): Gear
+
+  # Streams
+  activityStreams(activityId: ID!, keys: [StreamType!]!, keyByType: Boolean): StreamSet!
+  segmentEffortStreams(effortId: ID!, keys: [StreamType!]!, keyByType: Boolean): StreamSet!
+  routeStreams(routeId: ID!): StreamSet!
+
+  # Uploads
+  upload(uploadId: ID!): UploadStatus
+
+  # Webhooks
+  webhooks: [Webhook!]!
+
+  # Analytics
+  analyticsSegment(segmentId: ID!): AnalyticsSegment
+}
+
+type Mutation {
+  # Activities
+  createActivity(input: CreateActivityInput!): Activity!
+  updateActivity(id: ID!, input: UpdateActivityInput!): Activity!
+  deleteActivity(id: ID!): Boolean!
+
+  # Kudos
+  createKudos(activityId: ID!): Boolean!
+
+  # Comments
+  createComment(activityId: ID!, text: String!): Comment!
+  deleteComment(activityId: ID!, commentId: ID!): Boolean!
+
+  # Segments
+  starSegment(segmentId: ID!): StarredSegment!
+  unstarSegment(segmentId: ID!): Boolean!
+
+  # Athlete
+  updateAthlete(input: UpdateAthleteInput!): Athlete!
+
+  # Gear
+  createGear(input: CreateGearInput!): Gear!
+  updateGear(id: ID!, input: UpdateGearInput!): Gear!
+
+  # Uploads
+  uploadActivity(input: UploadActivityInput!): Upload!
+
+  # Webhooks
+  createWebhook(input: CreateWebhookInput!): Webhook!
+  deleteWebhook(subscriptionId: ID!): Boolean!
+}
