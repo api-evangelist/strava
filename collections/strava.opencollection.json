@@ -1,0 +1,674 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Strava API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.strava.com/oauth/authorize",
+      "accessTokenUrl": "https://www.strava.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Athletes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Authenticated Athlete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete"
+          },
+          "docs": "Returns the currently authenticated athlete's profile, including name, location, fitness stats, and preferences."
+        },
+        {
+          "info": {
+            "name": "Update Authenticated Athlete",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://www.strava.com/api/v3/athlete",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "weight",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates the authenticated athlete's weight and city/state/country."
+        },
+        {
+          "info": {
+            "name": "Get Athlete Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete/zones"
+          },
+          "docs": "Returns the heart rate and power zones of the authenticated athlete. Requires the activity:read_all scope."
+        },
+        {
+          "info": {
+            "name": "Get Athlete Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athletes/:id/stats",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the athlete"
+              }
+            ]
+          },
+          "docs": "Returns a summary of the athlete's year-to-date and all-time activity statistics, including totals for rides, runs, and swims."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Activities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.strava.com/api/v3/activities",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "sport_type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "start_date_local",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "elapsed_time",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "distance",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "trainer",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "commute",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a manual activity on behalf of the authenticated athlete. This endpoint is for manually entered activities, not for uploading GPS files (use the Uploads endpoint for that)."
+        },
+        {
+          "info": {
+            "name": "Get Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              },
+              {
+                "name": "include_all_efforts",
+                "value": "",
+                "type": "query",
+                "description": "To include all segment efforts in the response, set to true. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Returns the given activity. Requires the activity:read scope. Privacy zones are excluded unless the activity is owned by the authenticated athlete or they are a follower of the activity owner."
+        },
+        {
+          "info": {
+            "name": "Update Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://www.strava.com/api/v3/activities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the given activity. Requires the activity:write scope. Only the authenticated athlete may update their own activities."
+        },
+        {
+          "info": {
+            "name": "List Athlete Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete/activities",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An epoch timestamp for filtering activities before a certain time"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An epoch timestamp for filtering activities after a certain time"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (max 200)"
+              }
+            ]
+          },
+          "docs": "Returns the activities of the authenticated athlete, sorted by newest first. Requires the activity:read scope. Does not include activities with visibility set to Only You unless the activity belongs to the authenticated athlete."
+        },
+        {
+          "info": {
+            "name": "List Activity Laps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id/laps",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              }
+            ]
+          },
+          "docs": "Returns the laps of an activity identified by an identifier. Requires the activity:read scope."
+        },
+        {
+          "info": {
+            "name": "List Activity Comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id/comments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns the comments on the given activity."
+        },
+        {
+          "info": {
+            "name": "List Activity Kudoers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id/kudos",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns the athletes who gave kudos on the given activity."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Activity Streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id/streams",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              },
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "Desired stream types (comma-separated): time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth"
+              },
+              {
+                "name": "key_by_type",
+                "value": "",
+                "type": "query",
+                "description": "Must be true (returns stream data keyed by type name)"
+              }
+            ]
+          },
+          "docs": "Returns the given activity's streams. Streams are a sequential array of data points for a given activity or segment. Available stream types include: time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/segments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the segment"
+              }
+            ]
+          },
+          "docs": "Returns the specified segment. Starred segments include athlete specific segment stats when the authenticated athlete has starred the segment."
+        },
+        {
+          "info": {
+            "name": "List Starred Segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/segments/starred",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by the owner."
+        },
+        {
+          "info": {
+            "name": "Get Segment Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/segments/:id/leaderboard",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the segment"
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender (M or F)"
+              },
+              {
+                "name": "age_group",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age group (0_19, 20_24, 25_34, 35_44, 45_54, 55_64, 65_plus)"
+              },
+              {
+                "name": "weight_class",
+                "value": "",
+                "type": "query",
+                "description": "Filter by weight class"
+              },
+              {
+                "name": "following",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to athletes the authenticated athlete is following"
+              },
+              {
+                "name": "club_id",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to athletes in the specified club"
+              },
+              {
+                "name": "date_range",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to a specific time frame (this_year, this_month, this_week, today)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns the specified segment leaderboard. The overall leaderboard returns the top 10 athletes who have put in the best efforts on the segment. The current authenticated athlete's effort is also included."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Segment Efforts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Segment Effort",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/segment_efforts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the segment effort"
+              }
+            ]
+          },
+          "docs": "Returns a segment effort from an activity that is owned by the authenticated athlete."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Athlete Routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete/routes",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of the routes created by a given athlete."
+        },
+        {
+          "info": {
+            "name": "Get Route",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/routes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the route"
+              }
+            ]
+          },
+          "docs": "Returns a route using its identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clubs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Club",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/clubs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the club"
+              }
+            ]
+          },
+          "docs": "Returns a given club using its identifier. Requires the profile:read_all scope for private clubs."
+        },
+        {
+          "info": {
+            "name": "List Club Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/clubs/:id/activities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the club"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve recent activities from members of a specific club. The authenticated athlete must be a member of the club."
+        },
+        {
+          "info": {
+            "name": "List Athlete Clubs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete/clubs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of the clubs whose membership includes the authenticated athlete."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gear",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Equipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/gear/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the gear item (e.g., b1234567)"
+              }
+            ]
+          },
+          "docs": "Returns an equipment item using its identifier. Requires the activity:read scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
