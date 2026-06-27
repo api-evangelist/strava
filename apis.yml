@@ -58,7 +58,7 @@ common:
   url: https://github.com/strava
 - type: Website
   url: https://www.strava.com
-- type: Developer Portal
+- type: DeveloperPortal
   url: https://developers.strava.com/
 - type: Documentation
   url: https://developers.strava.com/docs/
@@ -72,9 +72,9 @@ common:
   url: https://status.strava.com
 - type: Blog
   url: https://blog.strava.com
-- type: Forum
+- type: Forums
   url: https://communityhub.strava.com/developers
-- type: SignUp
+- type: Signup
   url: https://www.strava.com/register
 - type: Login
   url: https://www.strava.com/login
