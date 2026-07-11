@@ -1,0 +1,60 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/strava-openapi.yml
+schemes:
+- name: stravaBearerAuth
+  source: openapi/strava-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.strava.com/oauth/authorize
+    tokenUrl: https://www.strava.com/oauth/token
+  description: OAuth 2.0 Bearer token. Obtain via the authorization code flow at https://www.strava.com/oauth/authorize.
+scopes:
+- scope: activity:read
+  description: Read the user's activity data for activities that are visible to Everyone and
+    Followers
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/strava-openapi.yml
+- scope: activity:read_all
+  description: Same access as activity:read with the addition of activities with visibility
+    set to Only You
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/strava-openapi.yml
+- scope: activity:write
+  description: Access to create manual activities and uploads, and access to edit any activities
+    that are visible to the app
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/strava-openapi.yml
+- scope: profile:read_all
+  description: Read all profile information even if the user has set their profile visibility
+    to Followers or Only You
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/strava-openapi.yml
+- scope: profile:write
+  description: Update the user's weight and Functional Threshold Power (FTP), and access to
+    star or unstar segments on their behalf
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/strava-openapi.yml
+- scope: read
+  description: Read public segments, public routes, public profile data, public posts, public
+    events, club feeds, and leaderboards
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/strava-openapi.yml
+- scope: read_all
+  description: Read private routes, private segments, and private events for the user
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/strava-openapi.yml

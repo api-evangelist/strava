@@ -54,6 +54,10 @@ apis:
   - url: graphql/strava-graphql.md
     type: GraphQL
 common:
+- type: Authentication
+  url: authentication/strava-authentication.yml
+- type: OAuthScopes
+  url: scopes/strava-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/strava
 - type: Website
