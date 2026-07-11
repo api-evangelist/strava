@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/strava-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+schemes:
+- name: stravaBearerAuth
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.strava.com/oauth/authorize
+    tokenUrl: https://www.strava.com/oauth/token
+    scopes: 7
+  description: OAuth 2.0 Bearer token. Obtain via the authorization code flow at https://www.strava.com/oauth/authorize.
+  sources:
+  - openapi/strava-openapi.yml
