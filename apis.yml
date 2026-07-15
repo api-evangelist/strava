@@ -54,6 +54,8 @@ apis:
   - url: graphql/strava-graphql.md
     type: GraphQL
 common:
+- type: AgenticAccess
+  url: agentic-access/strava-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/strava-vulnerability-disclosure.yml
 - type: DomainSecurity
