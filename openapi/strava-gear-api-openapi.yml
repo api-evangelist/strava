@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Strava Activities Gear API
+  description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
+  version: 3.0.0
+  contact:
+    name: Strava Developer Support
+    url: https://developers.strava.com/support/
+  termsOfService: https://www.strava.com/legal/api
+  license:
+    name: Strava API Agreement
+    url: https://www.strava.com/legal/api
+servers:
+- url: https://www.strava.com/api/v3
+  description: Strava API v3
+security:
+- stravaBearerAuth: []
+tags:
+- name: Gear
+  description: Access athlete gear (bikes and shoes) used during activities.
+paths:
+  /gear/{id}:
+    get:
+      operationId: getGearById
+      summary: Get Equipment
+      description: Returns an equipment item using its identifier. Requires the activity:read scope.
+      tags:
+      - Gear
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the gear item (e.g., b1234567)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The gear item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedGear'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    DetailedGear:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the gear (e.g., b12345)
+        primary:
+          type: boolean
+          description: Whether this is the athlete's primary gear
+        name:
+          type: string
+          description: The name of the gear
+        nickname:
+          type: string
+          nullable: true
+          description: The nickname of the gear
+        distance:
+          type: number
+          format: float
+          description: The total distance ridden/run with the gear in meters
+        brand_name:
+          type: string
+          description: The brand name of the gear
+        model_name:
+          type: string
+          description: The model name of the gear
+        frame_type:
+          type: integer
+          nullable: true
+          description: The frame type of the bike (1=MTB, 2=Cross, 3=Road, 4=TT)
+        description:
+          type: string
+          description: A description of the gear
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  securitySchemes:
+    stravaBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Obtain via the authorization code flow at https://www.strava.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.strava.com/oauth/authorize
+          tokenUrl: https://www.strava.com/oauth/token
+          scopes:
+            read: Read public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards
+            read_all: Read private routes, private segments, and private events for the user
+            profile:read_all: Read all profile information even if the user has set their profile visibility to Followers or Only You
+            profile:write: Update the user's weight and Functional Threshold Power (FTP), and access to star or unstar segments on their behalf
+            activity:read: Read the user's activity data for activities that are visible to Everyone and Followers
+            activity:read_all: Same access as activity:read with the addition of activities with visibility set to Only You
+            activity:write: Access to create manual activities and uploads, and access to edit any activities that are visible to the app
+externalDocs:
+  description: Strava API Documentation
+  url: https://developers.strava.com/docs/reference/

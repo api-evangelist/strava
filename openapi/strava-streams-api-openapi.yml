@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  title: Strava Activities Streams API
+  description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
+  version: 3.0.0
+  contact:
+    name: Strava Developer Support
+    url: https://developers.strava.com/support/
+  termsOfService: https://www.strava.com/legal/api
+  license:
+    name: Strava API Agreement
+    url: https://www.strava.com/legal/api
+servers:
+- url: https://www.strava.com/api/v3
+  description: Strava API v3
+security:
+- stravaBearerAuth: []
+tags:
+- name: Streams
+  description: Access time-series data streams for activities and segments, including GPS coordinates, heart rate, power, cadence, speed, and altitude.
+paths:
+  /activities/{id}/streams:
+    get:
+      operationId: getActivityStreams
+      summary: Get Activity Streams
+      description: 'Returns the given activity''s streams. Streams are a sequential array of data points for a given activity or segment. Available stream types include: time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth.'
+      tags:
+      - Streams
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the activity
+        schema:
+          type: integer
+      - name: keys
+        in: query
+        required: true
+        description: 'Desired stream types (comma-separated): time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth'
+        schema:
+          type: array
+          items:
+            type: string
+      - name: key_by_type
+        in: query
+        description: Must be true (returns stream data keyed by type name)
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: The activity streams
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StreamSet'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    StreamSet:
+      type: object
+      description: A collection of data streams for an activity or segment
+      properties:
+        time:
+          $ref: '#/components/schemas/TimeStream'
+        latlng:
+          $ref: '#/components/schemas/LatLngStream'
+        distance:
+          $ref: '#/components/schemas/DistanceStream'
+        altitude:
+          $ref: '#/components/schemas/AltitudeStream'
+        heartrate:
+          $ref: '#/components/schemas/HeartrateStream'
+        cadence:
+          $ref: '#/components/schemas/CadenceStream'
+        watts:
+          $ref: '#/components/schemas/PowerStream'
+        velocity_smooth:
+          $ref: '#/components/schemas/SmoothVelocityStream'
+        grade_smooth:
+          $ref: '#/components/schemas/SmoothGradeStream'
+    AltitudeStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: number
+          description: The sequence of altitude values in meters
+    SmoothGradeStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: number
+          description: The sequence of grade values in percent
+    HeartrateStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: integer
+          description: The sequence of heart rate values in BPM
+    LatLngStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+          description: The sequence of lat/lng values
+    CadenceStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: integer
+          description: The sequence of cadence values in RPM
+    SmoothVelocityStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: number
+          description: The sequence of velocity values in meters per second
+    PowerStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: integer
+          description: The sequence of power output values in watts
+    DistanceStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: number
+          description: The sequence of distance values in meters
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
+    TimeStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+          enum:
+          - distance
+          - time
+        original_size:
+          type: integer
+        resolution:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        data:
+          type: array
+          items:
+            type: integer
+          description: The sequence of time values in seconds from start
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  securitySchemes:
+    stravaBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Obtain via the authorization code flow at https://www.strava.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.strava.com/oauth/authorize
+          tokenUrl: https://www.strava.com/oauth/token
+          scopes:
+            read: Read public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards
+            read_all: Read private routes, private segments, and private events for the user
+            profile:read_all: Read all profile information even if the user has set their profile visibility to Followers or Only You
+            profile:write: Update the user's weight and Functional Threshold Power (FTP), and access to star or unstar segments on their behalf
+            activity:read: Read the user's activity data for activities that are visible to Everyone and Followers
+            activity:read_all: Same access as activity:read with the addition of activities with visibility set to Only You
+            activity:write: Access to create manual activities and uploads, and access to edit any activities that are visible to the app
+externalDocs:
+  description: Strava API Documentation
+  url: https://developers.strava.com/docs/reference/

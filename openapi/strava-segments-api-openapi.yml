@@ -1,0 +1,347 @@
+openapi: 3.1.0
+info:
+  title: Strava Activities Segments API
+  description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
+  version: 3.0.0
+  contact:
+    name: Strava Developer Support
+    url: https://developers.strava.com/support/
+  termsOfService: https://www.strava.com/legal/api
+  license:
+    name: Strava API Agreement
+    url: https://www.strava.com/legal/api
+servers:
+- url: https://www.strava.com/api/v3
+  description: Strava API v3
+security:
+- stravaBearerAuth: []
+tags:
+- name: Segments
+  description: Access segments — specific sections of road or trail that athletes compete on. View segment details, starred segments, and leaderboards.
+paths:
+  /segments/{id}:
+    get:
+      operationId: getSegmentById
+      summary: Get Segment
+      description: Returns the specified segment. Starred segments include athlete specific segment stats when the authenticated athlete has starred the segment.
+      tags:
+      - Segments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the segment
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The segment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedSegment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /segments/starred:
+    get:
+      operationId: getLoggedInAthleteStarredSegments
+      summary: List Starred Segments
+      description: List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by the owner.
+      tags:
+      - Segments
+      parameters:
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          default: 30
+      responses:
+        '200':
+          description: A list of starred segments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SummarySegment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /segments/{id}/leaderboard:
+    get:
+      operationId: getLeaderboardBySegmentId
+      summary: Get Segment Leaderboard
+      description: Returns the specified segment leaderboard. The overall leaderboard returns the top 10 athletes who have put in the best efforts on the segment. The current authenticated athlete's effort is also included.
+      tags:
+      - Segments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the segment
+        schema:
+          type: integer
+      - name: gender
+        in: query
+        description: Filter by gender (M or F)
+        schema:
+          type: string
+          enum:
+          - M
+          - F
+      - name: age_group
+        in: query
+        description: Filter by age group (0_19, 20_24, 25_34, 35_44, 45_54, 55_64, 65_plus)
+        schema:
+          type: string
+      - name: weight_class
+        in: query
+        description: Filter by weight class
+        schema:
+          type: string
+      - name: following
+        in: query
+        description: Limit results to athletes the authenticated athlete is following
+        schema:
+          type: boolean
+      - name: club_id
+        in: query
+        description: Limit results to athletes in the specified club
+        schema:
+          type: integer
+      - name: date_range
+        in: query
+        description: Limit results to a specific time frame (this_year, this_month, this_week, today)
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          default: 30
+      responses:
+        '200':
+          description: The segment leaderboard
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SegmentLeaderboard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    SegmentLeaderboard:
+      type: object
+      properties:
+        header:
+          type: string
+          description: The header of the leaderboard
+        effort_count:
+          type: integer
+          description: The total number of efforts for this segment
+        entry_count:
+          type: integer
+          description: The number of entries in this leaderboard
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentLeaderboardEntry'
+    DetailedSegment:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the segment
+        name:
+          type: string
+          description: The name of the segment
+        activity_type:
+          type: string
+          enum:
+          - Ride
+          - Run
+          description: The activity type of the segment
+        distance:
+          type: number
+          format: float
+          description: The segment's distance in meters
+        average_grade:
+          type: number
+          format: float
+          description: The segment's average grade in percent
+        maximum_grade:
+          type: number
+          format: float
+          description: The segment's maximum grade in percent
+        elevation_high:
+          type: number
+          format: float
+          description: The segment's highest elevation in meters
+        elevation_low:
+          type: number
+          format: float
+          description: The segment's lowest elevation in meters
+        start_latlng:
+          type: array
+          items:
+            type: number
+          description: Start latitude/longitude
+        end_latlng:
+          type: array
+          items:
+            type: number
+          description: End latitude/longitude
+        climb_category:
+          type: integer
+          description: The category of the climb (0-5)
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        private:
+          type: boolean
+          description: Whether the segment is private
+        hazardous:
+          type: boolean
+          description: Whether the segment is considered hazardous
+        total_elevation_gain:
+          type: number
+          format: float
+        effort_count:
+          type: integer
+          description: The total number of efforts for this segment
+        athlete_count:
+          type: integer
+          description: The number of unique athletes who have recorded this segment
+        star_count:
+          type: integer
+          description: The number of stars on this segment
+    SegmentLeaderboardEntry:
+      type: object
+      properties:
+        athlete_name:
+          type: string
+        elapsed_time:
+          type: integer
+          description: The elapsed time of the effort in seconds
+        moving_time:
+          type: integer
+          description: The moving time of the effort in seconds
+        start_date:
+          type: string
+          format: date-time
+        start_date_local:
+          type: string
+          format: date-time
+        distance:
+          type: number
+          format: float
+        rank:
+          type: integer
+          description: The rank of this effort on the leaderboard
+        athlete_profile:
+          type: string
+          description: The URL of the athlete's profile picture
+        activity_id:
+          type: integer
+        effort_id:
+          type: integer
+    SummarySegment:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        activity_type:
+          type: string
+        distance:
+          type: number
+          format: float
+        average_grade:
+          type: number
+          format: float
+        elevation_high:
+          type: number
+          format: float
+        elevation_low:
+          type: number
+          format: float
+        start_latlng:
+          type: array
+          items:
+            type: number
+        end_latlng:
+          type: array
+          items:
+            type: number
+        climb_category:
+          type: integer
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  securitySchemes:
+    stravaBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Obtain via the authorization code flow at https://www.strava.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.strava.com/oauth/authorize
+          tokenUrl: https://www.strava.com/oauth/token
+          scopes:
+            read: Read public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards
+            read_all: Read private routes, private segments, and private events for the user
+            profile:read_all: Read all profile information even if the user has set their profile visibility to Followers or Only You
+            profile:write: Update the user's weight and Functional Threshold Power (FTP), and access to star or unstar segments on their behalf
+            activity:read: Read the user's activity data for activities that are visible to Everyone and Followers
+            activity:read_all: Same access as activity:read with the addition of activities with visibility set to Only You
+            activity:write: Access to create manual activities and uploads, and access to edit any activities that are visible to the app
+externalDocs:
+  description: Strava API Documentation
+  url: https://developers.strava.com/docs/reference/

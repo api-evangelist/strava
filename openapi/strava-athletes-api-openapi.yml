@@ -1,0 +1,324 @@
+openapi: 3.1.0
+info:
+  title: Strava Activities Athletes API
+  description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
+  version: 3.0.0
+  contact:
+    name: Strava Developer Support
+    url: https://developers.strava.com/support/
+  termsOfService: https://www.strava.com/legal/api
+  license:
+    name: Strava API Agreement
+    url: https://www.strava.com/legal/api
+servers:
+- url: https://www.strava.com/api/v3
+  description: Strava API v3
+security:
+- stravaBearerAuth: []
+tags:
+- name: Athletes
+  description: Access athlete profiles and statistics. Retrieve the authenticated athlete's profile and update their preferences.
+paths:
+  /athlete:
+    get:
+      operationId: getLoggedInAthlete
+      summary: Get Authenticated Athlete
+      description: Returns the currently authenticated athlete's profile, including name, location, fitness stats, and preferences.
+      tags:
+      - Athletes
+      responses:
+        '200':
+          description: The authenticated athlete profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedAthlete'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateLoggedInAthlete
+      summary: Update Authenticated Athlete
+      description: Updates the authenticated athlete's weight and city/state/country.
+      tags:
+      - Athletes
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                weight:
+                  type: number
+                  format: float
+                  description: The athlete's weight in kilograms
+      responses:
+        '200':
+          description: Athlete updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedAthlete'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /athlete/zones:
+    get:
+      operationId: getLoggedInAthleteZones
+      summary: Get Athlete Zones
+      description: Returns the heart rate and power zones of the authenticated athlete. Requires the activity:read_all scope.
+      tags:
+      - Athletes
+      responses:
+        '200':
+          description: The athlete's heart rate and power zones
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zones'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /athletes/{id}/stats:
+    get:
+      operationId: getAthleteStats
+      summary: Get Athlete Stats
+      description: Returns a summary of the athlete's year-to-date and all-time activity statistics, including totals for rides, runs, and swims.
+      tags:
+      - Athletes
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the athlete
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The athlete's statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityStats'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ActivityStats:
+      type: object
+      properties:
+        biggest_ride_distance:
+          type: number
+          format: float
+          description: The longest ride distance in meters
+        biggest_climb_elevation_gain:
+          type: number
+          format: float
+          description: The highest climb elevation gain in meters
+        recent_ride_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+        recent_run_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+        recent_swim_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+        ytd_ride_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+        ytd_run_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+        ytd_swim_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+        all_ride_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+        all_run_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+        all_swim_totals:
+          $ref: '#/components/schemas/ActivityTotal'
+    SummaryGear:
+      type: object
+      properties:
+        id:
+          type: string
+        primary:
+          type: boolean
+        name:
+          type: string
+        distance:
+          type: number
+          format: float
+        resource_state:
+          type: integer
+    DetailedAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the athlete
+        username:
+          type: string
+          description: The athlete's username
+        firstname:
+          type: string
+          description: The athlete's first name
+        lastname:
+          type: string
+          description: The athlete's last name
+        city:
+          type: string
+          description: The athlete's city of residence
+        state:
+          type: string
+          description: The athlete's state of residence
+        country:
+          type: string
+          description: The athlete's country of residence
+        sex:
+          type: string
+          enum:
+          - M
+          - F
+          description: The athlete's sex
+        premium:
+          type: boolean
+          description: Whether the athlete is a premium subscriber
+        summit:
+          type: boolean
+          description: Whether the athlete has a Summit subscription
+        created_at:
+          type: string
+          format: date-time
+          description: The time the athlete was created
+        updated_at:
+          type: string
+          format: date-time
+          description: The time the athlete was last updated
+        follower_count:
+          type: integer
+          description: The number of athletes following the athlete
+        friend_count:
+          type: integer
+          description: The number of athletes the athlete is following
+        measurement_preference:
+          type: string
+          enum:
+          - feet
+          - meters
+          description: The measurement preference (feet or meters)
+        weight:
+          type: number
+          format: float
+          description: The athlete's weight in kilograms
+        profile_medium:
+          type: string
+          description: URL to a 62x62 pixel profile picture
+        profile:
+          type: string
+          description: URL to a 124x124 pixel profile picture
+        bikes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryGear'
+        shoes:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryGear'
+    ActivityTotal:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of activities
+        distance:
+          type: number
+          format: float
+          description: The total distance in meters
+        moving_time:
+          type: integer
+          description: The total moving time in seconds
+        elapsed_time:
+          type: integer
+          description: The total elapsed time in seconds
+        elevation_gain:
+          type: number
+          format: float
+          description: The total elevation gain in meters
+        achievement_count:
+          type: integer
+          description: The total number of achievements (recent 4 weeks only)
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
+    Zones:
+      type: object
+      properties:
+        heart_rate:
+          type: object
+          properties:
+            custom_zones:
+              type: boolean
+            zones:
+              type: array
+              items:
+                type: object
+                properties:
+                  min:
+                    type: integer
+                  max:
+                    type: integer
+        power:
+          type: object
+          properties:
+            zones:
+              type: array
+              items:
+                type: object
+                properties:
+                  min:
+                    type: integer
+                  max:
+                    type: integer
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  securitySchemes:
+    stravaBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Obtain via the authorization code flow at https://www.strava.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.strava.com/oauth/authorize
+          tokenUrl: https://www.strava.com/oauth/token
+          scopes:
+            read: Read public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards
+            read_all: Read private routes, private segments, and private events for the user
+            profile:read_all: Read all profile information even if the user has set their profile visibility to Followers or Only You
+            profile:write: Update the user's weight and Functional Threshold Power (FTP), and access to star or unstar segments on their behalf
+            activity:read: Read the user's activity data for activities that are visible to Everyone and Followers
+            activity:read_all: Same access as activity:read with the addition of activities with visibility set to Only You
+            activity:write: Access to create manual activities and uploads, and access to edit any activities that are visible to the app
+externalDocs:
+  description: Strava API Documentation
+  url: https://developers.strava.com/docs/reference/

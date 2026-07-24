@@ -1,0 +1,195 @@
+openapi: 3.1.0
+info:
+  title: Strava Activities Segment Efforts API
+  description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
+  version: 3.0.0
+  contact:
+    name: Strava Developer Support
+    url: https://developers.strava.com/support/
+  termsOfService: https://www.strava.com/legal/api
+  license:
+    name: Strava API Agreement
+    url: https://www.strava.com/legal/api
+servers:
+- url: https://www.strava.com/api/v3
+  description: Strava API v3
+security:
+- stravaBearerAuth: []
+tags:
+- name: Segment Efforts
+  description: Access segment efforts — an athlete's attempt at a specific segment. Includes time, pace, and power data for each effort.
+paths:
+  /segment_efforts/{id}:
+    get:
+      operationId: getSegmentEffortById
+      summary: Get Segment Effort
+      description: Returns a segment effort from an activity that is owned by the authenticated athlete.
+      tags:
+      - Segment Efforts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the segment effort
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The segment effort
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedSegmentEffort'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    MetaAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+    SummarySegment:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        activity_type:
+          type: string
+        distance:
+          type: number
+          format: float
+        average_grade:
+          type: number
+          format: float
+        elevation_high:
+          type: number
+          format: float
+        elevation_low:
+          type: number
+          format: float
+        start_latlng:
+          type: array
+          items:
+            type: number
+        end_latlng:
+          type: array
+          items:
+            type: number
+        climb_category:
+          type: integer
+    MetaActivity:
+      type: object
+      properties:
+        id:
+          type: integer
+    DetailedSegmentEffort:
+      type: object
+      properties:
+        id:
+          type: integer
+        elapsed_time:
+          type: integer
+          description: The elapsed time of the effort in seconds
+        start_date:
+          type: string
+          format: date-time
+        start_date_local:
+          type: string
+          format: date-time
+        distance:
+          type: number
+          format: float
+        is_kom:
+          type: boolean
+          description: Whether this effort is the current KOM
+        name:
+          type: string
+          description: The name of the segment
+        activity:
+          $ref: '#/components/schemas/MetaActivity'
+        athlete:
+          $ref: '#/components/schemas/MetaAthlete'
+        moving_time:
+          type: integer
+        start_index:
+          type: integer
+        end_index:
+          type: integer
+        average_cadence:
+          type: number
+          format: float
+        average_watts:
+          type: number
+          format: float
+        device_watts:
+          type: boolean
+        average_heartrate:
+          type: number
+          format: float
+        max_heartrate:
+          type: number
+          format: float
+        segment:
+          $ref: '#/components/schemas/SummarySegment'
+        pr_rank:
+          type: integer
+          nullable: true
+          description: The rank of the effort on the athlete's leaderboard (1 = PR)
+        achievements:
+          type: array
+          items:
+            type: object
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  securitySchemes:
+    stravaBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Obtain via the authorization code flow at https://www.strava.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.strava.com/oauth/authorize
+          tokenUrl: https://www.strava.com/oauth/token
+          scopes:
+            read: Read public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards
+            read_all: Read private routes, private segments, and private events for the user
+            profile:read_all: Read all profile information even if the user has set their profile visibility to Followers or Only You
+            profile:write: Update the user's weight and Functional Threshold Power (FTP), and access to star or unstar segments on their behalf
+            activity:read: Read the user's activity data for activities that are visible to Everyone and Followers
+            activity:read_all: Same access as activity:read with the addition of activities with visibility set to Only You
+            activity:write: Access to create manual activities and uploads, and access to edit any activities that are visible to the app
+externalDocs:
+  description: Strava API Documentation
+  url: https://developers.strava.com/docs/reference/

@@ -1,0 +1,669 @@
+openapi: 3.1.0
+info:
+  title: Strava Activities API
+  description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
+  version: 3.0.0
+  contact:
+    name: Strava Developer Support
+    url: https://developers.strava.com/support/
+  termsOfService: https://www.strava.com/legal/api
+  license:
+    name: Strava API Agreement
+    url: https://www.strava.com/legal/api
+servers:
+- url: https://www.strava.com/api/v3
+  description: Strava API v3
+security:
+- stravaBearerAuth: []
+tags:
+- name: Activities
+  description: Create, read, update, and delete workout activities. Activities represent recorded workouts including runs, rides, swims, and 200+ other sport types.
+paths:
+  /activities:
+    post:
+      operationId: createActivity
+      summary: Create an Activity
+      description: Creates a manual activity on behalf of the authenticated athlete. This endpoint is for manually entered activities, not for uploading GPS files (use the Uploads endpoint for that).
+      tags:
+      - Activities
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - name
+              - type
+              - start_date_local
+              - elapsed_time
+              properties:
+                name:
+                  type: string
+                  description: The name of the activity
+                type:
+                  type: string
+                  description: The type of activity (e.g., Run, Ride, Swim, Walk, Hike, VirtualRide, etc.)
+                sport_type:
+                  type: string
+                  description: The sport type of the activity (Strava v3.5+)
+                start_date_local:
+                  type: string
+                  format: date-time
+                  description: The local date and time of activity start (ISO 8601)
+                elapsed_time:
+                  type: integer
+                  description: The elapsed time of the activity in seconds
+                description:
+                  type: string
+                  description: A description of the activity
+                distance:
+                  type: number
+                  format: float
+                  description: The distance of the activity in meters
+                trainer:
+                  type: integer
+                  description: Set to 1 if the activity was recorded on a stationary trainer
+                commute:
+                  type: integer
+                  description: Set to 1 if the activity was a commute
+      responses:
+        '201':
+          description: Activity created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedActivity'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /activities/{id}:
+    get:
+      operationId: getActivityById
+      summary: Get Activity
+      description: Returns the given activity. Requires the activity:read scope. Privacy zones are excluded unless the activity is owned by the authenticated athlete or they are a follower of the activity owner.
+      tags:
+      - Activities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the activity
+        schema:
+          type: integer
+      - name: include_all_efforts
+        in: query
+        description: To include all segment efforts in the response, set to true. Defaults to false.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: The activity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedActivity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateActivityById
+      summary: Update Activity
+      description: Updates the given activity. Requires the activity:write scope. Only the authenticated athlete may update their own activities.
+      tags:
+      - Activities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the activity
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatableActivity'
+      responses:
+        '200':
+          description: Activity updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedActivity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /athlete/activities:
+    get:
+      operationId: getLoggedInAthleteActivities
+      summary: List Athlete Activities
+      description: Returns the activities of the authenticated athlete, sorted by newest first. Requires the activity:read scope. Does not include activities with visibility set to Only You unless the activity belongs to the authenticated athlete.
+      tags:
+      - Activities
+      parameters:
+      - name: before
+        in: query
+        description: An epoch timestamp for filtering activities before a certain time
+        schema:
+          type: integer
+      - name: after
+        in: query
+        description: An epoch timestamp for filtering activities after a certain time
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of items per page (max 200)
+        schema:
+          type: integer
+          default: 30
+          maximum: 200
+      responses:
+        '200':
+          description: A list of activities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SummaryActivity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /activities/{id}/laps:
+    get:
+      operationId: getLapsByActivityId
+      summary: List Activity Laps
+      description: Returns the laps of an activity identified by an identifier. Requires the activity:read scope.
+      tags:
+      - Activities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the activity
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of laps
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Lap'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /activities/{id}/comments:
+    get:
+      operationId: getCommentsByActivityId
+      summary: List Activity Comments
+      description: Returns the comments on the given activity.
+      tags:
+      - Activities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the activity
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          default: 30
+      responses:
+        '200':
+          description: A list of comments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /activities/{id}/kudos:
+    get:
+      operationId: getKudoersByActivityId
+      summary: List Activity Kudoers
+      description: Returns the athletes who gave kudos on the given activity.
+      tags:
+      - Activities
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The identifier of the activity
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of items per page
+        schema:
+          type: integer
+          default: 30
+      responses:
+        '200':
+          description: A list of athletes who gave kudos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SummaryAthlete'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
+    UpdatableActivity:
+      type: object
+      properties:
+        commute:
+          type: boolean
+          description: Whether this activity is a commute
+        trainer:
+          type: boolean
+          description: Whether this activity was recorded on a stationary trainer
+        hide_from_home:
+          type: boolean
+          description: Whether this activity is muted
+        description:
+          type: string
+          description: The description of the activity
+        name:
+          type: string
+          description: The name of the activity
+        type:
+          type: string
+          description: The type of activity
+        sport_type:
+          type: string
+          description: The sport type of the activity
+        gear_id:
+          type: string
+          description: The identifier of the gear to associate with this activity (use 'none' to unset)
+    Lap:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        elapsed_time:
+          type: integer
+        moving_time:
+          type: integer
+        start_date:
+          type: string
+          format: date-time
+        start_date_local:
+          type: string
+          format: date-time
+        distance:
+          type: number
+          format: float
+        start_index:
+          type: integer
+        end_index:
+          type: integer
+        total_elevation_gain:
+          type: number
+          format: float
+        average_speed:
+          type: number
+          format: float
+        max_speed:
+          type: number
+          format: float
+        average_cadence:
+          type: number
+          format: float
+        average_watts:
+          type: number
+          format: float
+        average_heartrate:
+          type: number
+          format: float
+        max_heartrate:
+          type: number
+          format: float
+        lap_index:
+          type: integer
+        split:
+          type: integer
+    SummaryActivity:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the activity
+        name:
+          type: string
+        distance:
+          type: number
+          format: float
+        moving_time:
+          type: integer
+        elapsed_time:
+          type: integer
+        total_elevation_gain:
+          type: number
+          format: float
+        type:
+          type: string
+        sport_type:
+          type: string
+        start_date:
+          type: string
+          format: date-time
+        start_date_local:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+        achievement_count:
+          type: integer
+        kudos_count:
+          type: integer
+        comment_count:
+          type: integer
+        trainer:
+          type: boolean
+        commute:
+          type: boolean
+        manual:
+          type: boolean
+        private:
+          type: boolean
+        average_speed:
+          type: number
+          format: float
+        max_speed:
+          type: number
+          format: float
+        average_heartrate:
+          type: number
+          format: float
+        max_heartrate:
+          type: number
+          format: float
+    MetaAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+    SummaryGear:
+      type: object
+      properties:
+        id:
+          type: string
+        primary:
+          type: boolean
+        name:
+          type: string
+        distance:
+          type: number
+          format: float
+        resource_state:
+          type: integer
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        activity_id:
+          type: integer
+        text:
+          type: string
+        athlete:
+          $ref: '#/components/schemas/SummaryAthlete'
+        created_at:
+          type: string
+          format: date-time
+    PolylineMap:
+      type: object
+      properties:
+        id:
+          type: string
+        polyline:
+          type: string
+          description: The polyline of the map
+        summary_polyline:
+          type: string
+          description: The summary polyline of the map
+    SummaryAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the athlete
+        firstname:
+          type: string
+        lastname:
+          type: string
+        profile_medium:
+          type: string
+        profile:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        sex:
+          type: string
+          enum:
+          - M
+          - F
+    DetailedActivity:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the activity
+        name:
+          type: string
+          description: The name of the activity
+        description:
+          type: string
+          nullable: true
+          description: The description of the activity
+        distance:
+          type: number
+          format: float
+          description: The distance of the activity in meters
+        moving_time:
+          type: integer
+          description: The activity's moving time in seconds
+        elapsed_time:
+          type: integer
+          description: The activity's elapsed time in seconds
+        total_elevation_gain:
+          type: number
+          format: float
+          description: The activity's total elevation gain in meters
+        type:
+          type: string
+          description: The type of activity (e.g., Run, Ride, Swim)
+        sport_type:
+          type: string
+          description: The sport type of the activity
+        start_date:
+          type: string
+          format: date-time
+          description: The time at which the activity was started (UTC)
+        start_date_local:
+          type: string
+          format: date-time
+          description: The time at which the activity was started in local time
+        timezone:
+          type: string
+          description: The timezone of the activity
+        start_latlng:
+          type: array
+          items:
+            type: number
+          description: The start latitude/longitude of the activity
+        end_latlng:
+          type: array
+          items:
+            type: number
+          description: The end latitude/longitude of the activity
+        achievement_count:
+          type: integer
+          description: The number of achievements gained during the activity
+        kudos_count:
+          type: integer
+          description: The number of kudos given to the activity
+        comment_count:
+          type: integer
+          description: The number of comments for the activity
+        athlete_count:
+          type: integer
+          description: The number of athletes for group activities
+        trainer:
+          type: boolean
+          description: Whether the activity was recorded on a stationary trainer
+        commute:
+          type: boolean
+          description: Whether the activity was a commute
+        manual:
+          type: boolean
+          description: Whether the activity was manually entered
+        private:
+          type: boolean
+          description: Whether the activity is private
+        average_speed:
+          type: number
+          format: float
+          description: The activity's average speed in meters per second
+        max_speed:
+          type: number
+          format: float
+          description: The activity's max speed in meters per second
+        average_cadence:
+          type: number
+          format: float
+          description: The activity's average cadence
+        average_watts:
+          type: number
+          format: float
+          description: The activity's average wattage
+        weighted_average_watts:
+          type: integer
+          description: The activity's weighted average wattage (for cycling)
+        kilojoules:
+          type: number
+          format: float
+          description: The total work done in kilojoules (for cycling)
+        device_watts:
+          type: boolean
+          description: Whether the watts are from a power meter (true) or estimated (false)
+        average_heartrate:
+          type: number
+          format: float
+          description: The activity's average heart rate in BPM
+        max_heartrate:
+          type: number
+          format: float
+          description: The activity's maximum heart rate in BPM
+        suffer_score:
+          type: integer
+          nullable: true
+          description: The activity's suffer score from Strava's fitness intelligence
+        map:
+          $ref: '#/components/schemas/PolylineMap'
+        athlete:
+          $ref: '#/components/schemas/MetaAthlete'
+        gear:
+          $ref: '#/components/schemas/SummaryGear'
+  responses:
+    Forbidden:
+      description: Forbidden — the request is not authorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+  securitySchemes:
+    stravaBearerAuth:
+      type: oauth2
+      description: OAuth 2.0 Bearer token. Obtain via the authorization code flow at https://www.strava.com/oauth/authorize.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.strava.com/oauth/authorize
+          tokenUrl: https://www.strava.com/oauth/token
+          scopes:
+            read: Read public segments, public routes, public profile data, public posts, public events, club feeds, and leaderboards
+            read_all: Read private routes, private segments, and private events for the user
+            profile:read_all: Read all profile information even if the user has set their profile visibility to Followers or Only You
+            profile:write: Update the user's weight and Functional Threshold Power (FTP), and access to star or unstar segments on their behalf
+            activity:read: Read the user's activity data for activities that are visible to Everyone and Followers
+            activity:read_all: Same access as activity:read with the addition of activities with visibility set to Only You
+            activity:write: Access to create manual activities and uploads, and access to edit any activities that are visible to the app
+externalDocs:
+  description: Strava API Documentation
+  url: https://developers.strava.com/docs/reference/
