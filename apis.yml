@@ -7,7 +7,20 @@ description: 'Strava is a popular fitness tracking app and social network that a
   is used for authentication with granular scope control. Rate limits apply: 100 requests
   per 15 minutes, 1000 per day.'
 url: https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/apis.yml
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/strava.png
 tags:
 - Cycling
 - Fitness
@@ -21,24 +34,18 @@ created: '2025-03-01'
 modified: '2026-05-30'
 specificationVersion: '0.19'
 apis:
-- aid: strava:strava
-  name: Strava API
-  description: The Strava API provides access to athlete profiles, activities (workouts),
-    segments, routes, clubs, gear, and time-series data streams. Supports OAuth 2.0
-    with fine-grained scopes for reading activities, accessing private data, and writing
-    updates. Rate limited to 100 requests/15 min and 1000 requests/day for default
-    applications.
+- aid: strava:strava-activities-api
+  name: Strava Activities API
+  description: >-
+    Create, read, update, and delete workout activities. Activities represent recorded workouts including
+    runs, rides, swims, and 200+ other sport types.
   humanURL: https://developers.strava.com/
   baseURL: https://www.strava.com/api/v3
   tags:
-  - Cycling
-  - Fitness
-  - Fitness Tracking
-  - Running
-  - Sports
+  - Activities
   properties:
   - type: OpenAPI
-    url: https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/openapi/strava-openapi.yml
+    url: openapi/strava-activities-api-openapi.yml
   - type: Documentation
     url: https://developers.strava.com/docs/reference/
   - type: Authentication
@@ -50,9 +57,194 @@ apis:
   - type: Webhooks
     url: https://developers.strava.com/docs/webhooks/
   - type: AsyncAPI
-    url: https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - url: graphql/strava-graphql.md
-    type: GraphQL
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/strava-graphql.md
+- aid: strava:strava-athletes-api
+  name: Strava Athletes API
+  description: >-
+    Access athlete profiles and statistics. Retrieve the authenticated athlete's profile and update their
+    preferences.
+  humanURL: https://developers.strava.com/
+  baseURL: https://www.strava.com/api/v3
+  tags:
+  - Athletes
+  properties:
+  - type: OpenAPI
+    url: openapi/strava-athletes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.strava.com/docs/reference/
+  - type: Authentication
+    url: https://developers.strava.com/docs/authentication/
+  - type: GettingStarted
+    url: https://developers.strava.com/docs/getting-started/
+  - type: RateLimits
+    url: https://developers.strava.com/docs/rate-limits/
+  - type: Webhooks
+    url: https://developers.strava.com/docs/webhooks/
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/strava-graphql.md
+- aid: strava:strava-clubs-api
+  name: Strava Clubs API
+  description: >-
+    Access Strava clubs — groups of athletes. View club details, members, and recent club activities.
+  humanURL: https://developers.strava.com/
+  baseURL: https://www.strava.com/api/v3
+  tags:
+  - Clubs
+  properties:
+  - type: OpenAPI
+    url: openapi/strava-clubs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.strava.com/docs/reference/
+  - type: Authentication
+    url: https://developers.strava.com/docs/authentication/
+  - type: GettingStarted
+    url: https://developers.strava.com/docs/getting-started/
+  - type: RateLimits
+    url: https://developers.strava.com/docs/rate-limits/
+  - type: Webhooks
+    url: https://developers.strava.com/docs/webhooks/
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/strava-graphql.md
+- aid: strava:strava-gear-api
+  name: Strava Gear API
+  description: Access athlete gear (bikes and shoes) used during activities.
+  humanURL: https://developers.strava.com/
+  baseURL: https://www.strava.com/api/v3
+  tags:
+  - Gear
+  properties:
+  - type: OpenAPI
+    url: openapi/strava-gear-api-openapi.yml
+  - type: Documentation
+    url: https://developers.strava.com/docs/reference/
+  - type: Authentication
+    url: https://developers.strava.com/docs/authentication/
+  - type: GettingStarted
+    url: https://developers.strava.com/docs/getting-started/
+  - type: RateLimits
+    url: https://developers.strava.com/docs/rate-limits/
+  - type: Webhooks
+    url: https://developers.strava.com/docs/webhooks/
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/strava-graphql.md
+- aid: strava:strava-routes-api
+  name: Strava Routes API
+  description: Access and manage athlete-created routes. Routes are planned courses for rides or runs.
+  humanURL: https://developers.strava.com/
+  baseURL: https://www.strava.com/api/v3
+  tags:
+  - Routes
+  properties:
+  - type: OpenAPI
+    url: openapi/strava-routes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.strava.com/docs/reference/
+  - type: Authentication
+    url: https://developers.strava.com/docs/authentication/
+  - type: GettingStarted
+    url: https://developers.strava.com/docs/getting-started/
+  - type: RateLimits
+    url: https://developers.strava.com/docs/rate-limits/
+  - type: Webhooks
+    url: https://developers.strava.com/docs/webhooks/
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/strava-graphql.md
+- aid: strava:strava-segment-efforts-api
+  name: Strava Segment Efforts API
+  description: >-
+    Access segment efforts — an athlete's attempt at a specific segment. Includes time, pace, and power
+    data for each effort.
+  humanURL: https://developers.strava.com/
+  baseURL: https://www.strava.com/api/v3
+  tags:
+  - Segment Efforts
+  properties:
+  - type: OpenAPI
+    url: openapi/strava-segment-efforts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.strava.com/docs/reference/
+  - type: Authentication
+    url: https://developers.strava.com/docs/authentication/
+  - type: GettingStarted
+    url: https://developers.strava.com/docs/getting-started/
+  - type: RateLimits
+    url: https://developers.strava.com/docs/rate-limits/
+  - type: Webhooks
+    url: https://developers.strava.com/docs/webhooks/
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/strava-graphql.md
+- aid: strava:strava-segments-api
+  name: Strava Segments API
+  description: >-
+    Access segments — specific sections of road or trail that athletes compete on. View segment details,
+    starred segments, and leaderboards.
+  humanURL: https://developers.strava.com/
+  baseURL: https://www.strava.com/api/v3
+  tags:
+  - Segments
+  properties:
+  - type: OpenAPI
+    url: openapi/strava-segments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.strava.com/docs/reference/
+  - type: Authentication
+    url: https://developers.strava.com/docs/authentication/
+  - type: GettingStarted
+    url: https://developers.strava.com/docs/getting-started/
+  - type: RateLimits
+    url: https://developers.strava.com/docs/rate-limits/
+  - type: Webhooks
+    url: https://developers.strava.com/docs/webhooks/
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/strava-graphql.md
+- aid: strava:strava-streams-api
+  name: Strava Streams API
+  description: >-
+    Access time-series data streams for activities and segments, including GPS coordinates, heart rate,
+    power, cadence, speed, and altitude.
+  humanURL: https://developers.strava.com/
+  baseURL: https://www.strava.com/api/v3
+  tags:
+  - Streams
+  properties:
+  - type: OpenAPI
+    url: openapi/strava-streams-api-openapi.yml
+  - type: Documentation
+    url: https://developers.strava.com/docs/reference/
+  - type: Authentication
+    url: https://developers.strava.com/docs/authentication/
+  - type: GettingStarted
+    url: https://developers.strava.com/docs/getting-started/
+  - type: RateLimits
+    url: https://developers.strava.com/docs/rate-limits/
+  - type: Webhooks
+    url: https://developers.strava.com/docs/webhooks/
+  - type: AsyncAPI
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
+  - type: GraphQL
+    url: graphql/strava-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/strava-agentic-access.yml
