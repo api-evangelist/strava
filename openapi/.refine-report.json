@@ -1,0 +1,28 @@
+{
+  "provider": "strava",
+  "sources": [
+    "strava-activities-api-openapi.yml",
+    "strava-athletes-api-openapi.yml",
+    "strava-clubs-api-openapi.yml",
+    "strava-gear-api-openapi.yml",
+    "strava-routes-api-openapi.yml",
+    "strava-segment-efforts-api-openapi.yml",
+    "strava-segments-api-openapi.yml",
+    "strava-streams-api-openapi.yml"
+  ],
+  "outputs": [
+    "strava-activities-api-openapi.yml",
+    "strava-athletes-api-openapi.yml",
+    "strava-clubs-api-openapi.yml",
+    "strava-gear-api-openapi.yml",
+    "strava-routes-api-openapi.yml",
+    "strava-segment-efforts-api-openapi.yml",
+    "strava-segments-api-openapi.yml",
+    "strava-streams-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
