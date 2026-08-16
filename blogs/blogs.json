@@ -12,7 +12,7 @@
       "source": "https://status.strava.com/history.atom",
       "feed_url": "https://status.strava.com/history.atom",
       "title": "",
-      "saved": 0,
+      "saved": 1,
       "method": "feed"
     },
     {
@@ -23,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 39,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 40,
+  "fetched": "2026-08-15T12:11:08Z"
 }
