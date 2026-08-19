@@ -1,0 +1,590 @@
+{
+  "item": [
+    {
+      "id": "b58616fd-a003-4e34-abbc-2aa576b8e0bd",
+      "name": "Clubs",
+      "description": {
+        "content": "Access Strava clubs — groups of athletes. View club details, members, and recent club activities.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f14c7ec7-4862-4653-b72d-e1dce797e930",
+          "name": "Get Club",
+          "request": {
+            "name": "Get Club",
+            "description": {
+              "content": "Returns a given club using its identifier. Requires the profile:read_all scope for private clubs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clubs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the club"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45fce821-4c90-49b1-a607-c761d383d4ce",
+              "name": "The club",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clubs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the club"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1663,\n  \"name\": \"string\",\n  \"profile_medium\": \"string\",\n  \"cover_photo\": \"string\",\n  \"sport_type\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"country\": \"string\",\n  \"private\": true,\n  \"member_count\": 3055,\n  \"featured\": true,\n  \"verified\": true,\n  \"url\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9566582f-9697-4065-9565-0a423b8ce3d8",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clubs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the club"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b23d065f-b5f2-48e9-99df-e84bcfb6fe83",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clubs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the club"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1a3f510-87f4-4300-8aeb-5b08faefb423",
+          "name": "List Club Activities",
+          "request": {
+            "name": "List Club Activities",
+            "description": {
+              "content": "Retrieve recent activities from members of a specific club. The authenticated athlete must be a member of the club.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clubs",
+                ":id",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "30",
+                  "description": "Number of items per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the club"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b6a0696-b003-41b1-9cf1-4c0008903287",
+              "name": "A list of club activities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clubs",
+                    ":id",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the club"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6428,\n    \"name\": \"string\",\n    \"distance\": 9834.62600586848,\n    \"moving_time\": 3357,\n    \"elapsed_time\": 3285,\n    \"total_elevation_gain\": 5004.152048708322,\n    \"type\": \"string\",\n    \"sport_type\": \"string\",\n    \"start_date\": \"1994-05-16T07:58:55.001Z\",\n    \"start_date_local\": \"1988-04-18T03:46:19.473Z\",\n    \"timezone\": \"string\",\n    \"achievement_count\": 3709,\n    \"kudos_count\": 4063,\n    \"comment_count\": 2995,\n    \"trainer\": false,\n    \"commute\": true,\n    \"manual\": true,\n    \"private\": true,\n    \"average_speed\": 1622.4374669064146,\n    \"max_speed\": 2478.895862595526,\n    \"average_heartrate\": 4159.520022412005,\n    \"max_heartrate\": 7969.173018805007\n  },\n  {\n    \"id\": 7150,\n    \"name\": \"string\",\n    \"distance\": 9282.369218979133,\n    \"moving_time\": 4925,\n    \"elapsed_time\": 7408,\n    \"total_elevation_gain\": 5781.078200831355,\n    \"type\": \"string\",\n    \"sport_type\": \"string\",\n    \"start_date\": \"1976-12-31T21:40:23.544Z\",\n    \"start_date_local\": \"1956-01-04T20:27:03.276Z\",\n    \"timezone\": \"string\",\n    \"achievement_count\": 2308,\n    \"kudos_count\": 334,\n    \"comment_count\": 9252,\n    \"trainer\": false,\n    \"commute\": true,\n    \"manual\": true,\n    \"private\": true,\n    \"average_speed\": 1663.163353051278,\n    \"max_speed\": 3570.4936646692986,\n    \"average_heartrate\": 9398.58503727147,\n    \"max_heartrate\": 3497.1865629447598\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a51197b-a05f-476c-a84e-457e26738c6f",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clubs",
+                    ":id",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the club"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3cf3b4b-3140-4487-a42c-f80bb68a3f7c",
+          "name": "List Athlete Clubs",
+          "request": {
+            "name": "List Athlete Clubs",
+            "description": {
+              "content": "Returns a list of the clubs whose membership includes the authenticated athlete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "athlete",
+                "clubs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "30",
+                  "description": "Number of items per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5a9e252-7168-4079-81ea-f1e07a1574e8",
+              "name": "A list of clubs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "athlete",
+                    "clubs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8095,\n    \"name\": \"string\",\n    \"profile_medium\": \"string\",\n    \"sport_type\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"country\": \"string\",\n    \"private\": true,\n    \"member_count\": 6022\n  },\n  {\n    \"id\": 7386,\n    \"name\": \"string\",\n    \"profile_medium\": \"string\",\n    \"sport_type\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"country\": \"string\",\n    \"private\": true,\n    \"member_count\": 7257\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "663bd4ec-19a3-4214-bfb7-1f518acd67e9",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "athlete",
+                    "clubs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.strava.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "read read_all profile:read_all profile:write activity:read activity:read_all activity:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://www.strava.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.strava.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d154e694-05fc-477d-b91b-3dbd2168eac5",
+    "name": "Strava Activities Clubs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.\n\nContact Support:\n Name: Strava Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

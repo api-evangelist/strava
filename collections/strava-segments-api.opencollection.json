@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Strava Activities Segments API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.strava.com/oauth/authorize",
+      "accessTokenUrl": "https://www.strava.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/segments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the segment"
+              }
+            ]
+          },
+          "docs": "Returns the specified segment. Starred segments include athlete specific segment stats when the authenticated athlete has starred the segment."
+        },
+        {
+          "info": {
+            "name": "List Starred Segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/segments/starred",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by the owner."
+        },
+        {
+          "info": {
+            "name": "Get Segment Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/segments/:id/leaderboard",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the segment"
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender (M or F)"
+              },
+              {
+                "name": "age_group",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age group (0_19, 20_24, 25_34, 35_44, 45_54, 55_64, 65_plus)"
+              },
+              {
+                "name": "weight_class",
+                "value": "",
+                "type": "query",
+                "description": "Filter by weight class"
+              },
+              {
+                "name": "following",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to athletes the authenticated athlete is following"
+              },
+              {
+                "name": "club_id",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to athletes in the specified club"
+              },
+              {
+                "name": "date_range",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to a specific time frame (this_year, this_month, this_week, today)"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns the specified segment leaderboard. The overall leaderboard returns the top 10 athletes who have put in the best efforts on the segment. The current authenticated athlete's effort is also included."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

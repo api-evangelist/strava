@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Strava Activities Athletes API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.strava.com/oauth/authorize",
+      "accessTokenUrl": "https://www.strava.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Athletes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Authenticated Athlete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete"
+          },
+          "docs": "Returns the currently authenticated athlete's profile, including name, location, fitness stats, and preferences."
+        },
+        {
+          "info": {
+            "name": "Update Authenticated Athlete",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://www.strava.com/api/v3/athlete",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "weight",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Updates the authenticated athlete's weight and city/state/country."
+        },
+        {
+          "info": {
+            "name": "Get Athlete Zones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete/zones"
+          },
+          "docs": "Returns the heart rate and power zones of the authenticated athlete. Requires the activity:read_all scope."
+        },
+        {
+          "info": {
+            "name": "Get Athlete Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athletes/:id/stats",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the athlete"
+              }
+            ]
+          },
+          "docs": "Returns a summary of the athlete's year-to-date and all-time activity statistics, including totals for rides, runs, and swims."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

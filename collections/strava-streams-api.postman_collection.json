@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "4fd8a154-0410-4ef6-9fcc-f83b9d59793d",
+      "name": "Streams",
+      "description": {
+        "content": "Access time-series data streams for activities and segments, including GPS coordinates, heart rate, power, cadence, speed, and altitude.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a705e87-f255-43c2-9808-2e8fa5ec2b24",
+          "name": "Get Activity Streams",
+          "request": {
+            "name": "Get Activity Streams",
+            "description": {
+              "content": "Returns the given activity's streams. Streams are a sequential array of data points for a given activity or segment. Available stream types include: time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activities",
+                ":id",
+                "streams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "keys",
+                  "value": "<string>",
+                  "description": "(Required) Desired stream types (comma-separated): time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth"
+                },
+                {
+                  "disabled": false,
+                  "key": "keys",
+                  "value": "<string>",
+                  "description": "(Required) Desired stream types (comma-separated): time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_by_type",
+                  "value": "true",
+                  "description": "Must be true (returns stream data keyed by type name)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the activity"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "429056ba-97b9-41f0-9185-131f3cdce2c4",
+              "name": "The activity streams",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key_by_type",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": {\n    \"series_type\": \"distance\",\n    \"original_size\": 2655,\n    \"resolution\": \"high\",\n    \"data\": [\n      2695,\n      1910\n    ]\n  },\n  \"latlng\": {\n    \"series_type\": \"string\",\n    \"original_size\": 6530,\n    \"resolution\": \"string\",\n    \"data\": [\n      [\n        3839.883061163586,\n        4674.959777103172\n      ],\n      [\n        2611.2724005929545,\n        7155.406465136218\n      ]\n    ]\n  },\n  \"distance\": {\n    \"series_type\": \"string\",\n    \"original_size\": 7447,\n    \"resolution\": \"string\",\n    \"data\": [\n      7602.720546883105,\n      370.69301802822196\n    ]\n  },\n  \"altitude\": {\n    \"series_type\": \"string\",\n    \"original_size\": 2659,\n    \"resolution\": \"string\",\n    \"data\": [\n      92.69063656271226,\n      3434.4528814571695\n    ]\n  },\n  \"heartrate\": {\n    \"series_type\": \"string\",\n    \"original_size\": 7756,\n    \"resolution\": \"string\",\n    \"data\": [\n      5446,\n      9154\n    ]\n  },\n  \"cadence\": {\n    \"series_type\": \"string\",\n    \"original_size\": 5840,\n    \"resolution\": \"string\",\n    \"data\": [\n      9266,\n      3599\n    ]\n  },\n  \"watts\": {\n    \"series_type\": \"string\",\n    \"original_size\": 1223,\n    \"resolution\": \"string\",\n    \"data\": [\n      2182,\n      9606\n    ]\n  },\n  \"velocity_smooth\": {\n    \"series_type\": \"string\",\n    \"original_size\": 4555,\n    \"resolution\": \"string\",\n    \"data\": [\n      5608.0778523365125,\n      3321.353262825324\n    ]\n  },\n  \"grade_smooth\": {\n    \"series_type\": \"string\",\n    \"original_size\": 4070,\n    \"resolution\": \"string\",\n    \"data\": [\n      4739.913128740758,\n      9176.719245280316\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5d40c8c-b257-42d5-9377-85e3f14135db",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "keys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "keys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key_by_type",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.strava.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "read read_all profile:read_all profile:write activity:read activity:read_all activity:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://www.strava.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.strava.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc3c7eb2-4439-4f4a-8729-9c5d4a9a904f",
+    "name": "Strava Activities Streams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.\n\nContact Support:\n Name: Strava Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

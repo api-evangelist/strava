@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "da092b81-d864-44d7-bc84-98489f16f27f",
+      "name": "Gear",
+      "description": {
+        "content": "Access athlete gear (bikes and shoes) used during activities.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68610e9d-f735-489a-90c2-01d630833f88",
+          "name": "Get Equipment",
+          "request": {
+            "name": "Get Equipment",
+            "description": {
+              "content": "Returns an equipment item using its identifier. Requires the activity:read scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "gear",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the gear item (e.g., b1234567)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e511f29e-dc36-49ce-a925-2cddafe098c4",
+              "name": "The gear item",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gear",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the gear item (e.g., b1234567)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"primary\": false,\n  \"name\": \"string\",\n  \"nickname\": \"string\",\n  \"distance\": 6018.305187843529,\n  \"brand_name\": \"string\",\n  \"model_name\": \"string\",\n  \"frame_type\": 5917,\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93617f70-f946-402e-9fe1-c3db502587df",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gear",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the gear item (e.g., b1234567)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69c97544-58b5-41fd-bd10-e684f47a5464",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "gear",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the gear item (e.g., b1234567)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.strava.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "read read_all profile:read_all profile:write activity:read activity:read_all activity:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://www.strava.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.strava.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b86df30d-a553-459d-91c1-ce87c82515c0",
+    "name": "Strava Activities Gear API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.\n\nContact Support:\n Name: Strava Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

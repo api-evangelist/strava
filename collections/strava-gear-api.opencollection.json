@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Strava Activities Gear API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.strava.com/oauth/authorize",
+      "accessTokenUrl": "https://www.strava.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gear",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Equipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/gear/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the gear item (e.g., b1234567)"
+              }
+            ]
+          },
+          "docs": "Returns an equipment item using its identifier. Requires the activity:read scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

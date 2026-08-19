@@ -1,0 +1,1752 @@
+{
+  "item": [
+    {
+      "id": "5a5f9579-a940-4faf-a03b-454cf620f55e",
+      "name": "Activities",
+      "description": {
+        "content": "Create, read, update, and delete workout activities. Activities represent recorded workouts including runs, rides, swims, and 200+ other sport types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dba8b67d-af67-406c-8ef6-35f11db88e27",
+          "name": "Create an Activity",
+          "request": {
+            "name": "Create an Activity",
+            "description": {
+              "content": "Creates a manual activity on behalf of the authenticated athlete. This endpoint is for manually entered activities, not for uploading GPS files (use the Uploads endpoint for that).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The name of the activity"
+                },
+                {
+                  "key": "type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The type of activity (e.g., Run, Ride, Swim, Walk, Hike, VirtualRide, etc.)"
+                },
+                {
+                  "key": "start_date_local",
+                  "value": "<dateTime>",
+                  "type": "text",
+                  "description": "(Required) The local date and time of activity start (ISO 8601)"
+                },
+                {
+                  "key": "elapsed_time",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "(Required) The elapsed time of the activity in seconds"
+                },
+                {
+                  "key": "sport_type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The sport type of the activity (Strava v3.5+)"
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "A description of the activity"
+                },
+                {
+                  "key": "distance",
+                  "value": "<float>",
+                  "type": "text",
+                  "description": "The distance of the activity in meters"
+                },
+                {
+                  "key": "trainer",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Set to 1 if the activity was recorded on a stationary trainer"
+                },
+                {
+                  "key": "commute",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Set to 1 if the activity was a commute"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "98ab4d0f-9892-49ab-877e-a37ea97c779e",
+              "name": "Activity created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name of the activity",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The type of activity (e.g., Run, Ride, Swim, Walk, Hike, VirtualRide, etc.)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The local date and time of activity start (ISO 8601)",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date_local",
+                      "value": "<dateTime>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The elapsed time of the activity in seconds",
+                        "type": "text/plain"
+                      },
+                      "key": "elapsed_time",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The sport type of the activity (Strava v3.5+)",
+                        "type": "text/plain"
+                      },
+                      "key": "sport_type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A description of the activity",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The distance of the activity in meters",
+                        "type": "text/plain"
+                      },
+                      "key": "distance",
+                      "value": "<float>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set to 1 if the activity was recorded on a stationary trainer",
+                        "type": "text/plain"
+                      },
+                      "key": "trainer",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set to 1 if the activity was a commute",
+                        "type": "text/plain"
+                      },
+                      "key": "commute",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9893,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"distance\": 8893.802733015236,\n  \"moving_time\": 2721,\n  \"elapsed_time\": 5900,\n  \"total_elevation_gain\": 4767.267211894746,\n  \"type\": \"string\",\n  \"sport_type\": \"string\",\n  \"start_date\": \"2010-12-13T23:58:45.252Z\",\n  \"start_date_local\": \"2017-11-17T18:00:23.569Z\",\n  \"timezone\": \"string\",\n  \"start_latlng\": [\n    9208.27174522681,\n    8815.875026473843\n  ],\n  \"end_latlng\": [\n    5126.995699079009,\n    2371.6176141368974\n  ],\n  \"achievement_count\": 9903,\n  \"kudos_count\": 1140,\n  \"comment_count\": 4974,\n  \"athlete_count\": 6978,\n  \"trainer\": true,\n  \"commute\": false,\n  \"manual\": true,\n  \"private\": false,\n  \"average_speed\": 4003.8833715279775,\n  \"max_speed\": 1693.2665849928874,\n  \"average_cadence\": 4521.329637811568,\n  \"average_watts\": 8211.94146075046,\n  \"weighted_average_watts\": 3319,\n  \"kilojoules\": 9445.247501080865,\n  \"device_watts\": false,\n  \"average_heartrate\": 7100.239289900412,\n  \"max_heartrate\": 91.39089609548678,\n  \"suffer_score\": 3800,\n  \"map\": {\n    \"id\": \"string\",\n    \"polyline\": \"string\",\n    \"summary_polyline\": \"string\"\n  },\n  \"athlete\": {\n    \"id\": 5781\n  },\n  \"gear\": {\n    \"id\": \"string\",\n    \"primary\": false,\n    \"name\": \"string\",\n    \"distance\": 9935.181815121441,\n    \"resource_state\": 7184\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "908b42a1-1dc8-4585-803d-a007aba0b73e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name of the activity",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The type of activity (e.g., Run, Ride, Swim, Walk, Hike, VirtualRide, etc.)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The local date and time of activity start (ISO 8601)",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date_local",
+                      "value": "<dateTime>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The elapsed time of the activity in seconds",
+                        "type": "text/plain"
+                      },
+                      "key": "elapsed_time",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The sport type of the activity (Strava v3.5+)",
+                        "type": "text/plain"
+                      },
+                      "key": "sport_type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A description of the activity",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The distance of the activity in meters",
+                        "type": "text/plain"
+                      },
+                      "key": "distance",
+                      "value": "<float>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set to 1 if the activity was recorded on a stationary trainer",
+                        "type": "text/plain"
+                      },
+                      "key": "trainer",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set to 1 if the activity was a commute",
+                        "type": "text/plain"
+                      },
+                      "key": "commute",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9b52c9d-3a88-49a7-9be7-d094a612c18a",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The name of the activity",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The type of activity (e.g., Run, Ride, Swim, Walk, Hike, VirtualRide, etc.)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The local date and time of activity start (ISO 8601)",
+                        "type": "text/plain"
+                      },
+                      "key": "start_date_local",
+                      "value": "<dateTime>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "(Required) The elapsed time of the activity in seconds",
+                        "type": "text/plain"
+                      },
+                      "key": "elapsed_time",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The sport type of the activity (Strava v3.5+)",
+                        "type": "text/plain"
+                      },
+                      "key": "sport_type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A description of the activity",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The distance of the activity in meters",
+                        "type": "text/plain"
+                      },
+                      "key": "distance",
+                      "value": "<float>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set to 1 if the activity was recorded on a stationary trainer",
+                        "type": "text/plain"
+                      },
+                      "key": "trainer",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Set to 1 if the activity was a commute",
+                        "type": "text/plain"
+                      },
+                      "key": "commute",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9bd82f6-c3e8-4974-ba49-d3562e4106d9",
+          "name": "Get Activity",
+          "request": {
+            "name": "Get Activity",
+            "description": {
+              "content": "Returns the given activity. Requires the activity:read scope. Privacy zones are excluded unless the activity is owned by the authenticated athlete or they are a follower of the activity owner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_all_efforts",
+                  "value": "<boolean>",
+                  "description": "To include all segment efforts in the response, set to true. Defaults to false."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the activity"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f278a11d-c51a-43b4-a69c-31ca7a67ea66",
+              "name": "The activity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_all_efforts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9893,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"distance\": 8893.802733015236,\n  \"moving_time\": 2721,\n  \"elapsed_time\": 5900,\n  \"total_elevation_gain\": 4767.267211894746,\n  \"type\": \"string\",\n  \"sport_type\": \"string\",\n  \"start_date\": \"2010-12-13T23:58:45.252Z\",\n  \"start_date_local\": \"2017-11-17T18:00:23.569Z\",\n  \"timezone\": \"string\",\n  \"start_latlng\": [\n    9208.27174522681,\n    8815.875026473843\n  ],\n  \"end_latlng\": [\n    5126.995699079009,\n    2371.6176141368974\n  ],\n  \"achievement_count\": 9903,\n  \"kudos_count\": 1140,\n  \"comment_count\": 4974,\n  \"athlete_count\": 6978,\n  \"trainer\": true,\n  \"commute\": false,\n  \"manual\": true,\n  \"private\": false,\n  \"average_speed\": 4003.8833715279775,\n  \"max_speed\": 1693.2665849928874,\n  \"average_cadence\": 4521.329637811568,\n  \"average_watts\": 8211.94146075046,\n  \"weighted_average_watts\": 3319,\n  \"kilojoules\": 9445.247501080865,\n  \"device_watts\": false,\n  \"average_heartrate\": 7100.239289900412,\n  \"max_heartrate\": 91.39089609548678,\n  \"suffer_score\": 3800,\n  \"map\": {\n    \"id\": \"string\",\n    \"polyline\": \"string\",\n    \"summary_polyline\": \"string\"\n  },\n  \"athlete\": {\n    \"id\": 5781\n  },\n  \"gear\": {\n    \"id\": \"string\",\n    \"primary\": false,\n    \"name\": \"string\",\n    \"distance\": 9935.181815121441,\n    \"resource_state\": 7184\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3850b5b3-4967-4ad5-8625-21268688a394",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_all_efforts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a074cc6c-7aa5-468c-8291-128bb7ae20d7",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_all_efforts",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e701058d-35f6-43e9-9995-811dc1a0ba50",
+          "name": "Update Activity",
+          "request": {
+            "name": "Update Activity",
+            "description": {
+              "content": "Updates the given activity. Requires the activity:write scope. Only the authenticated athlete may update their own activities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the activity"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"commute\": \"<boolean>\",\n  \"trainer\": \"<boolean>\",\n  \"hide_from_home\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"sport_type\": \"<string>\",\n  \"gear_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "364b7d60-8214-4c43-8dfa-b0418d3a1e9d",
+              "name": "Activity updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commute\": \"<boolean>\",\n  \"trainer\": \"<boolean>\",\n  \"hide_from_home\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"sport_type\": \"<string>\",\n  \"gear_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9893,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"distance\": 8893.802733015236,\n  \"moving_time\": 2721,\n  \"elapsed_time\": 5900,\n  \"total_elevation_gain\": 4767.267211894746,\n  \"type\": \"string\",\n  \"sport_type\": \"string\",\n  \"start_date\": \"2010-12-13T23:58:45.252Z\",\n  \"start_date_local\": \"2017-11-17T18:00:23.569Z\",\n  \"timezone\": \"string\",\n  \"start_latlng\": [\n    9208.27174522681,\n    8815.875026473843\n  ],\n  \"end_latlng\": [\n    5126.995699079009,\n    2371.6176141368974\n  ],\n  \"achievement_count\": 9903,\n  \"kudos_count\": 1140,\n  \"comment_count\": 4974,\n  \"athlete_count\": 6978,\n  \"trainer\": true,\n  \"commute\": false,\n  \"manual\": true,\n  \"private\": false,\n  \"average_speed\": 4003.8833715279775,\n  \"max_speed\": 1693.2665849928874,\n  \"average_cadence\": 4521.329637811568,\n  \"average_watts\": 8211.94146075046,\n  \"weighted_average_watts\": 3319,\n  \"kilojoules\": 9445.247501080865,\n  \"device_watts\": false,\n  \"average_heartrate\": 7100.239289900412,\n  \"max_heartrate\": 91.39089609548678,\n  \"suffer_score\": 3800,\n  \"map\": {\n    \"id\": \"string\",\n    \"polyline\": \"string\",\n    \"summary_polyline\": \"string\"\n  },\n  \"athlete\": {\n    \"id\": 5781\n  },\n  \"gear\": {\n    \"id\": \"string\",\n    \"primary\": false,\n    \"name\": \"string\",\n    \"distance\": 9935.181815121441,\n    \"resource_state\": 7184\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11836ed1-770d-4a5d-8d17-a1ecfa60a465",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commute\": \"<boolean>\",\n  \"trainer\": \"<boolean>\",\n  \"hide_from_home\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"sport_type\": \"<string>\",\n  \"gear_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "daf60781-115b-4640-8cc5-d1539fb7bbf9",
+              "name": "Forbidden — the request is not authorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commute\": \"<boolean>\",\n  \"trainer\": \"<boolean>\",\n  \"hide_from_home\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"sport_type\": \"<string>\",\n  \"gear_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d39172d9-b745-4fea-a96f-8646b7982fbc",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"commute\": \"<boolean>\",\n  \"trainer\": \"<boolean>\",\n  \"hide_from_home\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"sport_type\": \"<string>\",\n  \"gear_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1ec4fd7-07ed-4a17-bd38-3987e5501fb7",
+          "name": "List Athlete Activities",
+          "request": {
+            "name": "List Athlete Activities",
+            "description": {
+              "content": "Returns the activities of the authenticated athlete, sorted by newest first. Requires the activity:read scope. Does not include activities with visibility set to Only You unless the activity belongs to the authenticated athlete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "athlete",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<integer>",
+                  "description": "An epoch timestamp for filtering activities before a certain time"
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<integer>",
+                  "description": "An epoch timestamp for filtering activities after a certain time"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "30",
+                  "description": "Number of items per page (max 200)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1edbef43-30c7-4010-960b-c1898c41dbff",
+              "name": "A list of activities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "athlete",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4447,\n    \"name\": \"string\",\n    \"distance\": 9193.860721917443,\n    \"moving_time\": 3658,\n    \"elapsed_time\": 5491,\n    \"total_elevation_gain\": 9947.687674537192,\n    \"type\": \"string\",\n    \"sport_type\": \"string\",\n    \"start_date\": \"2019-01-10T02:18:53.340Z\",\n    \"start_date_local\": \"2026-05-29T01:14:15.116Z\",\n    \"timezone\": \"string\",\n    \"achievement_count\": 8389,\n    \"kudos_count\": 4555,\n    \"comment_count\": 6051,\n    \"trainer\": false,\n    \"commute\": true,\n    \"manual\": false,\n    \"private\": false,\n    \"average_speed\": 2606.337396533751,\n    \"max_speed\": 9524.660590354524,\n    \"average_heartrate\": 2185.8365840495953,\n    \"max_heartrate\": 963.8935649899372\n  },\n  {\n    \"id\": 5288,\n    \"name\": \"string\",\n    \"distance\": 1912.7601757572666,\n    \"moving_time\": 2360,\n    \"elapsed_time\": 6633,\n    \"total_elevation_gain\": 7873.669870493013,\n    \"type\": \"string\",\n    \"sport_type\": \"string\",\n    \"start_date\": \"1956-06-20T06:34:10.514Z\",\n    \"start_date_local\": \"1950-03-21T17:24:40.861Z\",\n    \"timezone\": \"string\",\n    \"achievement_count\": 5466,\n    \"kudos_count\": 5401,\n    \"comment_count\": 4334,\n    \"trainer\": true,\n    \"commute\": false,\n    \"manual\": false,\n    \"private\": true,\n    \"average_speed\": 8823.85408013063,\n    \"max_speed\": 8747.426528328753,\n    \"average_heartrate\": 1168.024568567999,\n    \"max_heartrate\": 344.19937498665786\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f0d62af-e0ce-47e1-ac56-5379b3fa4d58",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "athlete",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "before",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5b415e4-72a2-44ad-8ada-63676c897e18",
+          "name": "List Activity Laps",
+          "request": {
+            "name": "List Activity Laps",
+            "description": {
+              "content": "Returns the laps of an activity identified by an identifier. Requires the activity:read scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activities",
+                ":id",
+                "laps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the activity"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04b0f592-7a5d-48a5-a64c-af797510f21e",
+              "name": "A list of laps",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id",
+                    "laps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9372,\n    \"name\": \"string\",\n    \"elapsed_time\": 3996,\n    \"moving_time\": 4203,\n    \"start_date\": \"2007-11-16T04:16:51.385Z\",\n    \"start_date_local\": \"1968-02-23T08:10:02.086Z\",\n    \"distance\": 7413.4124596381835,\n    \"start_index\": 2901,\n    \"end_index\": 8247,\n    \"total_elevation_gain\": 2142.64125512605,\n    \"average_speed\": 3273.488336323506,\n    \"max_speed\": 8795.85301289157,\n    \"average_cadence\": 9717.683519080425,\n    \"average_watts\": 9767.948484981625,\n    \"average_heartrate\": 3451.6299480994785,\n    \"max_heartrate\": 2955.4176222486394,\n    \"lap_index\": 7159,\n    \"split\": 1427\n  },\n  {\n    \"id\": 6033,\n    \"name\": \"string\",\n    \"elapsed_time\": 3179,\n    \"moving_time\": 6022,\n    \"start_date\": \"1966-11-29T23:24:22.106Z\",\n    \"start_date_local\": \"2006-01-21T05:49:44.672Z\",\n    \"distance\": 4018.9305702868883,\n    \"start_index\": 5021,\n    \"end_index\": 5484,\n    \"total_elevation_gain\": 2207.0807431160533,\n    \"average_speed\": 5957.504329215942,\n    \"max_speed\": 3319.159312064025,\n    \"average_cadence\": 7233.574190858781,\n    \"average_watts\": 8584.107542068257,\n    \"average_heartrate\": 5625.622438644069,\n    \"max_heartrate\": 2291.7572192848556,\n    \"lap_index\": 6967,\n    \"split\": 8376\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c011a2c9-1260-488e-a013-4ed2f1a1e788",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id",
+                    "laps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0345dfc5-b327-4363-88df-bac7fe6548cd",
+          "name": "List Activity Comments",
+          "request": {
+            "name": "List Activity Comments",
+            "description": {
+              "content": "Returns the comments on the given activity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activities",
+                ":id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "30",
+                  "description": "Number of items per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the activity"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d6047aa-cf62-4b80-92ec-497e7ca60ca2",
+              "name": "A list of comments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7211,\n    \"activity_id\": 8850,\n    \"text\": \"string\",\n    \"athlete\": {\n      \"id\": 8485,\n      \"firstname\": \"string\",\n      \"lastname\": \"string\",\n      \"profile_medium\": \"string\",\n      \"profile\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"sex\": \"M\"\n    },\n    \"created_at\": \"1973-07-13T06:11:24.085Z\"\n  },\n  {\n    \"id\": 6228,\n    \"activity_id\": 1194,\n    \"text\": \"string\",\n    \"athlete\": {\n      \"id\": 7843,\n      \"firstname\": \"string\",\n      \"lastname\": \"string\",\n      \"profile_medium\": \"string\",\n      \"profile\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"sex\": \"F\"\n    },\n    \"created_at\": \"1980-01-30T10:57:33.530Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37b4c49f-162c-4ba5-9c0a-d8edc40093d7",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9e89706-8db8-4ba5-a4f7-d40ba04013da",
+          "name": "List Activity Kudoers",
+          "request": {
+            "name": "List Activity Kudoers",
+            "description": {
+              "content": "Returns the athletes who gave kudos on the given activity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "activities",
+                ":id",
+                "kudos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "30",
+                  "description": "Number of items per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the activity"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a89cff8f-363c-4f59-885a-6b548c6d47da",
+              "name": "A list of athletes who gave kudos",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id",
+                    "kudos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9761,\n    \"firstname\": \"string\",\n    \"lastname\": \"string\",\n    \"profile_medium\": \"string\",\n    \"profile\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"country\": \"string\",\n    \"sex\": \"F\"\n  },\n  {\n    \"id\": 5459,\n    \"firstname\": \"string\",\n    \"lastname\": \"string\",\n    \"profile_medium\": \"string\",\n    \"profile\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"country\": \"string\",\n    \"sex\": \"F\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b3bc072-3fe6-4628-a53f-6546700a2ba7",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "activities",
+                    ":id",
+                    "kudos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the activity"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.strava.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "read read_all profile:read_all profile:write activity:read activity:read_all activity:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://www.strava.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.strava.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c9adb658-33f4-488e-b91c-981d2dd0c9e4",
+    "name": "Strava Activities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.\n\nContact Support:\n Name: Strava Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

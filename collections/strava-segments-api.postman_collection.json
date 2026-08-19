@@ -1,0 +1,760 @@
+{
+  "item": [
+    {
+      "id": "307e23f3-7850-4559-aa00-c205bce46b46",
+      "name": "Segments",
+      "description": {
+        "content": "Access segments — specific sections of road or trail that athletes compete on. View segment details, starred segments, and leaderboards.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a02d84f-c594-47f1-a97f-b7d015242914",
+          "name": "Get Segment",
+          "request": {
+            "name": "Get Segment",
+            "description": {
+              "content": "Returns the specified segment. Starred segments include athlete specific segment stats when the authenticated athlete has starred the segment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "segments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the segment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ff97bee-aa13-4ea0-a8c9-7bb8fd14d97d",
+              "name": "The segment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3766,\n  \"name\": \"string\",\n  \"activity_type\": \"Ride\",\n  \"distance\": 6568.214737888044,\n  \"average_grade\": 133.0609110072023,\n  \"maximum_grade\": 8764.391776048335,\n  \"elevation_high\": 9233.520260515215,\n  \"elevation_low\": 6611.159459206011,\n  \"start_latlng\": [\n    19.877180542755557,\n    6162.099070906409\n  ],\n  \"end_latlng\": [\n    3885.403722520857,\n    8466.659377349213\n  ],\n  \"climb_category\": 4025,\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"country\": \"string\",\n  \"private\": true,\n  \"hazardous\": true,\n  \"total_elevation_gain\": 6141.491833725398,\n  \"effort_count\": 9369,\n  \"athlete_count\": 5729,\n  \"star_count\": 3558\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15a97017-befb-4e6c-bba4-db24eca1ed3d",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a28b272-535e-4e02-92c7-b23421c6dab2",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "329f42ec-6e8f-4187-81b3-ae7a7956dc9a",
+          "name": "List Starred Segments",
+          "request": {
+            "name": "List Starred Segments",
+            "description": {
+              "content": "List of the authenticated athlete's starred segments. Private segments are filtered out unless requested by the owner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "segments",
+                "starred"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "30",
+                  "description": "Number of items per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59de3f93-42c1-49cb-ba29-c089452981b0",
+              "name": "A list of starred segments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segments",
+                    "starred"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 9834,\n    \"name\": \"string\",\n    \"activity_type\": \"string\",\n    \"distance\": 861.056002067715,\n    \"average_grade\": 1079.5647046594604,\n    \"elevation_high\": 4302.894246843921,\n    \"elevation_low\": 5888.503666038373,\n    \"start_latlng\": [\n      5853.199833318304,\n      5189.890425009498\n    ],\n    \"end_latlng\": [\n      7713.431892451628,\n      9169.63299091936\n    ],\n    \"climb_category\": 4237\n  },\n  {\n    \"id\": 9931,\n    \"name\": \"string\",\n    \"activity_type\": \"string\",\n    \"distance\": 9465.154812725117,\n    \"average_grade\": 3508.8087219626873,\n    \"elevation_high\": 532.7384892770338,\n    \"elevation_low\": 9972.510040738092,\n    \"start_latlng\": [\n      8384.25613719923,\n      2417.3512922492514\n    ],\n    \"end_latlng\": [\n      7672.19556816021,\n      5673.3996210770565\n    ],\n    \"climb_category\": 2219\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7b638db-a058-43c0-aaa0-823dd15b1b4a",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segments",
+                    "starred"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2b2a557-e4f7-4c6f-9315-209bd9cd0473",
+          "name": "Get Segment Leaderboard",
+          "request": {
+            "name": "Get Segment Leaderboard",
+            "description": {
+              "content": "Returns the specified segment leaderboard. The overall leaderboard returns the top 10 athletes who have put in the best efforts on the segment. The current authenticated athlete's effort is also included.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "segments",
+                ":id",
+                "leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "gender",
+                  "value": "<string>",
+                  "description": "Filter by gender (M or F)"
+                },
+                {
+                  "disabled": false,
+                  "key": "age_group",
+                  "value": "<string>",
+                  "description": "Filter by age group (0_19, 20_24, 25_34, 35_44, 45_54, 55_64, 65_plus)"
+                },
+                {
+                  "disabled": false,
+                  "key": "weight_class",
+                  "value": "<string>",
+                  "description": "Filter by weight class"
+                },
+                {
+                  "disabled": false,
+                  "key": "following",
+                  "value": "<boolean>",
+                  "description": "Limit results to athletes the authenticated athlete is following"
+                },
+                {
+                  "disabled": false,
+                  "key": "club_id",
+                  "value": "<integer>",
+                  "description": "Limit results to athletes in the specified club"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_range",
+                  "value": "<string>",
+                  "description": "Limit results to a specific time frame (this_year, this_month, this_week, today)"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "30",
+                  "description": "Number of items per page"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the segment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80c2a3f2-dbb0-415c-9f93-c25c8de0b216",
+              "name": "The segment leaderboard",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segments",
+                    ":id",
+                    "leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "age_group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "weight_class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "following",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "club_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "date_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"header\": \"string\",\n  \"effort_count\": 9931,\n  \"entry_count\": 6077,\n  \"entries\": [\n    {\n      \"athlete_name\": \"string\",\n      \"elapsed_time\": 7685,\n      \"moving_time\": 1047,\n      \"start_date\": \"2005-05-03T00:52:53.146Z\",\n      \"start_date_local\": \"1972-06-17T16:27:38.024Z\",\n      \"distance\": 3823.286256056678,\n      \"rank\": 9993,\n      \"athlete_profile\": \"string\",\n      \"activity_id\": 4962,\n      \"effort_id\": 8176\n    },\n    {\n      \"athlete_name\": \"string\",\n      \"elapsed_time\": 9558,\n      \"moving_time\": 4553,\n      \"start_date\": \"1977-05-05T09:30:21.681Z\",\n      \"start_date_local\": \"2007-12-29T17:23:15.266Z\",\n      \"distance\": 986.5987912290042,\n      \"rank\": 8644,\n      \"athlete_profile\": \"string\",\n      \"activity_id\": 1666,\n      \"effort_id\": 1145\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b322f8fd-daa1-4da3-bd23-44737772367a",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segments",
+                    ":id",
+                    "leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "age_group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "weight_class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "following",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "club_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "date_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "709b1a37-4442-4699-b859-ae0ec3399c8c",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segments",
+                    ":id",
+                    "leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "gender",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "age_group",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "weight_class",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "following",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "club_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "date_range",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "30"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.strava.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "read read_all profile:read_all profile:write activity:read activity:read_all activity:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://www.strava.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.strava.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f02f61ac-89ad-4982-815e-34d553efe67e",
+    "name": "Strava Activities Segments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.\n\nContact Support:\n Name: Strava Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

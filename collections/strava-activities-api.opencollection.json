@@ -1,0 +1,257 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Strava Activities API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.strava.com/oauth/authorize",
+      "accessTokenUrl": "https://www.strava.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Activities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.strava.com/api/v3/activities",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "sport_type",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "start_date_local",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "elapsed_time",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "distance",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "trainer",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "commute",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a manual activity on behalf of the authenticated athlete. This endpoint is for manually entered activities, not for uploading GPS files (use the Uploads endpoint for that)."
+        },
+        {
+          "info": {
+            "name": "Get Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              },
+              {
+                "name": "include_all_efforts",
+                "value": "",
+                "type": "query",
+                "description": "To include all segment efforts in the response, set to true. Defaults to false."
+              }
+            ]
+          },
+          "docs": "Returns the given activity. Requires the activity:read scope. Privacy zones are excluded unless the activity is owned by the authenticated athlete or they are a follower of the activity owner."
+        },
+        {
+          "info": {
+            "name": "Update Activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://www.strava.com/api/v3/activities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the given activity. Requires the activity:write scope. Only the authenticated athlete may update their own activities."
+        },
+        {
+          "info": {
+            "name": "List Athlete Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete/activities",
+            "params": [
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "An epoch timestamp for filtering activities before a certain time"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "An epoch timestamp for filtering activities after a certain time"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (max 200)"
+              }
+            ]
+          },
+          "docs": "Returns the activities of the authenticated athlete, sorted by newest first. Requires the activity:read scope. Does not include activities with visibility set to Only You unless the activity belongs to the authenticated athlete."
+        },
+        {
+          "info": {
+            "name": "List Activity Laps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id/laps",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              }
+            ]
+          },
+          "docs": "Returns the laps of an activity identified by an identifier. Requires the activity:read scope."
+        },
+        {
+          "info": {
+            "name": "List Activity Comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id/comments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns the comments on the given activity."
+        },
+        {
+          "info": {
+            "name": "List Activity Kudoers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id/kudos",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns the athletes who gave kudos on the given activity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

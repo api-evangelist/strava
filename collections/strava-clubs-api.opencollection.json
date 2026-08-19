@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Strava Activities Clubs API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.strava.com/oauth/authorize",
+      "accessTokenUrl": "https://www.strava.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clubs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Club",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/clubs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the club"
+              }
+            ]
+          },
+          "docs": "Returns a given club using its identifier. Requires the profile:read_all scope for private clubs."
+        },
+        {
+          "info": {
+            "name": "List Club Activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/clubs/:id/activities",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the club"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Retrieve recent activities from members of a specific club. The authenticated athlete must be a member of the club."
+        },
+        {
+          "info": {
+            "name": "List Athlete Clubs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/athlete/clubs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              }
+            ]
+          },
+          "docs": "Returns a list of the clubs whose membership includes the authenticated athlete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

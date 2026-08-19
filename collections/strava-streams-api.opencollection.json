@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Strava Activities Streams API",
+    "version": "3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.strava.com/oauth/authorize",
+      "accessTokenUrl": "https://www.strava.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Activity Streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.strava.com/api/v3/activities/:id/streams",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the activity"
+              },
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "Desired stream types (comma-separated): time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth"
+              },
+              {
+                "name": "key_by_type",
+                "value": "",
+                "type": "query",
+                "description": "Must be true (returns stream data keyed by type name)"
+              }
+            ]
+          },
+          "docs": "Returns the given activity's streams. Streams are a sequential array of data points for a given activity or segment. Available stream types include: time, latlng, distance, altitude, velocity_smooth, heartrate, cadence, watts, temp, moving, grade_smooth."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

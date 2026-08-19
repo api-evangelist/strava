@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "2e57fa8c-3bf5-4ea6-935f-57c609ecb521",
+      "name": "Segment Efforts",
+      "description": {
+        "content": "Access segment efforts — an athlete's attempt at a specific segment. Includes time, pace, and power data for each effort.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0c30cce-b784-4093-b325-3cd7a3daae7f",
+          "name": "Get Segment Effort",
+          "request": {
+            "name": "Get Segment Effort",
+            "description": {
+              "content": "Returns a segment effort from an activity that is owned by the authenticated athlete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "segment_efforts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The identifier of the segment effort"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80e15a69-9d81-4db2-b79c-98f60397011c",
+              "name": "The segment effort",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segment_efforts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment effort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1381,\n  \"elapsed_time\": 1267,\n  \"start_date\": \"2012-11-07T10:47:23.795Z\",\n  \"start_date_local\": \"1969-12-23T18:14:04.349Z\",\n  \"distance\": 9655.059655435412,\n  \"is_kom\": false,\n  \"name\": \"string\",\n  \"activity\": {\n    \"id\": 5321\n  },\n  \"athlete\": {\n    \"id\": 6237\n  },\n  \"moving_time\": 6510,\n  \"start_index\": 3034,\n  \"end_index\": 7147,\n  \"average_cadence\": 4742.853101510011,\n  \"average_watts\": 4531.010620466443,\n  \"device_watts\": false,\n  \"average_heartrate\": 5389.2889989487085,\n  \"max_heartrate\": 108.40085329110072,\n  \"segment\": {\n    \"id\": 3532,\n    \"name\": \"string\",\n    \"activity_type\": \"string\",\n    \"distance\": 7137.769190725524,\n    \"average_grade\": 5446.674445680833,\n    \"elevation_high\": 7214.048547039764,\n    \"elevation_low\": 4971.752156641419,\n    \"start_latlng\": [\n      2969.9553976523953,\n      4167.243586310382\n    ],\n    \"end_latlng\": [\n      3039.1532793774622,\n      951.0379928811252\n    ],\n    \"climb_category\": 213\n  },\n  \"pr_rank\": 8858\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5df805b-d24a-4706-8bd8-0d1946ec0ccd",
+              "name": "Authorization required or the provided access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segment_efforts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment effort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df4124ad-d706-44d4-a93b-0b1443f0abee",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "segment_efforts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The identifier of the segment effort"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"resource\": \"string\",\n      \"field\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.strava.com/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "read read_all profile:read_all profile:write activity:read activity:read_all activity:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://www.strava.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.strava.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1254bd1c-cc7a-4baa-b6de-714d8e425003",
+    "name": "Strava Activities Segment Efforts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.\n\nContact Support:\n Name: Strava Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
