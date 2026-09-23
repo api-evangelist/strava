@@ -1,0 +1,1 @@
+{"resource":"https://mcp.strava.com/mcp","authorization_servers":["https://www.strava.com/mcp-issuer"],"scopes_supported":["read","read_all","activity:read","activity:read_all","profile:read_all"],"bearer_methods_supported":["header"],"resource_name":"Strava MCP"}

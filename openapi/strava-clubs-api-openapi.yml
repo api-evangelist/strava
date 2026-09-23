@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Strava Activities Clubs API
+  title: Strava Clubs API
   description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
   version: 3.0.0
   contact:
@@ -114,27 +114,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    SummaryClub:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        profile_medium:
-          type: string
-        sport_type:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        private:
-          type: boolean
-        member_count:
-          type: integer
     SummaryActivity:
       type: object
       properties:
@@ -191,6 +170,27 @@ components:
         max_heartrate:
           type: number
           format: float
+    SummaryClub:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        profile_medium:
+          type: string
+        sport_type:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        private:
+          type: boolean
+        member_count:
+          type: integer
     DetailedClub:
       type: object
       properties:

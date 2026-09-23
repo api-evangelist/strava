@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Strava Activities API
   description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
@@ -283,99 +283,17 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Fault:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              resource:
-                type: string
-              field:
-                type: string
-              code:
-                type: string
-        message:
-          type: string
-          description: The error message
-    UpdatableActivity:
-      type: object
-      properties:
-        commute:
-          type: boolean
-          description: Whether this activity is a commute
-        trainer:
-          type: boolean
-          description: Whether this activity was recorded on a stationary trainer
-        hide_from_home:
-          type: boolean
-          description: Whether this activity is muted
-        description:
-          type: string
-          description: The description of the activity
-        name:
-          type: string
-          description: The name of the activity
-        type:
-          type: string
-          description: The type of activity
-        sport_type:
-          type: string
-          description: The sport type of the activity
-        gear_id:
-          type: string
-          description: The identifier of the gear to associate with this activity (use 'none' to unset)
-    Lap:
+    PolylineMap:
       type: object
       properties:
         id:
-          type: integer
-        name:
           type: string
-        elapsed_time:
-          type: integer
-        moving_time:
-          type: integer
-        start_date:
+        polyline:
           type: string
-          format: date-time
-        start_date_local:
+          description: The polyline of the map
+        summary_polyline:
           type: string
-          format: date-time
-        distance:
-          type: number
-          format: float
-        start_index:
-          type: integer
-        end_index:
-          type: integer
-        total_elevation_gain:
-          type: number
-          format: float
-        average_speed:
-          type: number
-          format: float
-        max_speed:
-          type: number
-          format: float
-        average_cadence:
-          type: number
-          format: float
-        average_watts:
-          type: number
-          format: float
-        average_heartrate:
-          type: number
-          format: float
-        max_heartrate:
-          type: number
-          format: float
-        lap_index:
-          type: integer
-        split:
-          type: integer
+          description: The summary polyline of the map
     SummaryActivity:
       type: object
       properties:
@@ -432,50 +350,6 @@ components:
         max_heartrate:
           type: number
           format: float
-    MetaAthlete:
-      type: object
-      properties:
-        id:
-          type: integer
-    SummaryGear:
-      type: object
-      properties:
-        id:
-          type: string
-        primary:
-          type: boolean
-        name:
-          type: string
-        distance:
-          type: number
-          format: float
-        resource_state:
-          type: integer
-    Comment:
-      type: object
-      properties:
-        id:
-          type: integer
-        activity_id:
-          type: integer
-        text:
-          type: string
-        athlete:
-          $ref: '#/components/schemas/SummaryAthlete'
-        created_at:
-          type: string
-          format: date-time
-    PolylineMap:
-      type: object
-      properties:
-        id:
-          type: string
-        polyline:
-          type: string
-          description: The polyline of the map
-        summary_polyline:
-          type: string
-          description: The summary polyline of the map
     SummaryAthlete:
       type: object
       properties:
@@ -623,9 +497,141 @@ components:
           $ref: '#/components/schemas/MetaAthlete'
         gear:
           $ref: '#/components/schemas/SummaryGear'
+    MetaAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+    SummaryGear:
+      type: object
+      properties:
+        id:
+          type: string
+        primary:
+          type: boolean
+        name:
+          type: string
+        distance:
+          type: number
+          format: float
+        resource_state:
+          type: integer
+    UpdatableActivity:
+      type: object
+      properties:
+        commute:
+          type: boolean
+          description: Whether this activity is a commute
+        trainer:
+          type: boolean
+          description: Whether this activity was recorded on a stationary trainer
+        hide_from_home:
+          type: boolean
+          description: Whether this activity is muted
+        description:
+          type: string
+          description: The description of the activity
+        name:
+          type: string
+          description: The name of the activity
+        type:
+          type: string
+          description: The type of activity
+        sport_type:
+          type: string
+          description: The sport type of the activity
+        gear_id:
+          type: string
+          description: The identifier of the gear to associate with this activity (use 'none' to unset)
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        activity_id:
+          type: integer
+        text:
+          type: string
+        athlete:
+          $ref: '#/components/schemas/SummaryAthlete'
+        created_at:
+          type: string
+          format: date-time
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
+    Lap:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        elapsed_time:
+          type: integer
+        moving_time:
+          type: integer
+        start_date:
+          type: string
+          format: date-time
+        start_date_local:
+          type: string
+          format: date-time
+        distance:
+          type: number
+          format: float
+        start_index:
+          type: integer
+        end_index:
+          type: integer
+        total_elevation_gain:
+          type: number
+          format: float
+        average_speed:
+          type: number
+          format: float
+        max_speed:
+          type: number
+          format: float
+        average_cadence:
+          type: number
+          format: float
+        average_watts:
+          type: number
+          format: float
+        average_heartrate:
+          type: number
+          format: float
+        max_heartrate:
+          type: number
+          format: float
+        lap_index:
+          type: integer
+        split:
+          type: integer
   responses:
     Forbidden:
       description: Forbidden — the request is not authorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
@@ -638,12 +644,6 @@ components:
             $ref: '#/components/schemas/Fault'
     Unauthorized:
       description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    BadRequest:
-      description: Bad request
       content:
         application/json:
           schema:

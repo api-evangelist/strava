@@ -1,14 +1,7 @@
 {
   "provider": "strava",
   "sources": [
-    "strava-activities-api-openapi.yml",
-    "strava-athletes-api-openapi.yml",
-    "strava-clubs-api-openapi.yml",
-    "strava-gear-api-openapi.yml",
-    "strava-routes-api-openapi.yml",
-    "strava-segment-efforts-api-openapi.yml",
-    "strava-segments-api-openapi.yml",
-    "strava-streams-api-openapi.yml"
+    "_original/strava-openapi.yml"
   ],
   "outputs": [
     "strava-activities-api-openapi.yml",
@@ -23,6 +16,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "strava-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "strava-activities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "strava-athletes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "strava-clubs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "strava-gear-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "strava-routes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "strava-segment-efforts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "strava-segments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "strava-streams-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Strava Activities Segments API
+  title: Strava Segments API
   description: 'The Strava API enables developers to access and interact with data from Strava, the popular fitness tracking platform for running, cycling, and other athletic activities. The API provides access to athlete profiles, activities (workouts), segments, routes, gear, clubs, and leaderboards. OAuth 2.0 is used for authentication. Rate limits apply: 100 requests per 15 minutes, 1000 per day for default apps.'
   version: 3.0.0
   contact:
@@ -147,22 +147,67 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    SegmentLeaderboard:
+    SummarySegment:
       type: object
       properties:
-        header:
+        id:
+          type: integer
+        name:
           type: string
-          description: The header of the leaderboard
-        effort_count:
-          type: integer
-          description: The total number of efforts for this segment
-        entry_count:
-          type: integer
-          description: The number of entries in this leaderboard
-        entries:
+        activity_type:
+          type: string
+        distance:
+          type: number
+          format: float
+        average_grade:
+          type: number
+          format: float
+        elevation_high:
+          type: number
+          format: float
+        elevation_low:
+          type: number
+          format: float
+        start_latlng:
           type: array
           items:
-            $ref: '#/components/schemas/SegmentLeaderboardEntry'
+            type: number
+        end_latlng:
+          type: array
+          items:
+            type: number
+        climb_category:
+          type: integer
+    SegmentLeaderboardEntry:
+      type: object
+      properties:
+        athlete_name:
+          type: string
+        elapsed_time:
+          type: integer
+          description: The elapsed time of the effort in seconds
+        moving_time:
+          type: integer
+          description: The moving time of the effort in seconds
+        start_date:
+          type: string
+          format: date-time
+        start_date_local:
+          type: string
+          format: date-time
+        distance:
+          type: number
+          format: float
+        rank:
+          type: integer
+          description: The rank of this effort on the leaderboard
+        athlete_profile:
+          type: string
+          description: The URL of the athlete's profile picture
+        activity_id:
+          type: integer
+        effort_id:
+          type: integer
     DetailedSegment:
       type: object
       properties:
@@ -235,67 +280,6 @@ components:
         star_count:
           type: integer
           description: The number of stars on this segment
-    SegmentLeaderboardEntry:
-      type: object
-      properties:
-        athlete_name:
-          type: string
-        elapsed_time:
-          type: integer
-          description: The elapsed time of the effort in seconds
-        moving_time:
-          type: integer
-          description: The moving time of the effort in seconds
-        start_date:
-          type: string
-          format: date-time
-        start_date_local:
-          type: string
-          format: date-time
-        distance:
-          type: number
-          format: float
-        rank:
-          type: integer
-          description: The rank of this effort on the leaderboard
-        athlete_profile:
-          type: string
-          description: The URL of the athlete's profile picture
-        activity_id:
-          type: integer
-        effort_id:
-          type: integer
-    SummarySegment:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        activity_type:
-          type: string
-        distance:
-          type: number
-          format: float
-        average_grade:
-          type: number
-          format: float
-        elevation_high:
-          type: number
-          format: float
-        elevation_low:
-          type: number
-          format: float
-        start_latlng:
-          type: array
-          items:
-            type: number
-        end_latlng:
-          type: array
-          items:
-            type: number
-        climb_category:
-          type: integer
     Fault:
       type: object
       properties:
@@ -313,6 +297,22 @@ components:
         message:
           type: string
           description: The error message
+    SegmentLeaderboard:
+      type: object
+      properties:
+        header:
+          type: string
+          description: The header of the leaderboard
+        effort_count:
+          type: integer
+          description: The total number of efforts for this segment
+        entry_count:
+          type: integer
+          description: The number of entries in this leaderboard
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentLeaderboardEntry'
   responses:
     NotFound:
       description: The requested resource was not found
