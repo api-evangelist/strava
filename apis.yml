@@ -71,8 +71,6 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/strava-graphql.md
 - aid: strava:strava-athletes-api
   name: Strava Athletes API
   description: >-
@@ -98,8 +96,6 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/strava-graphql.md
 - aid: strava:strava-clubs-api
   name: Strava Clubs API
   description: >-
@@ -124,8 +120,6 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/strava-graphql.md
 - aid: strava:strava-gear-api
   name: Strava Gear API
   description: Access athlete gear (bikes and shoes) used during activities.
@@ -149,8 +143,6 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/strava-graphql.md
 - aid: strava:strava-routes-api
   name: Strava Routes API
   description: Access and manage athlete-created routes. Routes are planned courses for rides or runs.
@@ -174,8 +166,6 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/strava-graphql.md
 - aid: strava:strava-segment-efforts-api
   name: Strava Segment Efforts API
   description: >-
@@ -201,8 +191,6 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/strava-graphql.md
 - aid: strava:strava-segments-api
   name: Strava Segments API
   description: >-
@@ -228,8 +216,6 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/strava-graphql.md
 - aid: strava:strava-streams-api
   name: Strava Streams API
   description: >-
@@ -255,8 +241,6 @@ apis:
   - type: AsyncAPI
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
-  - type: GraphQL
-    url: graphql/strava-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/strava-agentic-access.yml
