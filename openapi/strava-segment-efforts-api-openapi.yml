@@ -45,12 +45,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
-    MetaActivity:
-      type: object
-      properties:
-        id:
-          type: integer
     SummarySegment:
       type: object
       properties:
@@ -81,11 +89,6 @@ components:
           items:
             type: number
         climb_category:
-          type: integer
-    MetaAthlete:
-      type: object
-      properties:
-        id:
           type: integer
     DetailedSegmentEffort:
       type: object
@@ -161,19 +164,16 @@ components:
         message:
           type: string
           description: The error message
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
+    MetaActivity:
+      type: object
+      properties:
+        id:
+          type: integer
+    MetaAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
   securitySchemes:
     stravaBearerAuth:
       type: oauth2

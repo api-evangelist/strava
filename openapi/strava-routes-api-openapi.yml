@@ -76,18 +76,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
-    PolylineMap:
-      type: object
-      properties:
-        id:
-          type: string
-        polyline:
-          type: string
-          description: The polyline of the map
-        summary_polyline:
-          type: string
-          description: The summary polyline of the map
     SummaryAthlete:
       type: object
       properties:
@@ -113,6 +115,34 @@ components:
           enum:
           - M
           - F
+    PolylineMap:
+      type: object
+      properties:
+        id:
+          type: string
+        polyline:
+          type: string
+          description: The polyline of the map
+        summary_polyline:
+          type: string
+          description: The summary polyline of the map
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
     Route:
       type: object
       properties:
@@ -154,36 +184,6 @@ components:
           $ref: '#/components/schemas/PolylineMap'
         athlete:
           $ref: '#/components/schemas/SummaryAthlete'
-    Fault:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              resource:
-                type: string
-              field:
-                type: string
-              code:
-                type: string
-        message:
-          type: string
-          description: The error message
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
   securitySchemes:
     stravaBearerAuth:
       type: oauth2

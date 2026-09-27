@@ -114,6 +114,37 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    DetailedClub:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        profile_medium:
+          type: string
+        cover_photo:
+          type: string
+        sport_type:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        private:
+          type: boolean
+        member_count:
+          type: integer
+        featured:
+          type: boolean
+        verified:
+          type: boolean
+        url:
+          type: string
+        description:
+          type: string
     SummaryActivity:
       type: object
       properties:
@@ -170,6 +201,23 @@ components:
         max_heartrate:
           type: number
           format: float
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
     SummaryClub:
       type: object
       properties:
@@ -191,63 +239,15 @@ components:
           type: boolean
         member_count:
           type: integer
-    DetailedClub:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        profile_medium:
-          type: string
-        cover_photo:
-          type: string
-        sport_type:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        private:
-          type: boolean
-        member_count:
-          type: integer
-        featured:
-          type: boolean
-        verified:
-          type: boolean
-        url:
-          type: string
-        description:
-          type: string
-    Fault:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              resource:
-                type: string
-              field:
-                type: string
-              code:
-                type: string
-        message:
-          type: string
-          description: The error message
   responses:
-    NotFound:
-      description: The requested resource was not found
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
+    NotFound:
+      description: The requested resource was not found
       content:
         application/json:
           schema:

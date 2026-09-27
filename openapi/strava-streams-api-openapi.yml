@@ -58,50 +58,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    PowerStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-        original_size:
-          type: integer
-        resolution:
-          type: string
-        data:
-          type: array
-          items:
-            type: integer
-          description: The sequence of power output values in watts
-    LatLngStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-        original_size:
-          type: integer
-        resolution:
-          type: string
-        data:
-          type: array
-          items:
-            type: array
-            items:
-              type: number
-          description: The sequence of lat/lng values
-    CadenceStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-        original_size:
-          type: integer
-        resolution:
-          type: string
-        data:
-          type: array
-          items:
-            type: integer
-          description: The sequence of cadence values in RPM
     SmoothGradeStream:
       type: object
       properties:
@@ -116,6 +72,20 @@ components:
           items:
             type: number
           description: The sequence of grade values in percent
+    CadenceStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: integer
+          description: The sequence of cadence values in RPM
     StreamSet:
       type: object
       description: A collection of data streams for an activity or segment
@@ -138,27 +108,6 @@ components:
           $ref: '#/components/schemas/SmoothVelocityStream'
         grade_smooth:
           $ref: '#/components/schemas/SmoothGradeStream'
-    TimeStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-          enum:
-          - distance
-          - time
-        original_size:
-          type: integer
-        resolution:
-          type: string
-          enum:
-          - low
-          - medium
-          - high
-        data:
-          type: array
-          items:
-            type: integer
-          description: The sequence of time values in seconds from start
     HeartrateStream:
       type: object
       properties:
@@ -187,6 +136,71 @@ components:
           items:
             type: number
           description: The sequence of distance values in meters
+    TimeStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+          enum:
+          - distance
+          - time
+        original_size:
+          type: integer
+        resolution:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        data:
+          type: array
+          items:
+            type: integer
+          description: The sequence of time values in seconds from start
+    LatLngStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+          description: The sequence of lat/lng values
+    SmoothVelocityStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: number
+          description: The sequence of velocity values in meters per second
+    AltitudeStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: number
+          description: The sequence of altitude values in meters
     Fault:
       type: object
       properties:
@@ -204,7 +218,7 @@ components:
         message:
           type: string
           description: The error message
-    AltitudeStream:
+    PowerStream:
       type: object
       properties:
         series_type:
@@ -216,22 +230,8 @@ components:
         data:
           type: array
           items:
-            type: number
-          description: The sequence of altitude values in meters
-    SmoothVelocityStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-        original_size:
-          type: integer
-        resolution:
-          type: string
-        data:
-          type: array
-          items:
-            type: number
-          description: The sequence of velocity values in meters per second
+            type: integer
+          description: The sequence of power output values in watts
   responses:
     Unauthorized:
       description: Authorization required or the provided access token is invalid

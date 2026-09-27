@@ -282,18 +282,90 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    Forbidden:
+      description: Forbidden — the request is not authorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
-    PolylineMap:
+    MetaAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+    SummaryGear:
       type: object
       properties:
         id:
           type: string
-        polyline:
+        primary:
+          type: boolean
+        name:
           type: string
-          description: The polyline of the map
-        summary_polyline:
+        distance:
+          type: number
+          format: float
+        resource_state:
+          type: integer
+    SummaryAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the athlete
+        firstname:
           type: string
-          description: The summary polyline of the map
+        lastname:
+          type: string
+        profile_medium:
+          type: string
+        profile:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        sex:
+          type: string
+          enum:
+          - M
+          - F
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+        activity_id:
+          type: integer
+        text:
+          type: string
+        athlete:
+          $ref: '#/components/schemas/SummaryAthlete'
+        created_at:
+          type: string
+          format: date-time
     SummaryActivity:
       type: object
       properties:
@@ -350,31 +422,6 @@ components:
         max_heartrate:
           type: number
           format: float
-    SummaryAthlete:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the athlete
-        firstname:
-          type: string
-        lastname:
-          type: string
-        profile_medium:
-          type: string
-        profile:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        sex:
-          type: string
-          enum:
-          - M
-          - F
     DetailedActivity:
       type: object
       properties:
@@ -497,66 +544,17 @@ components:
           $ref: '#/components/schemas/MetaAthlete'
         gear:
           $ref: '#/components/schemas/SummaryGear'
-    MetaAthlete:
-      type: object
-      properties:
-        id:
-          type: integer
-    SummaryGear:
+    PolylineMap:
       type: object
       properties:
         id:
           type: string
-        primary:
-          type: boolean
-        name:
+        polyline:
           type: string
-        distance:
-          type: number
-          format: float
-        resource_state:
-          type: integer
-    UpdatableActivity:
-      type: object
-      properties:
-        commute:
-          type: boolean
-          description: Whether this activity is a commute
-        trainer:
-          type: boolean
-          description: Whether this activity was recorded on a stationary trainer
-        hide_from_home:
-          type: boolean
-          description: Whether this activity is muted
-        description:
+          description: The polyline of the map
+        summary_polyline:
           type: string
-          description: The description of the activity
-        name:
-          type: string
-          description: The name of the activity
-        type:
-          type: string
-          description: The type of activity
-        sport_type:
-          type: string
-          description: The sport type of the activity
-        gear_id:
-          type: string
-          description: The identifier of the gear to associate with this activity (use 'none' to unset)
-    Comment:
-      type: object
-      properties:
-        id:
-          type: integer
-        activity_id:
-          type: integer
-        text:
-          type: string
-        athlete:
-          $ref: '#/components/schemas/SummaryAthlete'
-        created_at:
-          type: string
-          format: date-time
+          description: The summary polyline of the map
     Fault:
       type: object
       properties:
@@ -623,31 +621,33 @@ components:
           type: integer
         split:
           type: integer
-  responses:
-    Forbidden:
-      description: Forbidden — the request is not authorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
+    UpdatableActivity:
+      type: object
+      properties:
+        commute:
+          type: boolean
+          description: Whether this activity is a commute
+        trainer:
+          type: boolean
+          description: Whether this activity was recorded on a stationary trainer
+        hide_from_home:
+          type: boolean
+          description: Whether this activity is muted
+        description:
+          type: string
+          description: The description of the activity
+        name:
+          type: string
+          description: The name of the activity
+        type:
+          type: string
+          description: The type of activity
+        sport_type:
+          type: string
+          description: The sport type of the activity
+        gear_id:
+          type: string
+          description: The identifier of the gear to associate with this activity (use 'none' to unset)
   securitySchemes:
     stravaBearerAuth:
       type: oauth2
