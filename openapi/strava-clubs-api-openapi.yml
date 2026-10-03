@@ -113,8 +113,21 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
-    DetailedClub:
+    SummaryClub:
       type: object
       properties:
         id:
@@ -122,8 +135,6 @@ components:
         name:
           type: string
         profile_medium:
-          type: string
-        cover_photo:
           type: string
         sport_type:
           type: string
@@ -137,14 +148,6 @@ components:
           type: boolean
         member_count:
           type: integer
-        featured:
-          type: boolean
-        verified:
-          type: boolean
-        url:
-          type: string
-        description:
-          type: string
     SummaryActivity:
       type: object
       properties:
@@ -218,7 +221,7 @@ components:
         message:
           type: string
           description: The error message
-    SummaryClub:
+    DetailedClub:
       type: object
       properties:
         id:
@@ -226,6 +229,8 @@ components:
         name:
           type: string
         profile_medium:
+          type: string
+        cover_photo:
           type: string
         sport_type:
           type: string
@@ -239,19 +244,14 @@ components:
           type: boolean
         member_count:
           type: integer
-  responses:
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
+        featured:
+          type: boolean
+        verified:
+          type: boolean
+        url:
+          type: string
+        description:
+          type: string
   securitySchemes:
     stravaBearerAuth:
       type: oauth2

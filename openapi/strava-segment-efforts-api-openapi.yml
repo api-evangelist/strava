@@ -90,6 +90,33 @@ components:
             type: number
         climb_category:
           type: integer
+    MetaAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+    MetaActivity:
+      type: object
+      properties:
+        id:
+          type: integer
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
     DetailedSegmentEffort:
       type: object
       properties:
@@ -147,33 +174,6 @@ components:
           type: array
           items:
             type: object
-    Fault:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              resource:
-                type: string
-              field:
-                type: string
-              code:
-                type: string
-        message:
-          type: string
-          description: The error message
-    MetaActivity:
-      type: object
-      properties:
-        id:
-          type: integer
-    MetaAthlete:
-      type: object
-      properties:
-        id:
-          type: integer
   securitySchemes:
     stravaBearerAuth:
       type: oauth2

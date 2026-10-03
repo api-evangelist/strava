@@ -57,8 +57,15 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
-    SmoothGradeStream:
+    DistanceStream:
       type: object
       properties:
         series_type:
@@ -71,21 +78,7 @@ components:
           type: array
           items:
             type: number
-          description: The sequence of grade values in percent
-    CadenceStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-        original_size:
-          type: integer
-        resolution:
-          type: string
-        data:
-          type: array
-          items:
-            type: integer
-          description: The sequence of cadence values in RPM
+          description: The sequence of distance values in meters
     StreamSet:
       type: object
       description: A collection of data streams for an activity or segment
@@ -108,34 +101,6 @@ components:
           $ref: '#/components/schemas/SmoothVelocityStream'
         grade_smooth:
           $ref: '#/components/schemas/SmoothGradeStream'
-    HeartrateStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-        original_size:
-          type: integer
-        resolution:
-          type: string
-        data:
-          type: array
-          items:
-            type: integer
-          description: The sequence of heart rate values in BPM
-    DistanceStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-        original_size:
-          type: integer
-        resolution:
-          type: string
-        data:
-          type: array
-          items:
-            type: number
-          description: The sequence of distance values in meters
     TimeStream:
       type: object
       properties:
@@ -157,6 +122,20 @@ components:
           items:
             type: integer
           description: The sequence of time values in seconds from start
+    HeartrateStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: integer
+          description: The sequence of heart rate values in BPM
     LatLngStream:
       type: object
       properties:
@@ -173,20 +152,6 @@ components:
             items:
               type: number
           description: The sequence of lat/lng values
-    SmoothVelocityStream:
-      type: object
-      properties:
-        series_type:
-          type: string
-        original_size:
-          type: integer
-        resolution:
-          type: string
-        data:
-          type: array
-          items:
-            type: number
-          description: The sequence of velocity values in meters per second
     AltitudeStream:
       type: object
       properties:
@@ -201,6 +166,20 @@ components:
           items:
             type: number
           description: The sequence of altitude values in meters
+    CadenceStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: integer
+          description: The sequence of cadence values in RPM
     Fault:
       type: object
       properties:
@@ -232,13 +211,34 @@ components:
           items:
             type: integer
           description: The sequence of power output values in watts
-  responses:
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
+    SmoothGradeStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: number
+          description: The sequence of grade values in percent
+    SmoothVelocityStream:
+      type: object
+      properties:
+        series_type:
+          type: string
+        original_size:
+          type: integer
+        resolution:
+          type: string
+        data:
+          type: array
+          items:
+            type: number
+          description: The sequence of velocity values in meters per second
   securitySchemes:
     stravaBearerAuth:
       type: oauth2

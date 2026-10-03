@@ -103,36 +103,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
-    Zones:
-      type: object
-      properties:
-        heart_rate:
-          type: object
-          properties:
-            custom_zones:
-              type: boolean
-            zones:
-              type: array
-              items:
-                type: object
-                properties:
-                  min:
-                    type: integer
-                  max:
-                    type: integer
-        power:
-          type: object
-          properties:
-            zones:
-              type: array
-              items:
-                type: object
-                properties:
-                  min:
-                    type: integer
-                  max:
-                    type: integer
     ActivityStats:
       type: object
       properties:
@@ -162,20 +146,6 @@ components:
           $ref: '#/components/schemas/ActivityTotal'
         all_swim_totals:
           $ref: '#/components/schemas/ActivityTotal'
-    SummaryGear:
-      type: object
-      properties:
-        id:
-          type: string
-        primary:
-          type: boolean
-        name:
-          type: string
-        distance:
-          type: number
-          format: float
-        resource_state:
-          type: integer
     DetailedAthlete:
       type: object
       properties:
@@ -250,23 +220,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SummaryGear'
-    Fault:
+    Zones:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              resource:
-                type: string
-              field:
-                type: string
-              code:
-                type: string
-        message:
+        heart_rate:
+          type: object
+          properties:
+            custom_zones:
+              type: boolean
+            zones:
+              type: array
+              items:
+                type: object
+                properties:
+                  min:
+                    type: integer
+                  max:
+                    type: integer
+        power:
+          type: object
+          properties:
+            zones:
+              type: array
+              items:
+                type: object
+                properties:
+                  min:
+                    type: integer
+                  max:
+                    type: integer
+    SummaryGear:
+      type: object
+      properties:
+        id:
           type: string
-          description: The error message
+        primary:
+          type: boolean
+        name:
+          type: string
+        distance:
+          type: number
+          format: float
+        resource_state:
+          type: integer
     ActivityTotal:
       type: object
       properties:
@@ -290,19 +286,23 @@ components:
         achievement_count:
           type: integer
           description: The total number of achievements (recent 4 weeks only)
-  responses:
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
   securitySchemes:
     stravaBearerAuth:
       type: oauth2

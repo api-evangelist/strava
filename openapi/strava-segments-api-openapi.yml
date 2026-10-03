@@ -160,6 +160,83 @@ components:
           schema:
             $ref: '#/components/schemas/Fault'
   schemas:
+    SummarySegment:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        activity_type:
+          type: string
+        distance:
+          type: number
+          format: float
+        average_grade:
+          type: number
+          format: float
+        elevation_high:
+          type: number
+          format: float
+        elevation_low:
+          type: number
+          format: float
+        start_latlng:
+          type: array
+          items:
+            type: number
+        end_latlng:
+          type: array
+          items:
+            type: number
+        climb_category:
+          type: integer
+    SegmentLeaderboardEntry:
+      type: object
+      properties:
+        athlete_name:
+          type: string
+        elapsed_time:
+          type: integer
+          description: The elapsed time of the effort in seconds
+        moving_time:
+          type: integer
+          description: The moving time of the effort in seconds
+        start_date:
+          type: string
+          format: date-time
+        start_date_local:
+          type: string
+          format: date-time
+        distance:
+          type: number
+          format: float
+        rank:
+          type: integer
+          description: The rank of this effort on the leaderboard
+        athlete_profile:
+          type: string
+          description: The URL of the athlete's profile picture
+        activity_id:
+          type: integer
+        effort_id:
+          type: integer
+    SegmentLeaderboard:
+      type: object
+      properties:
+        header:
+          type: string
+          description: The header of the leaderboard
+        effort_count:
+          type: integer
+          description: The total number of efforts for this segment
+        entry_count:
+          type: integer
+          description: The number of entries in this leaderboard
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/SegmentLeaderboardEntry'
     DetailedSegment:
       type: object
       properties:
@@ -232,37 +309,6 @@ components:
         star_count:
           type: integer
           description: The number of stars on this segment
-    SummarySegment:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        activity_type:
-          type: string
-        distance:
-          type: number
-          format: float
-        average_grade:
-          type: number
-          format: float
-        elevation_high:
-          type: number
-          format: float
-        elevation_low:
-          type: number
-          format: float
-        start_latlng:
-          type: array
-          items:
-            type: number
-        end_latlng:
-          type: array
-          items:
-            type: number
-        climb_category:
-          type: integer
     Fault:
       type: object
       properties:
@@ -280,52 +326,6 @@ components:
         message:
           type: string
           description: The error message
-    SegmentLeaderboardEntry:
-      type: object
-      properties:
-        athlete_name:
-          type: string
-        elapsed_time:
-          type: integer
-          description: The elapsed time of the effort in seconds
-        moving_time:
-          type: integer
-          description: The moving time of the effort in seconds
-        start_date:
-          type: string
-          format: date-time
-        start_date_local:
-          type: string
-          format: date-time
-        distance:
-          type: number
-          format: float
-        rank:
-          type: integer
-          description: The rank of this effort on the leaderboard
-        athlete_profile:
-          type: string
-          description: The URL of the athlete's profile picture
-        activity_id:
-          type: integer
-        effort_id:
-          type: integer
-    SegmentLeaderboard:
-      type: object
-      properties:
-        header:
-          type: string
-          description: The header of the leaderboard
-        effort_count:
-          type: integer
-          description: The total number of efforts for this segment
-        entry_count:
-          type: integer
-          description: The number of entries in this leaderboard
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/SegmentLeaderboardEntry'
   securitySchemes:
     stravaBearerAuth:
       type: oauth2
