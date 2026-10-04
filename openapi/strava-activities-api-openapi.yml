@@ -283,17 +283,23 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    PolylineMap:
+    Fault:
       type: object
       properties:
-        id:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
           type: string
-        polyline:
-          type: string
-          description: The polyline of the map
-        summary_polyline:
-          type: string
-          description: The summary polyline of the map
+          description: The error message
     Lap:
       type: object
       properties:
@@ -343,11 +349,6 @@ components:
           type: integer
         split:
           type: integer
-    MetaAthlete:
-      type: object
-      properties:
-        id:
-          type: integer
     UpdatableActivity:
       type: object
       properties:
@@ -375,76 +376,6 @@ components:
         gear_id:
           type: string
           description: The identifier of the gear to associate with this activity (use 'none' to unset)
-    SummaryGear:
-      type: object
-      properties:
-        id:
-          type: string
-        primary:
-          type: boolean
-        name:
-          type: string
-        distance:
-          type: number
-          format: float
-        resource_state:
-          type: integer
-    SummaryActivity:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the activity
-        name:
-          type: string
-        distance:
-          type: number
-          format: float
-        moving_time:
-          type: integer
-        elapsed_time:
-          type: integer
-        total_elevation_gain:
-          type: number
-          format: float
-        type:
-          type: string
-        sport_type:
-          type: string
-        start_date:
-          type: string
-          format: date-time
-        start_date_local:
-          type: string
-          format: date-time
-        timezone:
-          type: string
-        achievement_count:
-          type: integer
-        kudos_count:
-          type: integer
-        comment_count:
-          type: integer
-        trainer:
-          type: boolean
-        commute:
-          type: boolean
-        manual:
-          type: boolean
-        private:
-          type: boolean
-        average_speed:
-          type: number
-          format: float
-        max_speed:
-          type: number
-          format: float
-        average_heartrate:
-          type: number
-          format: float
-        max_heartrate:
-          type: number
-          format: float
     DetailedActivity:
       type: object
       properties:
@@ -567,23 +498,6 @@ components:
           $ref: '#/components/schemas/MetaAthlete'
         gear:
           $ref: '#/components/schemas/SummaryGear'
-    Fault:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              resource:
-                type: string
-              field:
-                type: string
-              code:
-                type: string
-        message:
-          type: string
-          description: The error message
     SummaryAthlete:
       type: object
       properties:
@@ -609,6 +523,92 @@ components:
           enum:
           - M
           - F
+    SummaryGear:
+      type: object
+      properties:
+        id:
+          type: string
+        primary:
+          type: boolean
+        name:
+          type: string
+        distance:
+          type: number
+          format: float
+        resource_state:
+          type: integer
+    SummaryActivity:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the activity
+        name:
+          type: string
+        distance:
+          type: number
+          format: float
+        moving_time:
+          type: integer
+        elapsed_time:
+          type: integer
+        total_elevation_gain:
+          type: number
+          format: float
+        type:
+          type: string
+        sport_type:
+          type: string
+        start_date:
+          type: string
+          format: date-time
+        start_date_local:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+        achievement_count:
+          type: integer
+        kudos_count:
+          type: integer
+        comment_count:
+          type: integer
+        trainer:
+          type: boolean
+        commute:
+          type: boolean
+        manual:
+          type: boolean
+        private:
+          type: boolean
+        average_speed:
+          type: number
+          format: float
+        max_speed:
+          type: number
+          format: float
+        average_heartrate:
+          type: number
+          format: float
+        max_heartrate:
+          type: number
+          format: float
+    PolylineMap:
+      type: object
+      properties:
+        id:
+          type: string
+        polyline:
+          type: string
+          description: The polyline of the map
+        summary_polyline:
+          type: string
+          description: The summary polyline of the map
+    MetaAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
     Comment:
       type: object
       properties:
@@ -624,8 +624,8 @@ components:
           type: string
           format: date-time
   responses:
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
+    Forbidden:
+      description: Forbidden — the request is not authorized
       content:
         application/json:
           schema:
@@ -636,8 +636,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Fault'
-    Forbidden:
-      description: Forbidden — the request is not authorized
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
       content:
         application/json:
           schema:

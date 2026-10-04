@@ -45,19 +45,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
   schemas:
     Fault:
       type: object
@@ -109,6 +96,19 @@ components:
         description:
           type: string
           description: A description of the gear
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   securitySchemes:
     stravaBearerAuth:
       type: oauth2

@@ -103,20 +103,24 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
   schemas:
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
     ActivityStats:
       type: object
       properties:
@@ -146,6 +150,29 @@ components:
           $ref: '#/components/schemas/ActivityTotal'
         all_swim_totals:
           $ref: '#/components/schemas/ActivityTotal'
+    ActivityTotal:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The number of activities
+        distance:
+          type: number
+          format: float
+          description: The total distance in meters
+        moving_time:
+          type: integer
+          description: The total moving time in seconds
+        elapsed_time:
+          type: integer
+          description: The total elapsed time in seconds
+        elevation_gain:
+          type: number
+          format: float
+          description: The total elevation gain in meters
+        achievement_count:
+          type: integer
+          description: The total number of achievements (recent 4 weeks only)
     DetailedAthlete:
       type: object
       properties:
@@ -220,6 +247,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SummaryGear'
+    SummaryGear:
+      type: object
+      properties:
+        id:
+          type: string
+        primary:
+          type: boolean
+        name:
+          type: string
+        distance:
+          type: number
+          format: float
+        resource_state:
+          type: integer
     Zones:
       type: object
       properties:
@@ -249,60 +290,19 @@ components:
                     type: integer
                   max:
                     type: integer
-    SummaryGear:
-      type: object
-      properties:
-        id:
-          type: string
-        primary:
-          type: boolean
-        name:
-          type: string
-        distance:
-          type: number
-          format: float
-        resource_state:
-          type: integer
-    ActivityTotal:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The number of activities
-        distance:
-          type: number
-          format: float
-          description: The total distance in meters
-        moving_time:
-          type: integer
-          description: The total moving time in seconds
-        elapsed_time:
-          type: integer
-          description: The total elapsed time in seconds
-        elevation_gain:
-          type: number
-          format: float
-          description: The total elevation gain in meters
-        achievement_count:
-          type: integer
-          description: The total number of achievements (recent 4 weeks only)
-    Fault:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              resource:
-                type: string
-              field:
-                type: string
-              code:
-                type: string
-        message:
-          type: string
-          description: The error message
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   securitySchemes:
     stravaBearerAuth:
       type: oauth2

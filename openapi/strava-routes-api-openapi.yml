@@ -77,17 +77,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    PolylineMap:
-      type: object
-      properties:
-        id:
-          type: string
-        polyline:
-          type: string
-          description: The polyline of the map
-        summary_polyline:
-          type: string
-          description: The summary polyline of the map
     Fault:
       type: object
       properties:
@@ -130,6 +119,17 @@ components:
           enum:
           - M
           - F
+    PolylineMap:
+      type: object
+      properties:
+        id:
+          type: string
+        polyline:
+          type: string
+          description: The polyline of the map
+        summary_polyline:
+          type: string
+          description: The summary polyline of the map
     Route:
       type: object
       properties:
