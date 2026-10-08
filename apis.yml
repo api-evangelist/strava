@@ -242,6 +242,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/strava/refs/heads/main/asyncapi/strava-webhooks-asyncapi.yml
 common:
+- type: Plans
+  url: plans/strava-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/strava-rate-limits.yml
+- type: FinOps
+  url: finops/strava-finops.yml
 - type: AgenticAccess
   url: agentic-access/strava-agentic-access.yml
 - type: VulnerabilityDisclosure
