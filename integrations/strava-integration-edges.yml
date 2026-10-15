@@ -1,0 +1,79 @@
+edges:
+- partner_name: Terra
+  partner: terra-api
+  partner_match: aggregator
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+  category: health data source
+  contract_reference:
+    list: Terra supported integrations (docs.tryterra.co)
+    spec_file: null
+    listed_name: Strava
+    listed_id: STRAVA
+    listed_names:
+    - Strava
+    matched_domain: strava.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    delivery_mode:
+    - Event-Driven
+    developer_access:
+    - Required
+  detected_by: sweep-health-wellness.py
+  first_seen: '2026-10-15'
+- partner_name: Junction (Vital)
+  partner: vital-io
+  partner_match: aggregator
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  category: health data source
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: Strava
+    listed_id: strava
+    listed_names:
+    - Strava
+    matched_domain: strava.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  detected_by: sweep-health-wellness.py
+  first_seen: '2026-10-15'
+- partner_name: Polar (own)
+  partner: polar
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.polar.com/en/compatible-apps
+  mirror_of: polar/integrations/polar-integration-edges.yml
+  apps:
+  - Strava
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: Polar AccessLink compatible app
+generated: '2026-10-15'
+method: searched
+source:
+- https://docs.junction.com/wearables/providers/introduction
+- https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+checked:
+- https://docs.junction.com/wearables/providers/introduction
+- https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+- polar/integrations/polar-integration-edges.yml
