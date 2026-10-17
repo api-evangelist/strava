@@ -76,60 +76,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    Unauthorized:
+      description: Authorization required or the provided access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Fault'
   schemas:
-    Fault:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              resource:
-                type: string
-              field:
-                type: string
-              code:
-                type: string
-        message:
-          type: string
-          description: The error message
-    SummaryAthlete:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The unique identifier of the athlete
-        firstname:
-          type: string
-        lastname:
-          type: string
-        profile_medium:
-          type: string
-        profile:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        sex:
-          type: string
-          enum:
-          - M
-          - F
-    PolylineMap:
-      type: object
-      properties:
-        id:
-          type: string
-        polyline:
-          type: string
-          description: The polyline of the map
-        summary_polyline:
-          type: string
-          description: The summary polyline of the map
     Route:
       type: object
       properties:
@@ -171,19 +131,59 @@ components:
           $ref: '#/components/schemas/PolylineMap'
         athlete:
           $ref: '#/components/schemas/SummaryAthlete'
-  responses:
-    Unauthorized:
-      description: Authorization required or the provided access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Fault'
+    PolylineMap:
+      type: object
+      properties:
+        id:
+          type: string
+        polyline:
+          type: string
+          description: The polyline of the map
+        summary_polyline:
+          type: string
+          description: The summary polyline of the map
+    SummaryAthlete:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique identifier of the athlete
+        firstname:
+          type: string
+        lastname:
+          type: string
+        profile_medium:
+          type: string
+        profile:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        sex:
+          type: string
+          enum:
+          - M
+          - F
+    Fault:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              resource:
+                type: string
+              field:
+                type: string
+              code:
+                type: string
+        message:
+          type: string
+          description: The error message
   securitySchemes:
     stravaBearerAuth:
       type: oauth2
